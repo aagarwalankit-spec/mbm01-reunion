@@ -175,6 +175,24 @@ footer p{margin:6px auto 0;color:var(--ink-2);font-size:14.5px}
 .venue .for{font-family:var(--hand);font-weight:700;font-size:24px;color:var(--blue);line-height:1.15;margin:4px 0 8px}
 .venue .btn{align-self:flex-start;margin-top:auto;padding:11px 16px;font-size:15px}
 @media (max-width:760px){.venues{grid-template-columns:1fr}}
+.slots li{grid-template-columns:92px 1fr}
+.at{display:inline-block;font-style:normal;font-size:12px;font-weight:700;letter-spacing:.04em;padding:1px 8px;border-radius:999px;margin-top:3px;white-space:nowrap}
+.at.gg{background:color-mix(in srgb,var(--sand) 16%,transparent);color:var(--sand)}
+.at.hk{background:color-mix(in srgb,var(--blue) 16%,transparent);color:var(--blue)}
+.at.ot{background:color-mix(in srgb,var(--ink-2) 14%,transparent);color:var(--ink-2)}
+.slots b{font-weight:700}
+.legend{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:-6px 0 18px;font-size:14.5px;color:var(--ink-2)}
+.optbl{width:100%;border-collapse:collapse;margin:14px 0 20px;font-size:15.5px}
+.optbl th,.optbl td{text-align:left;padding:9px 10px;border-bottom:1px solid rgba(255,255,255,.14);vertical-align:top}
+.optbl th{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--band-2);font-weight:700}
+.optbl td:last-child,.optbl th:last-child{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums;font-weight:700}
+.optbl td:first-child{color:var(--mustard);font-weight:800;width:28px}
+.stat{display:flex;gap:26px;flex-wrap:wrap;margin:6px 0 4px}
+.stat div{font-size:14px;color:var(--band-2)}
+.stat b{display:block;font-size:40px;line-height:1;color:var(--band-ink);font-variant-numeric:tabular-nums}
+.feature{margin:0 0 34px;background:#FFFCF6;padding:12px 12px 0;box-shadow:var(--shadow);transform:rotate(-.6deg)}
+.feature img{display:block;width:100%;height:auto}
+.feature figcaption{font-family:var(--hand);font-weight:700;font-size:24px;color:#1C2A44;text-align:center;padding:8px 0 10px}
 </style>
 </head><body>
 
@@ -215,9 +233,9 @@ footer p{margin:6px auto 0;color:var(--ink-2);font-size:14.5px}
 
     <div class="facts">
       <div class="fact"><div class="k">When</div><div class="v">25 – 27 Dec 2026</div><div class="s">Fri to Sun · Christmas weekend</div></div>
-      <div class="fact"><div class="k">Where</div><div class="v">Jodhpur, Rajasthan</div><div class="s">Garh Govind &amp; Hari Kunj · <a href="#venues">venues</a></div></div>
-      <div class="fact"><div class="k">Who</div><div class="v">Batch of 2001</div><div class="s">All branches · families <span class="tbc">TBC</span></div></div>
-      <div class="fact"><div class="k">Contribution</div><div class="v">Per head <span class="tbc">TBC</span></div><div class="s">Covers events &amp; meals</div></div>
+      <div class="fact"><div class="k">Where</div><div class="v">Jodhpur, Rajasthan</div><div class="s">Garh Govind &amp; Hari Kunj resorts · <a href="#venues">venues</a></div></div>
+      <div class="fact"><div class="k">Who</div><div class="v">Batch of 2001</div><div class="s">All branches · families welcome</div></div>
+      <div class="fact"><div class="k">Booking</div><div class="v">From ₹10,026</div><div class="s">5 options · <a href="#register">see details</a></div></div>
     </div>
   </div>
 </header>
@@ -240,39 +258,49 @@ footer p{margin:6px auto 0;color:var(--ink-2);font-size:14.5px}
   </section>
 
   <section id="schedule">
-    <div class="label">The plan</div>
-    <h2>Three days in Jodhpur <span class="tbc">DRAFT</span></h2>
+    <div class="label">The programme</div>
+    <h2>Three days in Jodhpur</h2>
+    <div class="legend">Venues: <em class="at gg">Garh Govind</em> <em class="at hk">Hari Kunj</em></div>
     <div class="days">
       <article class="day">
         <div class="dt"><div class="dnum">25</div><div class="dw">Friday<small>December</small></div></div>
         <div class="theme">Arrive &amp; reconnect</div>
         <ul class="slots">
-          <li><time>All day</time><span>Arrivals, pick-ups and hotel check-in</span></li>
-          <li><time>17:00</time><span>Registration desk opens, collect your welcome kit</span></li>
-          <li><time>19:30</time><span><b>Purani Jeans Night</b>: welcome dinner with 90s music and an open mic</span></li>
+          <li><time>07:00–12:00</time><span>Arrival, registration &amp; room check-in. Collect your badge and merchandise<br><em class="at gg">Garh Govind</em> <em class="at ot">Reception</em></span></li>
+          <li><time>10:00–12:00</time><span>Informal meet &amp; greet<br><em class="at gg">Garh Govind</em> <em class="at ot">Reception</em></span></li>
+          <li><time>12:30–14:00</time><span><b>Felicitation of our MBM faculty</b><br><em class="at hk">Hari Kunj</em> <em class="at ot">Banquet hall</em></span></li>
+          <li><time>12:30–15:00</time><span>Lunch<br><em class="at hk">Hari Kunj</em> <em class="at ot">Lawn</em></span></li>
+          <li><time>15:00–17:00</time><span>Carnival, games &amp; stalls<br><em class="at hk">Hari Kunj</em> <em class="at ot">Lawn</em></span></li>
+          <li><time>16:30–17:30</time><span>High tea<br><em class="at hk">Hari Kunj</em> <em class="at ot">Lawn</em></span></li>
+          <li><time>18:00–22:00</time><span><b>Cultural evening + dinner</b><br><em class="at gg">Garh Govind</em> <em class="at ot">Lawn</em></span></li>
+          <li><time>22:00–00:00</time><span>Indoor music &amp; dhamal masti (bring your own drinks)<br><em class="at gg">Garh Govind</em> <em class="at ot">Banquet hall</em></span></li>
         </ul>
       </article>
       <article class="day">
         <div class="dt"><div class="dnum">26</div><div class="dw">Saturday<small>December</small></div></div>
         <div class="theme">Back to campus</div>
         <ul class="slots">
-          <li><time>09:30</time><span>Campus visit to MBM: departments, hostels, the old canteen</span></li>
-          <li><time>11:30</time><span>Meet our teachers, felicitation</span></li>
-          <li><time>13:00</time><span>Silver Jubilee batch photo at the main building</span></li>
-          <li><time>19:30</time><span><b>Gala dinner</b>: memory lane slideshow, branch-wise performances</span></li>
+          <li><time>06:00–07:00</time><span>Group walk / joy run for early risers<br><em class="at ot">Venue TBC</em></span></li>
+          <li><time>07:30–08:30</time><span>Breakfast<br><em class="at ot">Both resorts · banquet halls</em></span></li>
+          <li><time>09:00–09:30</time><span>Buses to college<br><em class="at ot">From both resorts</em></span></li>
+          <li><time>10:00–13:00</time><span><b>College &amp; hostel tour</b><br><em class="at ot">MBM campus</em></span></li>
+          <li><time>13:00–13:30</time><span>Buses back to the resorts<br><em class="at ot">To both resorts</em></span></li>
+          <li><time>13:30–15:30</time><span>Lunch<br><em class="at hk">Hari Kunj</em> <em class="at ot">Lawn</em></span></li>
+          <li><time>15:30–17:30</time><span>Rest up for the evening<br><em class="at ot">Your choice</em></span></li>
+          <li><time>17:00–18:00</time><span>High tea<br><em class="at gg">Garh Govind</em> <em class="at ot">Lawn</em></span></li>
+          <li><time>18:00–22:00</time><span><b>Cultural evening + dinner</b><br><em class="at gg">Garh Govind</em> <em class="at ot">Lawn</em></span></li>
         </ul>
       </article>
       <article class="day">
         <div class="dt"><div class="dnum">27</div><div class="dw">Sunday<small>December</small></div></div>
-        <div class="theme">Blue city &amp; goodbyes</div>
+        <div class="theme">Goodbyes</div>
         <ul class="slots">
-          <li><time>08:30</time><span>Heritage morning: Mehrangarh Fort and Jaswant Thada</span></li>
-          <li><time>12:30</time><span>Farewell lunch, and a promise to not wait another 25 years</span></li>
-          <li><time>PM</time><span>Departures</span></li>
+          <li><time>07:30–08:30</time><span>Breakfast<br><em class="at ot">Both resorts · banquet halls</em></span></li>
+          <li><time>By 10:00</time><span>Check-out, and a promise not to wait another 25 years<br><em class="at ot">Your resort</em></span></li>
         </ul>
       </article>
     </div>
-    <p class="note">This is a draft to get everyone thinking. Timings, venues and activities will be confirmed by the organising team and updated here.</p>
+    <p class="note">Programme as shared by the organising committee. Timings may shift a little; updates will be posted here and on the batch WhatsApp group.</p>
   </section>
 
   <section id="venues">
@@ -283,43 +311,54 @@ footer p{margin:6px auto 0;color:var(--ink-2);font-size:14.5px}
         <div class="tagv">Venue 1</div>
         <h3>Garh Govind Resort</h3>
         <p class="addr">Chopasani Road, Gopal Bari, near Kaylana Lake, Jodhpur</p>
-        <p class="for">Heritage-style resort with lawns, banquet hall &amp; pool</p>
+        <p class="for">Check-in &amp; welcome desk · both cultural evenings &amp; dinners · late-night music</p>
         <a class="btn ghost" href="https://maps.app.goo.gl/jqUaTDZ5m8wLwNrs5" target="_blank" rel="noopener">Open in Google Maps</a>
       </article>
       <article class="venue">
         <div class="tagv">Venue 2</div>
         <h3>Hari Kunj Resort</h3>
         <p class="addr">Vinayak Vihar, Jodhpur</p>
-        <p class="for">Resort venue</p>
+        <p class="for">Faculty felicitation · lunches · carnival, games &amp; stalls</p>
         <a class="btn ghost" href="https://maps.app.goo.gl/h8stWF3PHKRqXzcX6" target="_blank" rel="noopener">Open in Google Maps</a>
       </article>
     </div>
-    <p class="note">Which event happens at which venue will be shared soon <span class="tbc">TBC</span></p>
+    <p class="note">Rooms for everyone who booked a stay option are at these two resorts. Buses to college on 26 Dec leave from both.</p>
   </section>
 
   <section id="register">
     <div class="register">
       <div>
         <div class="label">Count me in</div>
-        <h2>Register for the reunion</h2>
-        <p>Registering early helps us book the right number of rooms, meals and seats. It takes two minutes.</p>
+        <h2>Registration</h2>
+        <div class="stat"><div><b>129</b>batchmates registered</div><div><b>~360</b>guests incl. families</div></div>
+        <p style="font-size:14px">As of 20 September 2026.</p>
+        <table class="optbl">
+          <thead><tr><th>#</th><th>Option</th><th>Booking</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>Individual, no hotel room</td><td>₹10,026</td></tr>
+            <tr><td>2</td><td>With spouse/family, no hotel room</td><td>₹10,026</td></tr>
+            <tr><td>3</td><td>Individual, room shared with another alumnus</td><td>₹10,026</td></tr>
+            <tr><td>4</td><td>With spouse/family, one hotel room</td><td>₹15,026</td></tr>
+            <tr><td>5</td><td>With spouse/family, two hotel rooms</td><td>₹20,026</td></tr>
+          </tbody>
+        </table>
         <ol class="steps">
-          <li><span>Fill the registration form with your name, branch, city, and how many people are coming with you.</span></li>
-          <li><span>Pay the contribution once the amount is confirmed. Details will come on the batch WhatsApp group.</span></li>
+          <li><span><b>Already registered?</b> You're all set. Updates come on the batch WhatsApp group.</span></li>
+          <li><span><b>Not yet?</b> Reach out to the organising team to check availability and get the form.</span></li>
           <li><span>Book your travel to Jodhpur. See the travel section below.</span></li>
         </ol>
-        <div class="actions">
-          <span class="btn" aria-disabled="true" title="Registration link coming soon">Registration form <span class="tbc" style="margin-left:2px">LINK TBC</span></span>
-        </div>
       </div>
       <div>
         <div class="card-dark">
           <h3>Organising team</h3>
           <dl>
-            <dt>Coordinator</dt><dd>Name &amp; phone <span class="tbc">TBC</span></dd>
-            <dt>Registrations</dt><dd>Name &amp; phone <span class="tbc">TBC</span></dd>
-            <dt>Travel &amp; stay</dt><dd>Name &amp; phone <span class="tbc">TBC</span></dd>
-            <dt>Register by</dt><dd>Date <span class="tbc">TBC</span></dd>
+            <dt>Chairman</dt><dd>Rao Rajendra Singh</dd>
+            <dt>Secretary</dt><dd>Sandeep Jain</dd>
+            <dt>Treasurer</dt><dd>Pradeep Agarwal</dd>
+            <dt>Stay</dt><dd>Rao Rajendra Singh, Ramesh Parihar</dd>
+            <dt>Catering</dt><dd>Gaurav Jain</dd>
+            <dt>Cultural</dt><dd>Akshay Jain, Chirantan Bhabra</dd>
+            <dt>Programme</dt><dd>Preeti Choudhary</dd>
           </dl>
         </div>
         <div class="msg">
@@ -353,8 +392,8 @@ Once MBMites, Always MBMites ❤️</pre>
       <div>
         <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21V8l9-5 9 5v13"/><path d="M9 21v-6h6v6"/></svg>Where to stay</h3>
         <ul>
-          <li>Group rate at a partner hotel <span class="tbc">TBC</span></li>
-          <li>Staying on your own? A base near Ratanada or Residency Road keeps you close to campus and the venues.</li>
+          <li>Booked a room option? Your stay is at <b>Garh Govind</b> or <b>Hari Kunj</b>, so there's nothing more to book.</li>
+          <li>Staying on your own? Pick somewhere along Chopasani Road to stay close to both resorts.</li>
           <li>For a heritage-haveli stay, look near the Clock Tower in the old city.</li>
           <li>Christmas week fills up fast, so hold a refundable booking now.</li>
         </ul>
@@ -380,16 +419,18 @@ Once MBMites, Always MBMites ❤️</pre>
         <p>Play the teaser (sound on) and then scroll through the old album. Spot yourself? Spot the guy who still owes you money?</p>
       </div>
     </div>
+    <figure class="feature"><img src="swasti2001.jpg" alt="SWASTI 2001 group photo: farewell to the Electronics &amp; Communication batch, with faculty"><figcaption>SWASTI 2001 · farewell to the E&amp;C batch</figcaption></figure>
     <div class="board" id="board"></div>
-    <p class="ask"><b>Have old photos?</b> Send them to the organising team on WhatsApp and we'll add them to this board and the gala slideshow.</p>
+    <p class="ask"><b>Have old photos?</b> Especially farewell photos from other branches! Send them to the organising team on WhatsApp and we'll add them here and to the Wall of Memories.</p>
   </section>
 
   <section id="faq" class="faq">
     <div class="label">Questions</div>
     <h2>FAQ</h2>
-    <details><summary>Who can attend?</summary><p>Everyone from the MBM batch of 2001, across all branches. Whether spouses and kids can come will be confirmed with the registration form.</p></details>
-    <details><summary>How much does it cost?</summary><p>The per-head contribution will be shared once venues are locked. It will cover the event days and meals. Travel and stay are on your own unless a group package is announced.</p></details>
+    <details><summary>Who can attend?</summary><p>Everyone from the MBM batch of 2001, across all branches. Spouses and kids are welcome. Choose a family option when you register.</p></details>
+    <details><summary>How much does it cost?</summary><p>Booking amounts run from ₹10,026 to ₹20,026 depending on the option (see Registration). Room options include the stay at Garh Govind or Hari Kunj. Travel to Jodhpur is on your own. For payment questions, contact the treasurer.</p></details>
     <details><summary>Is there a dress code?</summary><p>Casual for most of it. For the gala night there may be a theme, and there are rumours of a 90s theme. To be confirmed.</p></details>
+    <details><summary>Can I bring drinks?</summary><p>For the late-night music session on 25 Dec, yes. It's a bring-your-own-drinks night at Garh Govind.</p></details>
     <details><summary>Can I attend only one day?</summary><p>Yes. Tell us which days when you register so we can plan meals and seats.</p></details>
     <details><summary>Where will updates be posted?</summary><p>On the batch WhatsApp group and on this page. Bookmark it.</p></details>
   </section>
