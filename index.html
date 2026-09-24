@@ -1,0 +1,409 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>MBM '01 Silver Jubilee</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Figtree:wght@400;500;600;700;800&family=Permanent+Marker&display=swap">
+<style>
+:root{
+  --ground:#F5EFE4; --paper:#FFFCF6; --ink:#1C2A44; --ink-2:#4A566E; --line:#DDD2BF;
+  --sand:#B8612F; --blue:#2E5597; --mustard:#E8BA4A; --mustard-ink:#1C2A44;
+  --band:#1C2A44; --band-ink:#F5EFE4; --band-2:#C9D3E6;
+  --shadow:0 1px 2px rgba(40,30,15,.08),0 8px 24px rgba(40,30,15,.10);
+  --tbc-bg:#FBE7B8; --tbc-ink:#6B4A06;
+  --display:"Permanent Marker","Marker Felt","Comic Sans MS",cursive;
+  --hand:"Caveat","Segoe Print","Bradley Hand",cursive;
+  --body:"Figtree",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --ground:#0F1526; --paper:#18203A; --ink:#F1E9DA; --ink-2:#B5BCCB; --line:#2C3656;
+    --sand:#E08E5B; --blue:#86A8E6; --mustard:#E4B862; --mustard-ink:#1C2A44;
+    --band:#0A0F1C; --band-ink:#F1E9DA; --band-2:#9DAACB;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px rgba(0,0,0,.45);
+    --tbc-bg:#3A3016; --tbc-ink:#F1CF7C;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --ground:#0F1526; --paper:#18203A; --ink:#F1E9DA; --ink-2:#B5BCCB; --line:#2C3656;
+  --sand:#E08E5B; --blue:#86A8E6; --mustard:#E4B862; --mustard-ink:#1C2A44;
+  --band:#0A0F1C; --band-ink:#F1E9DA; --band-2:#9DAACB;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px rgba(0,0,0,.45);
+  --tbc-bg:#3A3016; --tbc-ink:#F1CF7C;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{background:var(--ground);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--blue)}
+:focus-visible{outline:3px solid var(--mustard);outline-offset:2px;border-radius:4px}
+.wrap{max-width:1080px;margin-inline:auto;padding-inline:20px}
+.label{font-size:12.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--sand)}
+h2{font-size:clamp(30px,5vw,44px);line-height:1.1;margin:.2em 0 .5em;font-weight:800;letter-spacing:-.01em;text-wrap:balance}
+h3{font-size:20px;margin:0 0 .3em;line-height:1.25}
+p{margin:0 0 .8em;max-width:65ch}
+.hand{font-family:var(--hand);font-weight:700}
+.tbc{display:inline-block;font-size:11.5px;font-weight:800;letter-spacing:.1em;padding:2px 8px;border-radius:999px;background:var(--tbc-bg);color:var(--tbc-ink);vertical-align:2px;margin-left:6px;white-space:nowrap}
+
+/* nav */
+nav.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--ground) 88%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav.top .wrap{display:flex;align-items:center;gap:18px;height:56px}
+nav.top .brand{font-family:var(--display);font-size:22px;color:var(--ink);text-decoration:none;white-space:nowrap}
+nav.top .brand b{color:var(--sand);font-weight:400}
+nav.top ul{display:flex;gap:4px;list-style:none;margin:0 0 0 auto;padding:0;overflow-x:auto;scrollbar-width:none}
+nav.top ul::-webkit-scrollbar{display:none}
+nav.top li a{display:block;padding:6px 10px;border-radius:8px;color:var(--ink-2);text-decoration:none;font-weight:600;font-size:14.5px;white-space:nowrap}
+nav.top li a:hover{color:var(--ink);background:var(--paper)}
+nav.top li a.cta{background:var(--ink);color:var(--ground)}
+@media (max-width:640px){nav.top li:not(.keep){display:none}}
+
+/* hero */
+.hero{position:relative}
+.hero-img{position:relative;height:clamp(240px,42vw,430px);background:url(img/campus.jpg) center 30%/cover no-repeat}
+.hero-img::after{content:"";position:absolute;inset:auto 0 -1px 0;height:46px;background:var(--ground);
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 46' preserveAspectRatio='none'%3E%3Cpath d='M0 22 L40 18 L85 26 L130 15 L180 24 L230 12 L290 22 L340 16 L400 27 L455 14 L510 23 L570 17 L620 26 L680 13 L735 22 L790 16 L850 25 L905 12 L960 21 L1020 15 L1075 24 L1130 14 L1200 20 L1200 46 L0 46Z' fill='black'/%3E%3C/svg%3E") center/100% 100%;
+  mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 46' preserveAspectRatio='none'%3E%3Cpath d='M0 22 L40 18 L85 26 L130 15 L180 24 L230 12 L290 22 L340 16 L400 27 L455 14 L510 23 L570 17 L620 26 L680 13 L735 22 L790 16 L850 25 L905 12 L960 21 L1020 15 L1075 24 L1130 14 L1200 20 L1200 46 L0 46Z' fill='black'/%3E%3C/svg%3E") center/100% 100%}
+.hero-note{position:absolute;right:max(20px,calc((100% - 1040px)/2));top:22px;background:#FFFCF3;color:#1C2A44;padding:12px 16px 10px;transform:rotate(3deg);box-shadow:var(--shadow);font-family:var(--hand);font-size:24px;line-height:1.05;font-weight:700;max-width:200px}
+.hero-note::before{content:"";position:absolute;top:-10px;left:50%;width:70px;height:20px;transform:translateX(-50%) rotate(-4deg);background:rgba(232,186,74,.75)}
+@media (max-width:560px){.hero-note{display:none}}
+.lockup{display:grid;grid-template-columns:1fr auto;gap:28px 40px;align-items:end;padding-block:8px 34px}
+.logo{font-family:var(--display);font-size:clamp(64px,13vw,132px);line-height:.9;margin:0;color:var(--ink);letter-spacing:.01em}
+.logo span{color:var(--sand)}
+.reunion{display:inline-block;font-family:var(--hand);font-weight:700;font-size:clamp(34px,6vw,54px);line-height:1;margin-top:10px;padding:2px 16px 6px;color:var(--mustard-ink);
+  background:linear-gradient(transparent 12%,var(--mustard) 12%,var(--mustard) 88%,transparent 88%);transform:rotate(-1.5deg)}
+.tag{font-size:15px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;margin:22px 0 0;color:var(--ink-2)}
+.count{justify-self:end;text-align:center;border:2px dashed var(--line);border-radius:14px;padding:14px 20px;min-width:150px}
+.count .n{font-size:60px;font-weight:800;line-height:1;font-variant-numeric:tabular-nums;color:var(--blue)}
+.count .u{font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--ink-2)}
+@media (max-width:720px){.lockup{grid-template-columns:1fr}.count{justify-self:start;display:flex;align-items:baseline;gap:10px;padding:10px 16px}.count .n{font-size:40px}}
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:4px}
+.btn{display:inline-flex;align-items:center;gap:8px;font:700 16px/1 var(--body);padding:14px 20px;border-radius:12px;border:2px solid var(--ink);background:var(--ink);color:var(--ground);text-decoration:none;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn:hover{transform:translateY(-1px)}
+.btn svg{width:18px;height:18px}
+
+/* facts */
+.facts{display:grid;grid-template-columns:repeat(4,1fr);border-block:1px solid var(--line);margin-block:34px 0}
+.fact{padding:18px 18px 18px 0}
+.fact+.fact{padding-left:18px;border-left:1px solid var(--line)}
+.fact .k{font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-2)}
+.fact .v{font-size:19px;font-weight:700;line-height:1.3;margin-top:4px}
+.fact .s{font-size:14.5px;color:var(--ink-2)}
+@media (max-width:820px){.facts{grid-template-columns:1fr 1fr}.fact:nth-child(3){padding-left:0;border-left:0}.fact:nth-child(n+3){border-top:1px solid var(--line)}}
+@media (max-width:420px){.facts{grid-template-columns:1fr}.fact,.fact+.fact{padding-left:0;border-left:0}.fact+.fact{border-top:1px solid var(--line)}}
+
+section{padding-block:72px 8px;scroll-margin-top:60px}
+.intro{display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:center}
+.intro .big{font-size:clamp(20px,2.4vw,24px);line-height:1.5}
+.checklist{list-style:none;padding:20px 24px;margin:0;background:#FFFCF3;color:#1C2A44;box-shadow:var(--shadow);transform:rotate(1.5deg);font-family:var(--hand);font-size:28px;font-weight:700;line-height:1.35}
+.checklist li::before{content:"\2611";margin-right:10px;color:#2E5597}
+@media (max-width:760px){.intro{grid-template-columns:1fr}.checklist{max-width:340px}}
+
+/* schedule */
+.days{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.day{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:22px 22px 12px;display:flex;flex-direction:column}
+.day .dt{display:flex;align-items:baseline;gap:10px;margin-bottom:4px}
+.day .dnum{font-size:52px;font-weight:800;line-height:1;color:var(--sand);font-variant-numeric:tabular-nums}
+.day .dw{font-weight:700;line-height:1.2}
+.day .dw small{display:block;font-weight:600;color:var(--ink-2);font-size:13px;letter-spacing:.12em;text-transform:uppercase}
+.day .theme{font-family:var(--hand);font-size:27px;font-weight:700;color:var(--blue);margin:6px 0 10px;line-height:1.1}
+.slots{list-style:none;margin:0;padding:0;border-top:1px dashed var(--line)}
+.slots li{display:grid;grid-template-columns:62px 1fr;gap:10px;padding:10px 0;border-bottom:1px dashed var(--line);font-size:15.5px;line-height:1.4}
+.slots li:last-child{border-bottom:0}
+.slots time{font-weight:700;color:var(--ink-2);font-variant-numeric:tabular-nums;font-size:14px;padding-top:1px}
+@media (max-width:860px){.days{grid-template-columns:1fr}}
+.note{font-size:14.5px;color:var(--ink-2);margin-top:14px}
+
+/* register */
+.register{background:var(--band);color:var(--band-ink);border-radius:22px;padding:clamp(24px,5vw,48px);display:grid;grid-template-columns:1.2fr 1fr;gap:36px}
+.register h2{color:var(--band-ink)}
+.register .label{color:var(--mustard)}
+.register p{color:var(--band-2)}
+.steps{list-style:none;counter-reset:s;padding:0;margin:18px 0 24px;display:grid;gap:12px}
+.steps li{counter-increment:s;display:grid;grid-template-columns:34px 1fr;gap:12px;align-items:start;color:var(--band-ink)}
+.steps li::before{content:counter(s);width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--mustard);color:#1C2A44;font-weight:800}
+.register .btn{background:var(--mustard);border-color:var(--mustard);color:#1C2A44}
+.register .btn.ghost{background:transparent;color:var(--band-ink);border-color:var(--band-2)}
+.card-dark{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:20px}
+.card-dark h3{color:var(--band-ink)}
+.card-dark dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:8px 16px;font-size:15.5px}
+.card-dark dt{color:var(--band-2);font-weight:600}
+.card-dark dd{margin:0;font-weight:700}
+.msg{margin-top:16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:18px}
+.msg pre{white-space:pre-wrap;font:15px/1.5 var(--body);margin:8px 0 14px;color:var(--band-ink);max-height:180px;overflow:auto}
+.copied{font-weight:700;color:var(--mustard);margin-left:10px}
+@media (max-width:820px){.register{grid-template-columns:1fr}}
+
+/* travel */
+.travel-band{height:clamp(160px,26vw,260px);border-radius:18px;background:url(img/jodhpur.jpg) center 55%/cover;margin-bottom:26px;position:relative;overflow:hidden}
+.travel-band span{position:absolute;left:18px;bottom:14px;font-family:var(--hand);font-weight:700;font-size:30px;color:#fff;text-shadow:0 2px 12px rgba(0,0,0,.6)}
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.cols h3{display:flex;align-items:center;gap:10px}
+.cols h3 svg{width:22px;height:22px;color:var(--sand);flex:none}
+.cols ul{margin:0;padding-left:18px}
+.cols li{margin-bottom:6px}
+@media (max-width:860px){.cols{grid-template-columns:1fr}}
+
+/* memories */
+.video-row{display:grid;grid-template-columns:minmax(0,340px) 1fr;gap:36px;align-items:center;margin-bottom:40px}
+.video-row video{width:100%;aspect-ratio:9/16;border-radius:18px;background:#000;box-shadow:var(--shadow);display:block}
+@media (max-width:760px){.video-row{grid-template-columns:1fr}.video-row video{max-width:340px}}
+.board{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:26px 22px;padding:8px 4px}
+.pola{margin:0;background:#FFFCF6;padding:10px 10px 0;box-shadow:var(--shadow);transform:rotate(var(--r,0deg));transition:transform .25s ease}
+.pola:hover{transform:rotate(0) scale(1.03);z-index:2}
+.pola img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;filter:sepia(.12) saturate(.95)}
+.pola figcaption{font-family:var(--hand);font-weight:700;font-size:23px;color:#1C2A44;text-align:center;padding:6px 0 8px}
+.ask{margin-top:30px;padding:16px 20px;border:2px dashed var(--line);border-radius:14px;font-size:16px}
+
+/* faq */
+.faq details{border-bottom:1px solid var(--line);padding:14px 0}
+.faq summary{cursor:pointer;font-weight:700;font-size:18px;list-style:none;display:flex;justify-content:space-between;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-size:24px;line-height:1;color:var(--sand);transition:transform .2s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{margin:10px 0 2px;color:var(--ink-2)}
+
+footer{margin-top:80px;border-top:1px solid var(--line);padding-block:36px 48px;text-align:center}
+footer .hand{font-size:34px;color:var(--ink)}
+footer p{margin:6px auto 0;color:var(--ink-2);font-size:14.5px}
+</style>
+</head><body>
+
+<nav class="top" aria-label="Sections">
+  <div class="wrap">
+    <a class="brand" href="#top">MBM <b>'01</b></a>
+    <ul>
+      <li><a href="#schedule">Schedule</a></li>
+      <li><a href="#travel">Travel &amp; stay</a></li>
+      <li><a href="#memories">Memories</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li class="keep"><a class="cta" href="#register">Register</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="hero-img" role="img" aria-label="Main building of Mugneeram Bangur Memorial Engineering College, Jodhpur">
+  </div>
+  <div class="wrap">
+    <div class="lockup">
+      <div>
+        <h1 class="logo">MBM <span>'01</span></h1>
+        <div class="reunion">Silver Jubilee Reunion</div>
+        <p class="tag">25 years later. Still one batch.</p>
+      </div>
+      <div class="count" aria-live="polite">
+        <div class="n" id="days">93</div>
+        <div class="u" id="daysLabel">days to go</div>
+      </div>
+    </div>
+    <div class="actions">
+      <a class="btn" href="#register">Register now
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a class="btn ghost" href="#memories">Watch the teaser</a>
+    </div>
+
+    <div class="facts">
+      <div class="fact"><div class="k">When</div><div class="v">25 – 27 Dec 2026</div><div class="s">Fri to Sun · Christmas weekend</div></div>
+      <div class="fact"><div class="k">Where</div><div class="v">Jodhpur, Rajasthan</div><div class="s">Venue <span class="tbc">TBC</span></div></div>
+      <div class="fact"><div class="k">Who</div><div class="v">Batch of 2001</div><div class="s">All branches · families <span class="tbc">TBC</span></div></div>
+      <div class="fact"><div class="k">Contribution</div><div class="v">Per head <span class="tbc">TBC</span></div><div class="s">Covers events &amp; meals</div></div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="intro" aria-label="About the reunion">
+    <div>
+      <div class="label">Once MBMites, always MBMites</div>
+      <h2>Same campus. Same friends. New stories.</h2>
+      <p class="big">Twenty-five years ago we walked out of MBM with degrees, backlogs, nicknames and friendships that never really ended. This December we're bringing every branch of the 2001 batch back to Jodhpur for three days of catching up.</p>
+      <p>Bring the old stories, the old photos and whoever you still owe a treat to from final year.</p>
+    </div>
+    <ul class="checklist" aria-label="What to expect">
+      <li>Same campus</li>
+      <li>Same friends</li>
+      <li>New stories</li>
+      <li>Bigger laughter</li>
+      <li>Longer conversations</li>
+    </ul>
+  </section>
+
+  <section id="schedule">
+    <div class="label">The plan</div>
+    <h2>Three days in Jodhpur <span class="tbc">DRAFT</span></h2>
+    <div class="days">
+      <article class="day">
+        <div class="dt"><div class="dnum">25</div><div class="dw">Friday<small>December</small></div></div>
+        <div class="theme">Arrive &amp; reconnect</div>
+        <ul class="slots">
+          <li><time>All day</time><span>Arrivals, pick-ups and hotel check-in</span></li>
+          <li><time>17:00</time><span>Registration desk opens, collect your welcome kit</span></li>
+          <li><time>19:30</time><span><b>Purani Jeans Night</b>: welcome dinner with 90s music and an open mic</span></li>
+        </ul>
+      </article>
+      <article class="day">
+        <div class="dt"><div class="dnum">26</div><div class="dw">Saturday<small>December</small></div></div>
+        <div class="theme">Back to campus</div>
+        <ul class="slots">
+          <li><time>09:30</time><span>Campus visit to MBM: departments, hostels, the old canteen</span></li>
+          <li><time>11:30</time><span>Meet our teachers, felicitation</span></li>
+          <li><time>13:00</time><span>Silver Jubilee batch photo at the main building</span></li>
+          <li><time>19:30</time><span><b>Gala dinner</b>: memory lane slideshow, branch-wise performances</span></li>
+        </ul>
+      </article>
+      <article class="day">
+        <div class="dt"><div class="dnum">27</div><div class="dw">Sunday<small>December</small></div></div>
+        <div class="theme">Blue city &amp; goodbyes</div>
+        <ul class="slots">
+          <li><time>08:30</time><span>Heritage morning: Mehrangarh Fort and Jaswant Thada</span></li>
+          <li><time>12:30</time><span>Farewell lunch, and a promise to not wait another 25 years</span></li>
+          <li><time>PM</time><span>Departures</span></li>
+        </ul>
+      </article>
+    </div>
+    <p class="note">This is a draft to get everyone thinking. Timings, venues and activities will be confirmed by the organising team and updated here.</p>
+  </section>
+
+  <section id="register">
+    <div class="register">
+      <div>
+        <div class="label">Count me in</div>
+        <h2>Register for the reunion</h2>
+        <p>Registering early helps us book the right number of rooms, meals and seats. It takes two minutes.</p>
+        <ol class="steps">
+          <li><span>Fill the registration form with your name, branch, city, and how many people are coming with you.</span></li>
+          <li><span>Pay the contribution once the amount is confirmed. Details will come on the batch WhatsApp group.</span></li>
+          <li><span>Book your travel to Jodhpur. See the travel section below.</span></li>
+        </ol>
+        <div class="actions">
+          <span class="btn" aria-disabled="true" title="Registration link coming soon">Registration form <span class="tbc" style="margin-left:2px">LINK TBC</span></span>
+        </div>
+      </div>
+      <div>
+        <div class="card-dark">
+          <h3>Organising team</h3>
+          <dl>
+            <dt>Coordinator</dt><dd>Name &amp; phone <span class="tbc">TBC</span></dd>
+            <dt>Registrations</dt><dd>Name &amp; phone <span class="tbc">TBC</span></dd>
+            <dt>Travel &amp; stay</dt><dd>Name &amp; phone <span class="tbc">TBC</span></dd>
+            <dt>Register by</dt><dd>Date <span class="tbc">TBC</span></dd>
+          </dl>
+        </div>
+        <div class="msg">
+          <h3 style="color:var(--band-ink)">Know a batchmate who isn't on the group?</h3>
+          <pre id="invite">MBM '01 – Silver Jubilee Reunion 🎓
+25 years later. Still one batch.
+📅 25–27 December 2026
+📍 Jodhpur, Rajasthan
+All branches of the 2001 batch – save the date and forward this to every batchmate you're in touch with.
+Once MBMites, Always MBMites ❤️</pre>
+          <button class="btn ghost" id="copyBtn" type="button">Copy invite message</button><span class="copied" id="copied" hidden>Copied</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="travel">
+    <div class="label">Getting there</div>
+    <h2>Travel &amp; stay in Jodhpur</h2>
+    <div class="travel-band"><span>The blue city awaits</span></div>
+    <div class="cols">
+      <div>
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 16l20-6-3-3-7 3-5-5-2 1 3 6-4 2-2-1-1 1z"/><path d="M3 21h18"/></svg>Reaching Jodhpur</h3>
+        <ul>
+          <li><b>By air:</b> Jodhpur Airport (JDH) is right in the city, a short drive from campus. Check current schedules for flights from your city. December is peak season, so book early.</li>
+          <li><b>By train:</b> Jodhpur Junction has direct trains from Delhi, Jaipur, Ahmedabad, Mumbai and more.</li>
+          <li><b>By road:</b> Good highways from Jaipur, Udaipur and Ahmedabad.</li>
+          <li>Airport &amp; station pick-ups <span class="tbc">TBC</span></li>
+        </ul>
+      </div>
+      <div>
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21V8l9-5 9 5v13"/><path d="M9 21v-6h6v6"/></svg>Where to stay</h3>
+        <ul>
+          <li>Group rate at a partner hotel <span class="tbc">TBC</span></li>
+          <li>Staying on your own? A base near Ratanada or Residency Road keeps you close to campus and the venues.</li>
+          <li>For a heritage-haveli stay, look near the Clock Tower in the old city.</li>
+          <li>Christmas week fills up fast, so hold a refundable booking now.</li>
+        </ul>
+      </div>
+      <div>
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>Good to know</h3>
+        <ul>
+          <li><b>Weather:</b> sunny, pleasant days and cold nights (often near 10°C). Pack a proper jacket for the evening events.</li>
+          <li><b>Stay an extra day?</b> Umaid Bhawan, Toorji ka Jhalra stepwell, Mandore Gardens and the Sardar Market shopping.</li>
+          <li><b>Must eat:</b> mirchi bada, pyaaz kachori and makhaniya lassi. Just like old times.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="memories">
+    <div class="label">Remember 2001?</div>
+    <h2>Memories</h2>
+    <div class="video-row">
+      <video controls playsinline preload="metadata" poster="img/teaser-poster.jpg" src="teaser.mp4" aria-label="MBM '01 Silver Jubilee teaser video"></video>
+      <div>
+        <p class="hand" style="font-size:36px;line-height:1.15;color:var(--blue);margin-bottom:12px">Purani jeans aur guitar…</p>
+        <p>Play the teaser (sound on) and then scroll through the old album. Spot yourself? Spot the guy who still owes you money?</p>
+      </div>
+    </div>
+    <div class="board" id="board"></div>
+    <p class="ask"><b>Have old photos?</b> Send them to the organising team on WhatsApp and we'll add them to this board and the gala slideshow.</p>
+  </section>
+
+  <section id="faq" class="faq">
+    <div class="label">Questions</div>
+    <h2>FAQ</h2>
+    <details><summary>Who can attend?</summary><p>Everyone from the MBM batch of 2001, across all branches. Whether spouses and kids can come will be confirmed with the registration form.</p></details>
+    <details><summary>How much does it cost?</summary><p>The per-head contribution will be shared once venues are locked. It will cover the event days and meals. Travel and stay are on your own unless a group package is announced.</p></details>
+    <details><summary>Is there a dress code?</summary><p>Casual for most of it. For the gala night there may be a theme, and there are rumours of a 90s theme. To be confirmed.</p></details>
+    <details><summary>Can I attend only one day?</summary><p>Yes. Tell us which days when you register so we can plan meals and seats.</p></details>
+    <details><summary>Where will updates be posted?</summary><p>On the batch WhatsApp group and on this page. Bookmark it.</p></details>
+  </section>
+</main>
+
+<footer class="wrap">
+  <div class="hand">Once MBMites, Always MBMites ♥</div>
+  <p>MBM Engineering College, Jodhpur · Batch of 2001 · Silver Jubilee Reunion, 25–27 December 2026</p>
+</footer>
+
+<script>
+(function(){
+  // countdown to 25 Dec 2026, 00:00 IST
+  var target = Date.UTC(2026, 11, 24, 18, 30);
+  function tick(){
+    var ms = target - Date.now(), d = Math.ceil(ms / 86400000);
+    var n = document.getElementById('days'), l = document.getElementById('daysLabel');
+    if (d > 1) { n.textContent = d; l.textContent = 'days to go'; }
+    else if (d === 1) { n.textContent = '1'; l.textContent = 'day to go'; }
+    else if (Date.now() < target + 3 * 86400000) { n.textContent = '🎉'; l.textContent = 'reunion is on'; }
+    else { n.textContent = '25'; l.textContent = 'years & counting'; }
+  }
+  tick(); setInterval(tick, 60000);
+
+  var photos = [
+    ['m01','Suited up!'],['m02','The gang'],['m03','Hostel evenings'],['m04','Trips together'],
+    ['m05','Chai, food & gossip'],['m06','Late nights'],['m07','Steps we owned'],['m08','Room-mates for life'],
+    ['m09','All of us'],['m10','Memories forever'],['m11','Outside the canteen'],['m12','Group photo, take 7']
+  ];
+  var rot = [-2.5, 1.8, -1.2, 2.6, -2, 1.2, -1.6, 2.2, -2.8, 1.5, -1, 2.4];
+  var board = document.getElementById('board');
+  photos.forEach(function(p, i){
+    var f = document.createElement('figure'); f.className = 'pola'; f.style.setProperty('--r', rot[i] + 'deg');
+    var img = document.createElement('img'); img.src = 'img/' + p[0] + '.jpg'; img.alt = p[1]; 
+    var c = document.createElement('figcaption'); c.textContent = p[1];
+    f.appendChild(img); f.appendChild(c); board.appendChild(f);
+  });
+
+  var btn = document.getElementById('copyBtn'), ok = document.getElementById('copied'), pre = document.getElementById('invite');
+  btn.addEventListener('click', function(){
+    var text = pre.textContent;
+    function flash(){ ok.hidden = false; setTimeout(function(){ ok.hidden = true; }, 2000); }
+    function fallback(){ var r = document.createRange(); r.selectNodeContents(pre); var s = getSelection(); s.removeAllRanges(); s.addRange(r); }
+    try { navigator.clipboard.writeText(text).then(flash, fallback); } catch (e) { fallback(); }
+  });
+})();
+</script>
+</body></html>
