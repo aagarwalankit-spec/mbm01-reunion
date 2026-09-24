@@ -167,6 +167,14 @@ section{padding-block:72px 8px;scroll-margin-top:60px}
 footer{margin-top:80px;border-top:1px solid var(--line);padding-block:36px 48px;text-align:center}
 footer .hand{font-size:34px;color:var(--ink)}
 footer p{margin:6px auto 0;color:var(--ink-2);font-size:14.5px}
+.venues{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.venue{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:6px}
+.venue .tagv{font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--sand)}
+.venue h3{font-size:24px;margin:0}
+.venue .addr{color:var(--ink-2);font-size:15.5px;margin:0}
+.venue .for{font-family:var(--hand);font-weight:700;font-size:24px;color:var(--blue);line-height:1.15;margin:4px 0 8px}
+.venue .btn{align-self:flex-start;margin-top:auto;padding:11px 16px;font-size:15px}
+@media (max-width:760px){.venues{grid-template-columns:1fr}}
 </style>
 </head><body>
 
@@ -175,6 +183,7 @@ footer p{margin:6px auto 0;color:var(--ink-2);font-size:14.5px}
     <a class="brand" href="#top">MBM <b>'01</b></a>
     <ul>
       <li><a href="#schedule">Schedule</a></li>
+      <li><a href="#venues">Venues</a></li>
       <li><a href="#travel">Travel &amp; stay</a></li>
       <li><a href="#memories">Memories</a></li>
       <li><a href="#faq">FAQ</a></li>
@@ -206,7 +215,7 @@ footer p{margin:6px auto 0;color:var(--ink-2);font-size:14.5px}
 
     <div class="facts">
       <div class="fact"><div class="k">When</div><div class="v">25 – 27 Dec 2026</div><div class="s">Fri to Sun · Christmas weekend</div></div>
-      <div class="fact"><div class="k">Where</div><div class="v">Jodhpur, Rajasthan</div><div class="s">Venue <span class="tbc">TBC</span></div></div>
+      <div class="fact"><div class="k">Where</div><div class="v">Jodhpur, Rajasthan</div><div class="s">Garh Govind &amp; Hari Kunj · <a href="#venues">venues</a></div></div>
       <div class="fact"><div class="k">Who</div><div class="v">Batch of 2001</div><div class="s">All branches · families <span class="tbc">TBC</span></div></div>
       <div class="fact"><div class="k">Contribution</div><div class="v">Per head <span class="tbc">TBC</span></div><div class="s">Covers events &amp; meals</div></div>
     </div>
@@ -264,6 +273,28 @@ footer p{margin:6px auto 0;color:var(--ink-2);font-size:14.5px}
       </article>
     </div>
     <p class="note">This is a draft to get everyone thinking. Timings, venues and activities will be confirmed by the organising team and updated here.</p>
+  </section>
+
+  <section id="venues">
+    <div class="label">Where it happens</div>
+    <h2>The venues</h2>
+    <div class="venues">
+      <article class="venue">
+        <div class="tagv">Venue 1</div>
+        <h3>Garh Govind Resort</h3>
+        <p class="addr">Chopasani Road, Gopal Bari, near Kaylana Lake, Jodhpur</p>
+        <p class="for">Heritage-style resort with lawns, banquet hall &amp; pool</p>
+        <a class="btn ghost" href="https://maps.app.goo.gl/jqUaTDZ5m8wLwNrs5" target="_blank" rel="noopener">Open in Google Maps</a>
+      </article>
+      <article class="venue">
+        <div class="tagv">Venue 2</div>
+        <h3>Hari Kunj Resort</h3>
+        <p class="addr">Vinayak Vihar, Jodhpur</p>
+        <p class="for">Resort venue</p>
+        <a class="btn ghost" href="https://maps.app.goo.gl/h8stWF3PHKRqXzcX6" target="_blank" rel="noopener">Open in Google Maps</a>
+      </article>
+    </div>
+    <p class="note">Which event happens at which venue will be shared soon <span class="tbc">TBC</span></p>
   </section>
 
   <section id="register">
