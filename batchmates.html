@@ -1,0 +1,169 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Then &amp; Now · MBM '01</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Figtree:wght@400;500;600;700;800&family=Permanent+Marker&display=swap">
+<style>
+:root{--ground:#F5EFE4;--paper:#FFFCF6;--ink:#1C2A44;--ink-2:#4A566E;--line:#DDD2BF;--sand:#B8612F;--blue:#2E5597;--mustard:#E8BA4A;
+--shadow:0 1px 2px rgba(40,30,15,.08),0 8px 24px rgba(40,30,15,.10);--display:"Permanent Marker",cursive;--hand:"Caveat","Segoe Print",cursive;--body:"Figtree",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--ground:#0F1526;--paper:#18203A;--ink:#F1E9DA;--ink-2:#B5BCCB;--line:#2C3656;--sand:#E08E5B;--blue:#86A8E6;--mustard:#E4B862;--shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px rgba(0,0,0,.45)}}
+:root[data-theme="dark"]{color-scheme:dark;--ground:#0F1526;--paper:#18203A;--ink:#F1E9DA;--ink-2:#B5BCCB;--line:#2C3656;--sand:#E08E5B;--blue:#86A8E6;--mustard:#E4B862;--shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px rgba(0,0,0,.45)}
+*{box-sizing:border-box}body{margin:0;background:var(--ground);color:var(--ink);font:17px/1.6 var(--body);-webkit-font-smoothing:antialiased}
+a{color:var(--blue)}:focus-visible{outline:3px solid var(--mustard);outline-offset:2px;border-radius:4px}
+.wrap{max-width:1120px;margin-inline:auto;padding-inline:20px}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:color-mix(in srgb,var(--ground) 90%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;gap:16px;height:56px}
+.brand{font-family:var(--display);font-size:22px;color:var(--ink);text-decoration:none}.brand b{color:var(--sand);font-weight:400}
+nav .back{margin-left:auto;font-weight:600;font-size:15px;color:var(--ink-2);text-decoration:none}
+header{padding-block:40px 10px}
+.label{font-size:12.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--sand)}
+h1{font-size:clamp(38px,7vw,64px);line-height:1;margin:.15em 0 .2em;font-weight:800;letter-spacing:-.02em}
+h1 .hand{font-family:var(--hand);color:var(--blue);font-weight:700}
+.lead{font-size:clamp(18px,2.2vw,21px);max-width:62ch;color:var(--ink-2);margin:0 0 20px}
+.cta{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-bottom:10px}
+.btn{display:inline-flex;align-items:center;gap:8px;font:700 16px/1 var(--body);padding:14px 20px;border-radius:12px;border:2px solid var(--ink);background:var(--ink);color:var(--ground);text-decoration:none;cursor:pointer}
+.btn[aria-disabled="true"]{opacity:.55;cursor:not-allowed}
+.hint{font-size:14.5px;color:var(--ink-2)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:26px 0 8px;padding:0;list-style:none;counter-reset:s}
+.steps li{counter-increment:s;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:16px 16px 14px;font-size:15.5px;line-height:1.45}
+.steps li::before{content:counter(s);display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--mustard);color:#1C2A44;font-weight:800;margin-bottom:8px}
+@media (max-width:760px){.steps{grid-template-columns:1fr}}
+.tools{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:34px 0 20px}
+.tab{font:600 14px/1 var(--body);padding:9px 13px;border-radius:999px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink-2);cursor:pointer}
+.tab[aria-pressed="true"]{background:var(--ink);color:var(--ground);border-color:var(--ink)}
+.tab:disabled{cursor:default;opacity:.6}
+.search{flex:1 1 220px;max-width:300px;font:500 15px var(--body);padding:10px 14px;border-radius:12px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink)}
+.stat{margin-left:auto;font-size:14.5px;color:var(--ink-2)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:22px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:12px 12px 14px;display:flex;flex-direction:column;gap:10px}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.ph{position:relative;aspect-ratio:3/4;border-radius:10px;overflow:hidden;background:color-mix(in srgb,var(--line) 55%,var(--paper));display:grid;place-items:center}
+.ph img{width:100%;height:100%;object-fit:cover;display:block}
+.ph.then img{filter:sepia(.25) saturate(.9)}
+.ph .ini{font-family:var(--display);font-size:34px;color:color-mix(in srgb,var(--ink-2) 45%,transparent)}
+.ph .yr{position:absolute;left:6px;bottom:6px;font:700 11.5px/1 var(--body);letter-spacing:.08em;background:rgba(28,42,68,.82);color:#F5EFE4;padding:4px 7px;border-radius:6px}
+.card h3{margin:0;font-size:18px;line-height:1.25}
+.meta{margin:0;font-size:14.5px;color:var(--ink-2);line-height:1.45}
+.quote{margin:0;font-family:var(--hand);font-size:21px;line-height:1.15;color:var(--blue)}
+.pending{font-size:13.5px;color:var(--ink-2)}
+.card.memory{border-style:dashed;align-items:center;justify-content:center;text-align:center;min-height:220px}
+.card.memory .flame{width:22px;height:34px;border-radius:50% 50% 50% 50%/60% 60% 40% 40%;background:radial-gradient(circle at 50% 70%,#FFE9A8,#E8BA4A 55%,#B8612F);margin:0 auto 6px}
+.soon{padding:30px;border:2px dashed var(--line);border-radius:16px;text-align:center;color:var(--ink-2)}
+footer{margin-top:70px;border-top:1px solid var(--line);padding-block:30px 44px;text-align:center;color:var(--ink-2);font-size:14.5px}
+footer .hand{font-family:var(--hand);font-size:30px;font-weight:700;color:var(--ink)}
+</style></head><body>
+<nav><div class="wrap"><a class="brand" href="index.html">MBM <b>'01</b></a><a class="back" href="index.html">← Reunion home</a></div></nav>
+<main class="wrap">
+<header>
+  <div class="label">25 years · one batch</div>
+  <h1>Then <span class="hand">&amp;</span> Now</h1>
+  <p class="lead">Share a photo from our MBM days next to one from today, and tell the batch what you're up to. Your card shows up here, and on the Wall of Memories at the reunion.</p>
+  <div class="cta">
+    <a class="btn" id="formBtn" href="#" target="_blank" rel="noopener">Add my Then &amp; Now</a>
+    <span class="hint" id="formHint"></span>
+  </div>
+  <ol class="steps">
+    <li>Tap <b>Add my Then &amp; Now</b> and pick your name from the list.</li>
+    <li>Upload one photo from around 2001 and one from today. Phone photos of old prints are fine.</li>
+    <li>Add your city, work and a favourite MBM memory. Your card appears here within a few minutes.</li>
+  </ol>
+</header>
+
+<div class="tools">
+  <div id="tabs" style="display:flex;flex-wrap:wrap;gap:8px"></div>
+  <input class="search" id="q" type="search" placeholder="Search a name" aria-label="Search batchmates">
+  <span class="stat" id="stat"></span>
+</div>
+<div id="out"></div>
+</main>
+<footer class="wrap"><div class="hand">Once MBMites, Always MBMites ♥</div><p>Only what you share in the form appears here. No phone numbers or emails are shown.</p></footer>
+
+<script>
+(function(){
+  // ---- settings: paste the two links here once the Google Form is ready ----
+  var FORM_URL = "";   // Google Form link (Send → link)
+  var SHEET_CSV = "";  // Responses sheet: File → Share → Publish to web → CSV link
+
+  var ROSTER = {
+    "Electronics & Comm.": ["Ajay Goyal","Amit Singh","Anjali Jain","Ashish Kumar Jain","Chaitanya Seth","Chetan Narain Meena","Chetna Jain","Deepa Jain","Dheeraj Kumar Tambi","Digvijay Singh Gaur","Dinesh Kumar Gandhi","Gaurav Jain","Himmat Singh Chaudhary","Jagdish Meena","Karuna Goyal","Krishan Kant Soni|memory","Kuldeep Sankhala","Manish Sharma","Manvendra Sharma","Mukesh Gupta","Naveen Mehta","Neeraj Agarwal","Nishant Khatri","Pradeep Agarwal","Prakash Hotwani","Pramod Gaur","Praveen Sharma","Prem Chand Jangid","Puneet Gupta","Rajkumar Choudhary","Rakesh Nawal","Ramesh Saini","Ritika Bhansali","Rohit Kumar Gupta","Sakil Pal Meena","Sanjay Kumar Jaroli","Sanjay Kumar Nolkha","Satish Kumar Vyas","Shallu Upadhyaya","Shirish Bhandari","Shishir Jain","Shiv Karan Meghwal","Shyam Sunder Goyal","Sujeet Kumar Gupta","Suresh Chandra Gupta","Usha Choudhary","Vikas Mathur","Vikas Thanvi","Vineet Shah","Vishal Vyas"]
+  };
+  var SOON = ["Civil","Mechanical","Electrical","Computer Science","Production & Industrial","Mining"];
+
+  var btn = document.getElementById("formBtn"), hint = document.getElementById("formHint");
+  if (FORM_URL) { btn.href = FORM_URL; } else { btn.setAttribute("aria-disabled","true"); btn.removeAttribute("href"); hint.textContent = "Form opens soon. Watch the batch WhatsApp group."; }
+
+  var entries = {}; // name(lowercase) -> response
+  var active = Object.keys(ROSTER)[0];
+  var tabs = document.getElementById("tabs"), out = document.getElementById("out"), q = document.getElementById("q"), stat = document.getElementById("stat");
+
+  function norm(s){ return (s||"").toLowerCase().replace(/[^a-z]/g,""); }
+  function initials(n){ return n.split(" ").filter(Boolean).map(function(w){return w[0];}).slice(0,2).join("").toUpperCase(); }
+  function driveImg(u){ if(!u) return ""; var m = String(u).match(/[-\w]{25,}/); return m ? "https://drive.google.com/thumbnail?id=" + m[0] + "&sz=w600" : ""; }
+
+  function renderTabs(){
+    tabs.textContent = "";
+    Object.keys(ROSTER).forEach(function(b){ var t=document.createElement("button"); t.type="button"; t.className="tab"; t.textContent=b; t.setAttribute("aria-pressed", b===active); t.onclick=function(){active=b;renderTabs();render();}; tabs.appendChild(t); });
+    SOON.forEach(function(b){ var t=document.createElement("button"); t.type="button"; t.className="tab"; t.textContent=b+" · soon"; t.disabled=true; tabs.appendChild(t); });
+  }
+
+  function photo(cls, url, yr, name){
+    var d=document.createElement("div"); d.className="ph "+cls;
+    if(url){ var i=document.createElement("img"); i.src=url; i.alt=name+" in "+yr; i.loading="lazy"; i.onerror=function(){ i.remove(); var s2=document.createElement("span"); s2.className="ini"; s2.textContent=initials(name); d.insertBefore(s2,d.firstChild); }; d.appendChild(i); }
+    else { var s=document.createElement("span"); s.className="ini"; s.textContent=initials(name); d.appendChild(s); }
+    var y=document.createElement("span"); y.className="yr"; y.textContent=yr; d.appendChild(y); return d;
+  }
+
+  function card(entry){
+    var parts=entry.split("|"), name=parts[0], memory=parts[1]==="memory";
+    var c=document.createElement("article"); c.className="card";
+    if(memory){ c.className+=" memory"; c.innerHTML='<div class="flame" aria-hidden="true"></div>'; var h=document.createElement("h3"); h.textContent=name; c.appendChild(h); var p=document.createElement("p"); p.className="meta"; p.textContent="In loving memory. Always part of the batch."; c.appendChild(p); return c; }
+    var r=entries[norm(name)];
+    var pair=document.createElement("div"); pair.className="pair";
+    pair.appendChild(photo("then", r&&r.then, "2001", name)); pair.appendChild(photo("now", r&&r.now, "2026", name)); c.appendChild(pair);
+    var h3=document.createElement("h3"); h3.textContent=name; c.appendChild(h3);
+    if(r){
+      var bits=[r.work, r.city].filter(Boolean).join(" · "); if(bits){ var m=document.createElement("p"); m.className="meta"; m.textContent=bits; c.appendChild(m); }
+      if(r.family){ var f=document.createElement("p"); f.className="meta"; f.textContent=r.family; c.appendChild(f); }
+      if(r.memory){ var qn=document.createElement("p"); qn.className="quote"; qn.textContent="“"+r.memory+"”"; c.appendChild(qn); }
+    } else { var pd=document.createElement("p"); pd.className="pending"; pd.textContent="Waiting for photos"; c.appendChild(pd); }
+    return c;
+  }
+
+  function render(){
+    out.textContent="";
+    var list=ROSTER[active], term=norm(q.value);
+    var shown=list.filter(function(e){ return !term || norm(e.split("|")[0]).indexOf(term)>-1; });
+    var g=document.createElement("div"); g.className="grid";
+    shown.forEach(function(e){ g.appendChild(card(e)); });
+    out.appendChild(g);
+    var done=list.filter(function(e){ return entries[norm(e.split("|")[0])]; }).length;
+    var alive=list.filter(function(e){ return e.indexOf("|memory")<0; }).length;
+    stat.textContent = done + " of " + alive + " have shared";
+  }
+
+  // CSV parser (handles quotes and commas inside fields)
+  function parseCSV(t){ var rows=[],row=[],f="",i=0,q=false; for(;i<t.length;i++){ var ch=t[i];
+      if(q){ if(ch=='"'){ if(t[i+1]=='"'){f+='"';i++;} else q=false; } else f+=ch; }
+      else if(ch=='"') q=true; else if(ch==','){row.push(f);f="";} else if(ch=='\n'){row.push(f);rows.push(row);row=[];f="";} else if(ch!='\r') f+=ch; }
+    if(f||row.length){row.push(f);rows.push(row);} return rows; }
+
+  function loadSheet(){
+    if(!SHEET_CSV) return;
+    fetch(SHEET_CSV,{cache:"no-store"}).then(function(r){return r.text();}).then(function(t){
+      var rows=parseCSV(t); if(rows.length<2) return; var H=rows[0].map(function(h){return h.toLowerCase();});
+      function col(){ var keys=[].slice.call(arguments); return H.findIndex(function(h){ return keys.some(function(k){return h.indexOf(k)>-1;}); }); }
+      var cName=col("name"), cThen=col("2001","then","college days"), cNow=col("today","now","2026"), cCity=col("city","live"), cWork=col("what you do","work","company","role","doing"),
+          cFam=col("family"), cMem=col("memory","line","message"), cOk=col("show","consent","website");
+      rows.slice(1).forEach(function(r){
+        if(cOk>-1 && !/^y/i.test((r[cOk]||"").trim())) return;
+        var n=norm(r[cName]); if(!n) return;
+        entries[n]={ then:driveImg(r[cThen]), now:driveImg(r[cNow]), city:(r[cCity]||"").trim(), work:(r[cWork]||"").trim(), family:(r[cFam]||"").trim(), memory:(r[cMem]||"").trim() };
+      });
+      render();
+    }).catch(function(){});
+  }
+
+  q.addEventListener("input", render);
+  renderTabs(); render(); loadSheet();
+})();
+</script>
+</body></html>
