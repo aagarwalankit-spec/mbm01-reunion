@@ -213,6 +213,18 @@ footer p{margin:6px auto 0;color:var(--ink-2);font-size:14.5px}
 .mascot-wrap .count{justify-self:auto}
 @media (max-width:720px){.mascot-wrap{justify-self:start;margin-top:0;display:grid;grid-template-columns:120px 1fr;grid-template-areas:"m b" "m c" "m n";align-items:center;gap:8px 16px}.mascot{width:120px;grid-area:m}.bubble{grid-area:b;font-size:19px;justify-self:start}.bubble::after{left:-9px;bottom:auto;top:50%;transform:translateY(-50%) rotate(135deg)}.mascot-wrap .count{grid-area:c;justify-self:start}.mname{grid-area:n}}
 @media (prefers-reduced-motion:reduce){.mascot{animation:none}}
+.gg-wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:26px;align-items:start}
+.gg-info{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:8px}
+.gg-info h3{font-size:26px;margin:0}
+.gg-info .addr{color:var(--ink-2);font-size:15.5px;margin:0}
+.gg-info .for{margin:4px 0 8px}
+.gg-info .btn{align-self:flex-start;padding:11px 16px;font-size:15px}
+.gg-gal{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.gg-gal figure{margin:0;position:relative;border-radius:12px;overflow:hidden;aspect-ratio:1;background:var(--line)}
+.gg-gal figure.g1{grid-column:span 2;grid-row:span 2}
+.gg-gal img{width:100%;height:100%;object-fit:cover;display:block}
+.gg-gal figcaption{position:absolute;left:0;right:0;bottom:0;padding:18px 10px 8px;font-size:13px;font-weight:600;color:#fff;background:linear-gradient(transparent,rgba(0,0,0,.6))}
+@media (max-width:820px){.gg-wrap{grid-template-columns:1fr}.gg-gal{grid-template-columns:repeat(2,1fr)}}
 </style>
 </head><body>
 
@@ -269,7 +281,7 @@ footer p{margin:6px auto 0;color:var(--ink-2);font-size:14.5px}
 
     <div class="facts">
       <div class="fact"><div class="k">When</div><div class="v">25 – 27 Dec 2026</div><div class="s">Fri to Sun · Christmas weekend</div></div>
-      <div class="fact"><div class="k">Where</div><div class="v">Jodhpur, Rajasthan</div><div class="s">Garh Govind &amp; Hari Kunj resorts · <a href="#venues">venues</a></div></div>
+      <div class="fact"><div class="k">Where</div><div class="v">Jodhpur, Rajasthan</div><div class="s">Garh Govind Resort · <a href="#venues">venue</a></div></div>
       <div class="fact"><div class="k">Who</div><div class="v">Batch of 2001</div><div class="s">All branches · families welcome</div></div>
       <div class="fact"><div class="k">Registered</div><div class="v">129 batchmates</div><div class="s">~360 guests · <a href="#register">details</a></div></div>
     </div>
@@ -296,7 +308,7 @@ footer p{margin:6px auto 0;color:var(--ink-2);font-size:14.5px}
   <section id="schedule">
     <div class="label">The programme</div>
     <h2>Three days in Jodhpur</h2>
-    <div class="legend">Venues: <em class="at gg">Garh Govind</em> <em class="at hk">Hari Kunj</em></div>
+    <div class="legend">All events at <em class="at gg">Garh Govind</em> unless noted</div>
     <div class="days">
       <article class="day">
         <div class="dt"><div class="dnum">25</div><div class="dw">Friday<small>December</small></div></div>
@@ -304,10 +316,10 @@ footer p{margin:6px auto 0;color:var(--ink-2);font-size:14.5px}
         <ul class="slots">
           <li><time>07:00–12:00</time><span>Arrival, registration &amp; room check-in. Collect your badge and merchandise<br><em class="at gg">Garh Govind</em> <em class="at ot">Reception</em></span></li>
           <li><time>10:00–12:00</time><span>Informal meet &amp; greet<br><em class="at gg">Garh Govind</em> <em class="at ot">Reception</em></span></li>
-          <li><time>12:30–14:00</time><span><b>Felicitation of our MBM faculty</b><br><em class="at hk">Hari Kunj</em> <em class="at ot">Banquet hall</em></span></li>
-          <li><time>12:30–15:00</time><span>Lunch<br><em class="at hk">Hari Kunj</em> <em class="at ot">Lawn</em></span></li>
-          <li><time>15:00–17:00</time><span>Carnival, games &amp; stalls<br><em class="at hk">Hari Kunj</em> <em class="at ot">Lawn</em></span></li>
-          <li><time>16:30–17:30</time><span>High tea<br><em class="at hk">Hari Kunj</em> <em class="at ot">Lawn</em></span></li>
+          <li><time>12:30–14:00</time><span><b>Felicitation of our MBM faculty</b><br><em class="at gg">Garh Govind</em> <em class="at ot">Banquet hall</em></span></li>
+          <li><time>12:30–15:00</time><span>Lunch<br><em class="at gg">Garh Govind</em> <em class="at ot">Lawn</em></span></li>
+          <li><time>15:00–17:00</time><span>Carnival, games &amp; stalls<br><em class="at gg">Garh Govind</em> <em class="at ot">Lawn</em></span></li>
+          <li><time>16:30–17:30</time><span>High tea<br><em class="at gg">Garh Govind</em> <em class="at ot">Lawn</em></span></li>
           <li><time>18:00–22:00</time><span><b>Cultural evening + dinner</b><br><em class="at gg">Garh Govind</em> <em class="at ot">Lawn</em></span></li>
           <li><time>22:00–00:00</time><span>Indoor music &amp; dhamal masti (bring your own drinks)<br><em class="at gg">Garh Govind</em> <em class="at ot">Banquet hall</em></span></li>
         </ul>
@@ -317,11 +329,11 @@ footer p{margin:6px auto 0;color:var(--ink-2);font-size:14.5px}
         <div class="theme">Back to campus</div>
         <ul class="slots">
           <li><time>06:00–07:00</time><span>Group walk / joy run for early risers<br><em class="at ot">Venue TBC</em></span></li>
-          <li><time>07:30–08:30</time><span>Breakfast<br><em class="at ot">Both resorts · banquet halls</em></span></li>
-          <li><time>09:00–09:30</time><span>Buses to college<br><em class="at ot">From both resorts</em></span></li>
+          <li><time>07:30–08:30</time><span>Breakfast<br><em class="at ot">Banquet hall</em></span></li>
+          <li><time>09:00–09:30</time><span>Buses to college<br><em class="at ot">From the resort</em></span></li>
           <li><time>10:00–13:00</time><span><b>College &amp; hostel tour</b><br><em class="at ot">MBM campus</em></span></li>
-          <li><time>13:00–13:30</time><span>Buses back to the resorts<br><em class="at ot">To both resorts</em></span></li>
-          <li><time>13:30–15:30</time><span>Lunch<br><em class="at hk">Hari Kunj</em> <em class="at ot">Lawn</em></span></li>
+          <li><time>13:00–13:30</time><span>Buses back to the resort<br><em class="at ot">To the resort</em></span></li>
+          <li><time>13:30–15:30</time><span>Lunch<br><em class="at gg">Garh Govind</em> <em class="at ot">Lawn</em></span></li>
           <li><time>15:30–17:30</time><span>Rest up for the evening<br><em class="at ot">Your choice</em></span></li>
           <li><time>17:00–18:00</time><span>High tea<br><em class="at gg">Garh Govind</em> <em class="at ot">Lawn</em></span></li>
           <li><time>18:00–22:00</time><span><b>Cultural evening + dinner</b><br><em class="at gg">Garh Govind</em> <em class="at ot">Lawn</em></span></li>
@@ -331,8 +343,8 @@ footer p{margin:6px auto 0;color:var(--ink-2);font-size:14.5px}
         <div class="dt"><div class="dnum">27</div><div class="dw">Sunday<small>December</small></div></div>
         <div class="theme">Goodbyes</div>
         <ul class="slots">
-          <li><time>07:30–08:30</time><span>Breakfast<br><em class="at ot">Both resorts · banquet halls</em></span></li>
-          <li><time>By 10:00</time><span>Check-out, and a promise not to wait another 25 years<br><em class="at ot">Your resort</em></span></li>
+          <li><time>07:30–08:30</time><span>Breakfast<br><em class="at ot">Banquet hall</em></span></li>
+          <li><time>By 10:00</time><span>Check-out, and a promise not to wait another 25 years<br><em class="at gg">Garh Govind</em></span></li>
         </ul>
       </article>
     </div>
@@ -341,24 +353,23 @@ footer p{margin:6px auto 0;color:var(--ink-2);font-size:14.5px}
 
   <section id="venues">
     <div class="label">Where it happens</div>
-    <h2>The venues</h2>
-    <div class="venues">
-      <article class="venue">
-        <div class="tagv">Venue 1</div>
+    <h2>The venue</h2>
+    <div class="gg-wrap">
+      <div class="gg-info">
         <h3>Garh Govind Resort</h3>
         <p class="addr">Chopasani Road, Gopal Bari, near Kaylana Lake, Jodhpur</p>
-        <p class="for">Check-in &amp; welcome desk · both cultural evenings &amp; dinners · late-night music</p>
-        <a class="btn ghost" href="https://maps.app.goo.gl/jqUaTDZ5m8wLwNrs5" target="_blank" rel="noopener">Open in Google Maps</a>
-      </article>
-      <article class="venue">
-        <div class="tagv">Venue 2</div>
-        <h3>Hari Kunj Resort</h3>
-        <p class="addr">Vinayak Vihar, Jodhpur</p>
-        <p class="for">Faculty felicitation · lunches · carnival, games &amp; stalls</p>
-        <a class="btn ghost" href="https://maps.app.goo.gl/h8stWF3PHKRqXzcX6" target="_blank" rel="noopener">Open in Google Maps</a>
-      </article>
+        <p class="for">Our home for all three days: rooms, the big lawn for the cultural evenings, the banquet hall, and plenty of corners to catch up.</p>
+        <a class="btn ghost" href="https://www.google.com/maps/place/Garh+Govind/@26.2611909,72.9495742,17z/data=!4m6!3m5!1s0x39418ee3c6957e95:0x5d213a2bedf6ea60!8m2!3d26.2610941!4d72.9497352!16s%2Fg%2F11x9l4fm2" target="_blank" rel="noopener">Open in Google Maps</a>
+      </div>
+      <div class="gg-gal">
+        <figure class="g1"><img src="img/gg-1.jpg" alt="Garh Govind's red sandstone main building, with a few batchmates out front"><figcaption>The main building</figcaption></figure>
+        <figure><img src="img/gg-2.jpg" alt="The large lawn at Garh Govind, venue for the cultural evenings"><figcaption>The lawn: cultural evenings &amp; dinners</figcaption></figure>
+        <figure><img src="img/gg-3.jpg" alt="A guest room at Garh Govind with a king bed and window seat"><figcaption>Rooms</figcaption></figure>
+        <figure><img src="img/gg-4.jpg" alt="A heritage-style room with arched windows and a window seat"><figcaption>Heritage-style windows</figcaption></figure>
+        <figure><img src="img/gg-5.jpg" alt="Sitting area inside a room at Garh Govind"><figcaption>Room sitting area</figcaption></figure>
+      </div>
     </div>
-    <p class="note">Rooms for everyone who booked a stay option are at these two resorts. Buses to college on 26 Dec leave from both.</p>
+    <p class="note">Everyone who booked a stay option is at Garh Govind. Buses to college on 26 Dec leave from the resort.</p>
   </section>
 
   <section id="register">
@@ -378,7 +389,7 @@ footer p{margin:6px auto 0;color:var(--ink-2);font-size:14.5px}
         <div class="msg" style="margin-top:0">
           <h3 style="color:var(--band-ink)">Know a batchmate who isn't on the group?</h3>
           <pre id="invite">MBM '01 – Silver Jubilee Reunion 🎓
-25 years later. Still one batch.
+25 years later. Still '01 batch.
 📅 25–27 December 2026
 📍 Jodhpur, Rajasthan
 All branches of the 2001 batch – save the date and forward this to every batchmate you're in touch with.
@@ -406,8 +417,8 @@ Once MBMites, Always MBMites ❤️</pre>
       <div>
         <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21V8l9-5 9 5v13"/><path d="M9 21v-6h6v6"/></svg>Where to stay</h3>
         <ul>
-          <li>Booked a room option? Your stay is at <b>Garh Govind</b> or <b>Hari Kunj</b>, so there's nothing more to book.</li>
-          <li>Staying on your own? Pick somewhere along Chopasani Road to stay close to both resorts.</li>
+          <li>Booked a room option? Your stay is at <b>Garh Govind</b>, so there's nothing more to book.</li>
+          <li>Staying on your own? Pick somewhere along Chopasani Road to stay close to the resort.</li>
           <li>For a heritage-haveli stay, look near the Clock Tower in the old city.</li>
           <li>Christmas week fills up fast, so hold a refundable booking now.</li>
         </ul>
@@ -449,7 +460,7 @@ Once MBMites, Always MBMites ❤️</pre>
     <div class="label">Questions</div>
     <h2>FAQ</h2>
     <details><summary>Who can attend?</summary><p>Everyone from the MBM batch of 2001, across all branches. Spouses and kids are welcome. Choose a family option when you register.</p></details>
-    <details><summary>How much does it cost?</summary><p>The booking amount depends on the option you picked when registering: with or without a hotel room, and on your own or with family. Room options include the stay at Garh Govind or Hari Kunj. Travel to Jodhpur is on your own. For payment questions, contact the treasurer.</p></details>
+    <details><summary>How much does it cost?</summary><p>The booking amount depends on the option you picked when registering: with or without a hotel room, and on your own or with family. Room options include the stay at Garh Govind. Travel to Jodhpur is on your own. For payment questions, contact the treasurer.</p></details>
     <details><summary>Is there a dress code?</summary><p>Casual for most of it. For the gala night there may be a theme, and there are rumours of a 90s theme. To be confirmed.</p></details>
     <details><summary>Can I bring drinks?</summary><p>For the late-night music session on 25 Dec, yes. It's a bring-your-own-drinks night at Garh Govind.</p></details>
     <details><summary>Can I attend only one day?</summary><p>Yes. Tell us which days when you register so we can plan meals and seats.</p></details>
