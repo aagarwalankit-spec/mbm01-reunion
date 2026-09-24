@@ -193,6 +193,17 @@ footer p{margin:6px auto 0;color:var(--ink-2);font-size:14.5px}
 .feature{margin:0 0 34px;background:#FFFCF6;padding:12px 12px 0;box-shadow:var(--shadow);transform:rotate(-.6deg)}
 .feature img{display:block;width:100%;height:auto}
 .feature figcaption{font-family:var(--hand);font-weight:700;font-size:24px;color:#1C2A44;text-align:center;padding:8px 0 10px}
+.batch-tools{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:4px 0 22px}
+.chip{font:600 14px/1 var(--body);padding:9px 13px;border-radius:999px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink-2);cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--ground);border-color:var(--ink)}
+.chip span{opacity:.7;margin-left:4px;font-variant-numeric:tabular-nums}
+.batch-search{flex:1 1 220px;max-width:320px;font:500 15px var(--body);padding:10px 14px;border-radius:12px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink)}
+.bgroups{columns:3 260px;column-gap:28px}
+.bgroup{break-inside:avoid;margin:0 0 22px}
+.bgroup h3{font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--sand);margin:0 0 6px;display:flex;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:6px}
+.bgroup h3 span{color:var(--ink-2);font-variant-numeric:tabular-nums}
+.bgroup ul{list-style:none;margin:0;padding:0;font-size:15.5px;line-height:1.75}
+.bempty{color:var(--ink-2)}
 </style>
 </head><body>
 
@@ -204,6 +215,7 @@ footer p{margin:6px auto 0;color:var(--ink-2);font-size:14.5px}
       <li><a href="#venues">Venues</a></li>
       <li><a href="#travel">Travel &amp; stay</a></li>
       <li><a href="#memories">Memories</a></li>
+      <li><a href="#batch">Batch</a></li>
       <li><a href="#faq">FAQ</a></li>
       <li class="keep"><a class="cta" href="#register">Register</a></li>
     </ul>
@@ -424,6 +436,19 @@ Once MBMites, Always MBMites ❤️</pre>
     <p class="ask"><b>Have old photos?</b> Especially farewell photos from other branches! Send them to the organising team on WhatsApp and we'll add them here and to the Wall of Memories.</p>
   </section>
 
+  <section id="batch">
+    <div class="label">Roll call</div>
+    <h2>The batch of 2001</h2>
+    <p>281 of us graduated across seven branches. Find your old lab partner, or look for someone who isn't on the WhatsApp group yet and bring them in.</p>
+    <div class="batch-tools">
+      <input class="batch-search" id="batchSearch" type="search" placeholder="Search a name" aria-label="Search the batch by name">
+      <div id="chips" style="display:flex;flex-wrap:wrap;gap:8px"></div>
+    </div>
+    <div class="bgroups" id="bgroups"></div>
+    <p class="bempty" id="bempty" hidden>No one by that name. Try part of the first name or surname.</p>
+    <p class="note">From the MBM alumni association's 2001 list. Missing name or a spelling mistake? Tell the organising team.</p>
+  </section>
+
   <section id="faq" class="faq">
     <div class="label">Questions</div>
     <h2>FAQ</h2>
@@ -476,6 +501,23 @@ Once MBMites, Always MBMites ❤️</pre>
     function fallback(){ var r = document.createRange(); r.selectNodeContents(pre); var s = getSelection(); s.removeAllRanges(); s.addRange(r); }
     try { navigator.clipboard.writeText(text).then(flash, fallback); } catch (e) { fallback(); }
   });
+})();
+</script>
+<script>
+(function(){
+  var B = {"Civil": ["Ajay Dashora", "Ajay Kumar", "Akshay Jain", "Alok", "Amit Mathur", "Amit Thalia", "Anil Kumar Gupta", "Anil Kumar Sharma", "Anita Gupta", "Ashish Chopra", "Ashish Dhamaniya", "Ashish Gupta", "Ashok Kumar Meena", "Brijesh Angira", "Deepak Kumar Jain", "Durga Ram Arya", "Gajendra D Paliwal", "Gaurav Agarwal", "Harsh Banthia", "Jai Prakash Meena", "Kavita Sharma", "Madhur Mittal", "Mahendra Singh Choudhary", "Manish Bansiwala", "Manish Garg", "Manish Mishra", "Manoj Kumar Tanan", "Mithlesh Jain", "Mukesh Bhadoria", "Mukesh Kumawat", "Naresh Kumar Meena", "Pankaj Sharma", "Pawan Kumar", "Prakash Chandra Kachhawaha", "Prateek Dashora", "Rahul Sharma", "Rajeev Kumar", "Rajendra Kumar Shrimali", "Rajendra Singh", "Rajesh Bishnoi", "Rajesh Lakhotia", "Rajpal Singh Shiverain", "Ramesh Kumar Surana", "Ravi Dugar", "Ruchi Mathur", "Ruchi Pareek", "Sarika Mangal", "Satya Narayan Gupta", "Sharad Jain", "Shekhar Mehta", "Sunil Kumar Gupta", "Tansukh Khatri", "Tarun Kumar Saini", "Titiksh Patel", "Vijay Sharma", "Vinita Parmar", "Yogesh Kumar Gupta"], "Mechanical": ["Abhishek Gupta", "Abhishek Jain", "Abhishek Somani", "Aijaz Shaikh", "Amit Gupta", "Amit Jain", "Amit Sharma", "Anand Das", "Anurag Jain", "Anurag Singhvi", "Arun Kumar Verma", "Ashish Garg", "Ashok Kumar Sharma", "Ashutosh Lakhamara", "Bachchu Lal", "Badri Narayan", "Bharat Bharadwaj", "Gaurav Kumar", "Gaurav Sharma", "Geeteshwar Sharan Varshney", "Gulshan Singh", "Hayat Khan", "Hemant Gupta", "Hemant Kumar Gupta", "Jagdish Sharma", "Jigri Mehta", "Jinendra Kumar Jain", "Kamal Kishore Kacholya", "Kapil", "Kapil Singhvi", "Kunal Kataria", "Madan Singh Chauhan", "Manas Mehirchandani", "Maneesh Kumar Sharma", "Meenakshi Rungta", "Naresh Nawahal", "Narottam Thanvi", "Nitin B Bansal", "Nitin Gupta", "Pankaj Kumar Agarwal", "Paritosh Kalla", "Pawan Wadhwa", "Rahul Patwa", "Rajesh Jain", "Rakesh Jain", "Ram Dayal", "Ramesh Parihar", "Ratul Ghosh", "Ruchi Saxena", "Sandeep Jain", "Shailesh Jain", "Sukhdeep Pal Singh", "Surya Kiran Sharma", "Vijay Singh Parihar", "Vikas Mali", "Vinod Choudhary", "Vivek Shrimali", "Yatish Agarwal"], "Electronics & Comm.": ["Ajay Goyal", "Amit Singh", "Anjali Jain", "Ashish Kumar Jain", "Chaitanya Seth", "Chetna Jain", "Deepa Jain", "Dheeraj Kumar Tambi", "Digvijay Gaur", "Dinesh Kumar Gandhi", "Gaurav Jain", "Himmat Singh Chaudhary", "Jagdish Meena", "Karuna Goyal", "Krishan Kant Soni", "Kuldeep Sankhala", "Manish Sharma", "Manvendra Sharma", "Mukesh Gupta", "Naveen Mehta", "Neeraj Agarwal", "Nishant Khatri", "Prakash Hotwani", "Praveen Sharma", "Prem Chand Jangid", "Raj Kumar", "Rakesh Nawal", "Ramesh Saini", "Ritika Bhansali", "Rohit Kumar Gupta", "Sanjay Kumar Jaroli", "Sanjay Kumar Nolkha", "Satish Kumar Vyas", "Shallu Upadhyaya", "Shirish Bhandari", "Shishir Jain", "Shiv Karan Meghwal", "Sujeet Kumar Gupta", "Suresh Chandra Gupta", "Usha Choudhary", "Vikas Mathur", "Vikas Thanvi", "Vineet Shah", "Vishal Vyas"], "Electrical": ["Abha Sharma", "Amit Gupta", "Amit Kataria", "Amit Khandelwal", "Bharat Lal Meena", "Chandra Shekhar Sen", "Deepak Purohit", "Ganpat Patel", "Hari Prasad Meena", "Hariteysh Ujawal", "Kailash Jagetia", "Kapil Kothari", "Karani Singh", "Kiran Gajrani", "Krishna Kumar Vaishnav", "Kuntal Kumar Saini", "Lokesh Tiwari", "Manish Kumar Garg", "Manish Lahoti", "Nathmal", "Nishu Sharma", "Nitin Babel", "Pankaj Kumar Meena", "Pankaj Kumar Singhal", "Pankaj Singhal", "Praneet Tiwari", "Praveen Bhandari", "Preeti Choudhary", "Rakesh Vyas", "Ram Sukh Dudi", "Reena Jalani", "Sandeep Kumar Singh Chandel", "Sanjay Kumar Singhal", "Shanker Lal Juneja", "Shishupal Saini", "Surendra Singh Saini", "Tarun Jain", "Umesh Pandey", "Vikram Khatri", "Vikram Singh Shekhawat", "Vinod Kumar", "Vishal Bansal", "Yogesh Vaigoria"], "Production & Industrial": ["Ajay Kumar Gupta", "Anil John", "Arun Vagoria", "Ashish Rai", "Atul Bhardwaj", "Baljeet Kaur", "Bheem Singh Rajput", "Deepak Singhal", "Gaurav Mathur", "Hardesh Gupta", "Jitendra Kachhawa", "Karnendra Singh Tomar", "Kavita Chouhan", "Kuldeep Sharma", "Lokesh Vijayvargy", "Manish Parchani", "Manoj Kumar", "Mukesh Kumar Marothia", "Neeraj Gupta", "Nitin Bhojwani", "Pankaj Kumar Agarwal", "Pradeep Soni", "Rajendra Prasad Savariya", "Ramgopal Prajapat", "Shilpa Parakh", "Surendra Asiwal", "Surendra Kumar", "Swapan Jain", "Vikas Garg", "Vikas Soni", "Vineet Goyal", "Vinod Verma", "Yogesh Bhagat", "Yogesh Kumar Sharma"], "Computer Science": ["Abhishek Goliya", "Ajay Khandelwal", "Ajay Kumar Baloni", "Ajay Kumar Modi", "Akrosh Gandhi", "Amreek Singh", "Ankit Agarwal", "Anoop Dosi", "Anshu Jain", "Anurag Jain", "Arjun Motwani", "Ashok Kumar Garg", "Avinash Sharma", "Chirantan Bhabhra", "Hardeep Singh", "Hemant Bhanawat", "Kishor Kumar Choudhary", "Kunal", "Lakshman Singh Parihar", "Mahesh Soni", "Manish Nahar", "Narendra Kumawat", "Nitesh Chordiya", "Piyuesh Makkar", "Praveen Goyal", "Rahul Mohnot", "Rahul Surana", "Ratish R Moondra", "Romil Mittal", "Shilpi Agarwal", "Sunil Prasad Todi", "Vidula Harit", "Vishal Goyal"], "Mining": ["Brijesh Gupta", "Chhagan Lal", "Girdharee Ram Godara", "Hemant Vyas", "Rajesh Agarwal", "Sandeep Khandelwal", "Sonesh Bhatia", "Vipin Parihar"], "Other": ["Harsh Suri", "Pradeep Jain", "Sidharth Singhal", "Sunil Kumar Manodwara"]};
+  var labels = {"Other":"Branch not listed"};
+  var order = Object.keys(B), active = "All";
+  var chips = document.getElementById("chips"), groups = document.getElementById("bgroups"), q = document.getElementById("batchSearch"), empty = document.getElementById("bempty");
+  function chip(name, n){ var b=document.createElement("button"); b.type="button"; b.className="chip"; b.setAttribute("aria-pressed", name===active); b.textContent=labels[name]||name; var c=document.createElement("span"); c.textContent=n; b.appendChild(c);
+    b.addEventListener("click", function(){ active=name; renderChips(); render(); }); return b; }
+  function renderChips(){ chips.textContent=""; var all=0; order.forEach(function(k){all+=B[k].length;}); chips.appendChild(chip("All", all)); order.forEach(function(k){ chips.appendChild(chip(k, B[k].length)); }); }
+  function render(){ var term=(q.value||"").trim().toLowerCase(); groups.textContent=""; var shown=0;
+    order.forEach(function(k){ if(active!=="All" && active!==k) return; var names=B[k].filter(function(n){return !term || n.toLowerCase().indexOf(term)>-1;}); if(!names.length) return; shown+=names.length;
+      var g=document.createElement("div"); g.className="bgroup"; var h=document.createElement("h3"); h.textContent=labels[k]||k; var c=document.createElement("span"); c.textContent=names.length; h.appendChild(c); g.appendChild(h);
+      var ul=document.createElement("ul"); names.forEach(function(n){ var li=document.createElement("li"); li.textContent=n; ul.appendChild(li); }); g.appendChild(ul); groups.appendChild(g); });
+    empty.hidden = shown>0; }
+  q.addEventListener("input", render); renderChips(); render();
 })();
 </script>
 </body></html>
