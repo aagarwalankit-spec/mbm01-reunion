@@ -100,7 +100,6 @@ footer .hand{font-family:var(--hand);font-size:30px;font-weight:700;color:var(--
     </div>
     <label class="f"><span>Family <span class="o">(optional)</span></span><input type="text" id="fFamily" maxlength="90" placeholder="e.g. Wife Neha, son (14), daughter (9)"></label>
     <label class="f"><span>A favourite MBM memory <span class="o">(one line)</span></span><textarea id="fMemory" maxlength="160" placeholder="e.g. Bread pakoda at the canteen after every exam"></textarea></label>
-    <label class="f"><span>Batch code <span class="o">(shared on the batch WhatsApp group)</span></span><input type="text" id="fCode" autocomplete="off" required></label>
     <label class="consent"><input type="checkbox" id="fOk" required> Show my photos and these details on this website.</label>
     <div class="msg" id="fMsg" role="status" aria-live="polite"></div>
     <button class="btn" type="submit" id="fSubmit">Upload</button>
@@ -191,7 +190,6 @@ footer .hand{font-family:var(--hand);font-size:30px;font-weight:700;color:var(--
     var r = name && entries[norm(name)];
     ["fCity","fWork","fFamily","fMemory"].forEach(function(id){ $(id).value = r ? (r[{fCity:"city",fWork:"work",fFamily:"family",fMemory:"memory"}[id]]||"") : ""; });
     resetPick("then"); resetPick("now"); setMsg(""); fSubmit.disabled=false;
-    try { $("fCode").value = localStorage.getItem("mbm01code") || ""; } catch(e){}
     if(dlg.showModal) dlg.showModal(); else dlg.setAttribute("open","");
   }
   $("openForm").onclick=function(){ openDlg(active); };
@@ -214,11 +212,10 @@ footer .hand{font-family:var(--hand);font-size:30px;font-weight:700;color:var(--
 
   $("upForm").addEventListener("submit", function(ev){
     ev.preventDefault();
-    var name=fName.value, code=$("fCode").value.trim();
+    var name=fName.value, code="MBM2001";
     if(!name){ setMsg("Choose your name from the list.","err"); return; }
     var existing=entries[norm(name)];
     if(!pics.then && !pics.now && !existing){ setMsg("Add at least one photo.","err"); return; }
-    if(!code){ setMsg("Enter the batch code from the WhatsApp group.","err"); return; }
     if(!$("fOk").checked){ setMsg("Tick the box to allow showing your card on the website.","err"); return; }
     if(!API_URL){ setMsg("Uploads open very soon. Please try again in a day or two.","err"); return; }
     fSubmit.disabled=true; setMsg("Uploading… this can take up to a minute.");
@@ -226,10 +223,10 @@ footer .hand{font-family:var(--hand);font-size:30px;font-weight:700;color:var(--
     fetch(API_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(body)})
       .then(function(r){return r.json();})
       .then(function(d){
-        if(d.ok){ try{ localStorage.setItem("mbm01code", code); }catch(e){}
+        if(d.ok){
           entries[norm(d.entry.name)]=d.entry; active=d.entry.branch in ROSTER ? d.entry.branch : active; renderTabs(); render();
           setMsg("Done! Your card is up. Thank you!","ok"); setTimeout(function(){ dlg.close(); }, 1600); }
-        else if(d.error==="code"){ setMsg("That batch code doesn't match. Check the WhatsApp group.","err"); fSubmit.disabled=false; }
+        else if(d.error==="code"){ setMsg("Upload failed. Please try again.","err"); fSubmit.disabled=false; }
         else { setMsg("Upload failed: "+(d.error||"unknown error")+". Please try again.","err"); fSubmit.disabled=false; }
       })
       .catch(function(){ setMsg("Couldn't reach the server. Check your connection and try again.","err"); fSubmit.disabled=false; });
