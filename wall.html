@@ -1,0 +1,374 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Photo Wall · MBM '01</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Figtree:wght@400;500;600;700;800&family=Permanent+Marker&display=swap">
+<style>
+:root{--ground:#F5EFE4;--paper:#FFFCF6;--ink:#1C2A44;--ink-2:#4A566E;--line:#DDD2BF;--sand:#B8612F;--blue:#2E5597;--mustard:#E8BA4A;--ok:#2E7D4F;--err:#B03A2E;
+--shadow:0 1px 2px rgba(40,30,15,.08),0 8px 24px rgba(40,30,15,.10);--display:"Permanent Marker",cursive;--hand:"Caveat","Segoe Print",cursive;--body:"Figtree",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--ground:#0F1526;--paper:#18203A;--ink:#F1E9DA;--ink-2:#B5BCCB;--line:#2C3656;--sand:#E08E5B;--blue:#86A8E6;--mustard:#E4B862;--ok:#6CC08F;--err:#F08A7E;--shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px rgba(0,0,0,.45)}}
+:root[data-theme="dark"]{color-scheme:dark;--ground:#0F1526;--paper:#18203A;--ink:#F1E9DA;--ink-2:#B5BCCB;--line:#2C3656;--sand:#E08E5B;--blue:#86A8E6;--mustard:#E4B862;--ok:#6CC08F;--err:#F08A7E}
+*{box-sizing:border-box}body{margin:0;background:var(--ground);color:var(--ink);font:17px/1.6 var(--body);-webkit-font-smoothing:antialiased}
+a{color:var(--blue)}:focus-visible{outline:3px solid var(--mustard);outline-offset:2px;border-radius:4px}
+.wrap{max-width:1180px;margin-inline:auto;padding-inline:16px}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:color-mix(in srgb,var(--ground) 90%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;gap:14px;height:56px}
+.brand{font-family:var(--display);font-size:22px;color:var(--ink);text-decoration:none}.brand b{color:var(--sand);font-weight:400}
+nav .links{margin-left:auto;display:flex;gap:4px}
+nav .links a{padding:6px 10px;border-radius:8px;color:var(--ink-2);text-decoration:none;font-weight:600;font-size:14.5px;white-space:nowrap}
+nav .links a:hover{background:var(--paper);color:var(--ink)}
+header{padding-block:34px 6px}
+.label{font-size:12.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--sand)}
+h1{font-size:clamp(38px,7vw,64px);line-height:1;margin:.15em 0 .2em;font-weight:800;letter-spacing:-.02em}
+h1 .hand{font-family:var(--hand);color:var(--blue);font-weight:700}
+.lead{font-size:clamp(17px,2.2vw,20px);max-width:62ch;color:var(--ink-2);margin:0 0 18px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:700 16px/1 var(--body);padding:13px 18px;border-radius:12px;border:2px solid var(--ink);background:var(--ink);color:var(--ground);text-decoration:none;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn.sm{font-size:14px;padding:9px 12px;border-radius:10px}
+.btn:disabled{opacity:.55;cursor:progress}
+.acts{display:flex;flex-wrap:wrap;gap:10px}
+/* leaderboard */
+.board{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin:30px 0 8px}
+.lb{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:14px 16px}
+.lb h2{margin:0 0 8px;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--sand)}
+.lb ol{margin:0;padding:0;list-style:none;display:grid;gap:4px}
+.lb li{display:flex;gap:8px;align-items:baseline;font-size:15px}
+.lb li .n{font-weight:800;color:var(--ink-2);width:1.3em}
+.lb li .who{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lb li button.who{background:none;border:0;padding:0;font:inherit;color:inherit;text-align:left;cursor:pointer;text-decoration:underline dotted;text-underline-offset:3px}
+.lb li .c{font-weight:700;font-variant-numeric:tabular-nums}
+.lb .empty{font-size:14.5px;color:var(--ink-2);margin:0}
+.lb .hero{display:flex;gap:10px;align-items:center;cursor:pointer;background:none;border:0;padding:0;text-align:left;color:inherit;font:inherit;width:100%}
+.lb .hero img{width:64px;height:64px;object-fit:cover;border-radius:10px}
+/* filter bar */
+.tools{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:26px 0 16px}
+.findme{display:flex;gap:8px;align-items:center;flex:1 1 280px;max-width:420px}
+.inp{font:500 15px var(--body);padding:10px 12px;border-radius:12px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);width:100%}
+.tab{font:600 14px/1 var(--body);padding:9px 13px;border-radius:999px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink-2);cursor:pointer}
+.tab[aria-pressed="true"]{background:var(--ink);color:var(--ground);border-color:var(--ink)}
+.stat{margin-left:auto;font-size:14.5px;color:var(--ink-2)}
+.chip{display:inline-flex;gap:6px;align-items:center;font:600 14px/1 var(--body);padding:8px 10px;border-radius:999px;background:var(--mustard);color:#1C2A44}
+.chip button{background:none;border:0;font-size:18px;line-height:1;cursor:pointer;color:inherit;padding:0}
+/* grid */
+.grid{columns:4 250px;column-gap:16px}
+.tile{break-inside:avoid;margin:0 0 16px;background:var(--paper);border:1px solid var(--line);border-radius:14px;overflow:hidden;cursor:pointer;display:block;width:100%;padding:0;text-align:left;color:inherit;font:inherit}
+.tile img{display:block;width:100%;height:auto;min-height:120px;background:var(--line)}
+.tile .cap{padding:9px 12px 11px;display:grid;gap:4px}
+.tile .cap p{margin:0;font-size:14.5px;line-height:1.35}
+.tile .cap .by{font-size:13px;color:var(--ink-2)}
+.tile .cap .row{display:flex;gap:10px;font-size:13.5px;color:var(--ink-2);flex-wrap:wrap}
+.tile .booth{position:absolute}
+.none{padding:40px 20px;text-align:center;color:var(--ink-2);border:2px dashed var(--line);border-radius:16px}
+.none .hand{font-family:var(--hand);font-size:30px;color:var(--ink);display:block}
+/* dialogs */
+dialog{border:0;padding:0;border-radius:18px;background:var(--paper);color:var(--ink);box-shadow:0 20px 60px rgba(0,0,0,.35);max-width:min(1100px,calc(100% - 16px));width:100%}
+dialog::backdrop{background:rgba(10,14,26,.72)}
+.dhead{display:flex;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid var(--line)}
+.dhead h2{margin:0;font-size:18px;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.x{background:none;border:0;font-size:30px;line-height:1;color:var(--ink-2);cursor:pointer;padding:0 4px}
+.lbx{display:grid;grid-template-columns:minmax(0,1fr) 300px}
+@media (max-width:820px){.lbx{grid-template-columns:1fr}}
+.stage{background:#0b0f1a;display:grid;place-items:center;padding:10px;min-height:240px;position:relative}
+.pic{position:relative;display:inline-block;line-height:0;touch-action:manipulation}
+.pic img{display:block;max-width:100%;max-height:72vh;width:auto;height:auto;user-select:none;-webkit-user-select:none}
+.pic.tagging{cursor:crosshair}
+.pic.tagging::after{content:"Tap on a face to tag";position:absolute;left:50%;top:10px;transform:translateX(-50%);background:rgba(28,42,68,.9);color:#F5EFE4;font:600 13px/1 var(--body);padding:8px 12px;border-radius:999px;white-space:nowrap}
+.pin{position:absolute;transform:translate(-50%,-50%);width:26px;height:26px;border-radius:50%;border:3px solid #fff;background:rgba(232,186,74,.55);box-shadow:0 0 0 2px rgba(0,0,0,.35);cursor:pointer;padding:0}
+.pin .lab{position:absolute;left:50%;top:calc(100% + 6px);transform:translateX(-50%);background:#1C2A44;color:#F5EFE4;padding:6px 9px;border-radius:9px;font:600 13px/1.2 var(--body);white-space:nowrap;text-align:center;pointer-events:none;opacity:0;transition:opacity .15s}
+.pin .lab i{display:block;font-style:normal;font-family:var(--hand);font-size:17px;color:#E8BA4A;line-height:1}
+.pic:hover .pin .lab,.pic.showall .pin .lab,.pin:focus .lab{opacity:1}
+.side{padding:14px 16px;display:grid;gap:12px;align-content:start}
+.side .cap{margin:0;font-size:16px}
+.side .by{margin:0;font-size:13.5px;color:var(--ink-2)}
+.reacts{display:flex;gap:8px}
+.rx{font:700 15px/1 var(--body);padding:9px 12px;border-radius:999px;border:1.5px solid var(--line);background:var(--ground);color:var(--ink);cursor:pointer}
+.rx[aria-pressed="true"]{border-color:var(--sand);background:color-mix(in srgb,var(--mustard) 35%,var(--ground))}
+.taglist{margin:0;padding:0;list-style:none;display:grid;gap:6px}
+.taglist li{display:flex;gap:8px;align-items:center;font-size:15px;background:var(--ground);border-radius:10px;padding:7px 10px}
+.taglist li b{font-weight:700}
+.taglist li i{font-family:var(--hand);font-style:normal;font-size:19px;color:var(--sand);line-height:1}
+.taglist li button{margin-left:auto;background:none;border:0;color:var(--ink-2);cursor:pointer;font-size:18px}
+.small{font-size:13px;color:var(--ink-2);margin:0}
+/* tag popover */
+.pop{position:absolute;z-index:3;width:min(300px,86vw);background:var(--paper);color:var(--ink);border-radius:14px;box-shadow:0 12px 40px rgba(0,0,0,.45);padding:12px;display:grid;gap:9px;line-height:1.4}
+.pop h3{margin:0;font-size:15px}
+.badges{display:flex;flex-wrap:wrap;gap:6px}
+.bdg{font:600 13px/1 var(--body);padding:7px 9px;border-radius:999px;border:1.5px solid var(--line);background:var(--ground);color:var(--ink);cursor:pointer}
+.bdg[aria-pressed="true"]{background:var(--mustard);border-color:var(--mustard);color:#1C2A44}
+/* upload */
+.upd{padding:18px clamp(14px,4vw,24px) 22px;display:grid;gap:12px;max-width:560px}
+.drop{position:relative;border:2px dashed var(--line);border-radius:14px;padding:22px;text-align:center;color:var(--ink-2);background:var(--ground)}
+.drop b{display:block;color:var(--ink);font-size:18px}
+.drop input{position:absolute;inset:0;opacity:0;cursor:pointer}
+.thumbs{display:flex;gap:8px;flex-wrap:wrap}
+.thumbs img{width:72px;height:72px;object-fit:cover;border-radius:8px}
+label.f{display:grid;gap:5px;font-size:14.5px;font-weight:600}
+label.f span{font-weight:500;color:var(--ink-2)}
+.consent{display:flex;gap:10px;align-items:flex-start;font-size:14.5px}
+.consent input{margin-top:4px;width:18px;height:18px}
+.msg{font-size:15px;font-weight:600;min-height:1.4em;margin:0}
+.msg.ok{color:var(--ok)}.msg.err{color:var(--err)}
+footer{margin-top:60px;border-top:1px solid var(--line);padding-block:28px 40px;text-align:center;color:var(--ink-2);font-size:14.5px}
+footer .hand{font-family:var(--hand);font-size:30px;font-weight:700;color:var(--ink)}
+</style></head><body>
+<nav><div class="wrap"><a class="brand" href="index.html">MBM <b>'01</b></a>
+<div class="links"><a href="index.html">Home</a><a href="batchmates.html">Then &amp; Now</a><a href="booth.html">Photo Booth</a></div></div></nav>
+<main class="wrap">
+<header>
+  <div class="label">Tag · laugh · repeat</div>
+  <h1>Photo <span class="hand">Wall</span></h1>
+  <p class="lead">Post your old and new photos, tag your batchmates and give them the title they earned in 2001. Tap any photo to tag, react or see who's who.</p>
+  <div class="acts"><button class="btn" id="openUp" type="button">Upload photos</button><a class="btn ghost" href="booth.html">Open the Photo Booth</a></div>
+</header>
+
+<section class="board" id="board" aria-label="Leaderboard"></section>
+
+<div class="tools">
+  <div class="findme"><input class="inp" id="findme" list="names" placeholder="Find me: type your name" aria-label="Find photos a batchmate is tagged in"></div>
+  <span id="filterChip"></span>
+  <button class="tab" type="button" data-sort="new" aria-pressed="true">Newest</button>
+  <button class="tab" type="button" data-sort="love" aria-pressed="false">Most loved</button>
+  <button class="tab" type="button" data-sort="tags" aria-pressed="false">Most tagged</button>
+  <span class="stat" id="stat"></span>
+</div>
+<div id="out"><p class="none"><span class="hand">Loading the wall…</span></p></div>
+</main>
+<datalist id="names"></datalist>
+
+<!-- photo lightbox -->
+<dialog id="view" aria-labelledby="vTitle">
+  <div class="dhead"><h2 id="vTitle">Photo</h2>
+    <button class="btn sm" id="tagBtn" type="button">Tag someone</button>
+    <button class="x" type="button" data-close aria-label="Close">×</button></div>
+  <div class="lbx">
+    <div class="stage" id="stage"><div class="pic" id="pic"><img id="vImg" alt=""></div></div>
+    <div class="side">
+      <p class="cap" id="vCap"></p><p class="by" id="vBy"></p>
+      <div class="reacts" id="reacts"></div>
+      <div><h3 style="margin:4px 0 6px;font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:var(--sand)">Tagged</h3>
+      <ul class="taglist" id="taglist"></ul></div>
+      <p class="small">Tags are for fun. Spotted a wrong tag? Remove it with ×.</p>
+      <a class="small" id="dl" href="#" target="_blank" rel="noopener">Open full size ↗</a>
+    </div>
+  </div>
+</dialog>
+
+<!-- upload -->
+<dialog id="up" aria-labelledby="uTitle" style="max-width:560px">
+  <div class="dhead"><h2 id="uTitle">Upload photos</h2><button class="x" type="button" data-close aria-label="Close">×</button></div>
+  <form class="upd" id="upForm" novalidate>
+    <label class="drop"><input type="file" id="files" accept="image/*" multiple><b>Choose photos</b>Up to 6 at a time. Old college pics, reunion selfies, anything.</label>
+    <div class="thumbs" id="thumbs"></div>
+    <label class="f">Caption <span>(optional)</span><input class="inp" id="cap" maxlength="120" placeholder="e.g. Final year trip, Mount Abu"></label>
+    <label class="f">Your name<input class="inp" id="me" list="names" maxlength="60" placeholder="Type your name"></label>
+    <label class="consent"><input type="checkbox" id="ok"> These photos can be shown on this website, and batchmates can tag them.</label>
+    <p class="msg" id="uMsg" role="status" aria-live="polite"></p>
+    <button class="btn" type="submit" id="uGo">Upload</button>
+  </form>
+</dialog>
+
+<footer class="wrap"><div class="hand">Once MBMites, Always MBMites ♥</div><p>Photos are stored in the reunion's Google Drive. The organisers can take down any photo or tag on request.</p></footer>
+
+<script src="names.js"></script>
+<script>
+(function(){
+  var API_URL = "https://script.google.com/macros/s/AKfycby7EIHjCJ053khkkMHN4-gx1mttPKGnQrIkiNw7YXcTFotYF1it1OUQYgCQzlJSMfd9Ng/exec";
+  var CODE = "MBM2001";
+  var BADGES = ["Backbencher","Canteen King","Proxy Master","Topper (allegedly)","Hostel Legend","Bunk Captain","Chai Sponsor","Exam-night Hero","Still owes me ₹50","Heartthrob of '01","Mess Critic","Always Late","Class Clown","Lab Partner"];
+  var EMO = [["laugh","😂"],["heart","❤️"],["fire","🔥"]];
+
+  var $ = function(id){ return document.getElementById(id); };
+  function norm(s){ return (s||"").toLowerCase().replace(/[^a-z]/g,""); }
+  function el(tag, cls, txt){ var e=document.createElement(tag); if(cls) e.className=cls; if(txt!=null) e.textContent=txt; return e; }
+  function img(id, w){ return "https://drive.google.com/thumbnail?id="+encodeURIComponent(id)+"&sz=w"+(w||600); }
+  function store(k,v){ try{ if(v===undefined) return localStorage.getItem(k); localStorage.setItem(k,v); }catch(e){ return null; } }
+  function post(body){ body.code=CODE; return fetch(API_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(body)}).then(function(r){return r.json();}); }
+
+  // names list
+  var ALL=[], NAMEMAP={};
+  Object.keys(window.MBM_ROSTER||{}).forEach(function(b){ (window.MBM_ROSTER[b]).forEach(function(n){ if(n.indexOf("|memory")>-1) return; if(!NAMEMAP[norm(n)]){ NAMEMAP[norm(n)]=n; ALL.push(n);} }); });
+  ALL.sort(); var dl=$("names"); ALL.forEach(function(n){ var o=document.createElement("option"); o.value=n; dl.appendChild(o); });
+  function canon(n){ return NAMEMAP[norm(n)] || (n||"").trim(); }
+
+  var photos=[], tags=[], sort="new", filter="";
+  var mine={}; try{ mine=JSON.parse(store("mbm01reacts")||"{}"); }catch(e){}
+  function tagsOf(pid){ return tags.filter(function(t){ return t.photo===pid; }); }
+  function love(p){ return p.react.laugh+p.react.heart+p.react.fire; }
+
+  function load(){
+    fetch(API_URL+"?action=wall",{cache:"no-store"}).then(function(r){return r.json();}).then(function(d){
+      photos=(d.photos||[]); tags=(d.tags||[]); render(); board();
+      var h=location.hash.match(/^#p=(\w+)/); if(h) open(h[1]);
+    }).catch(function(){ $("out").innerHTML='<p class="none"><span class="hand">Couldn\'t load the wall.</span>Check your connection and refresh.</p>'; });
+  }
+
+  function render(){
+    var out=$("out"); out.textContent="";
+    var list=photos.slice();
+    if(filter){ var ids={}; tags.forEach(function(t){ if(norm(t.name)===norm(filter)) ids[t.photo]=1; }); list=list.filter(function(p){ return ids[p.id] || norm(p.uploader)===norm(filter); }); }
+    if(sort==="new") list.sort(function(a,b){ return a.ts<b.ts?1:a.ts>b.ts?-1:0; });
+    if(sort==="love") list.sort(function(a,b){ return love(b)-love(a); });
+    if(sort==="tags") list.sort(function(a,b){ return tagsOf(b.id).length-tagsOf(a.id).length; });
+    $("stat").textContent = photos.length+" photos · "+tags.length+" tags";
+    var chip=$("filterChip"); chip.textContent="";
+    if(filter){ var c=el("span","chip","Showing: "+filter+" ("+list.length+")"); var x=el("button",null,"×"); x.type="button"; x.setAttribute("aria-label","Clear filter"); x.onclick=function(){ filter=""; $("findme").value=""; render(); }; c.appendChild(x); chip.appendChild(c); }
+    if(!list.length){ var n=el("div","none"); n.appendChild(el("span","hand", filter? "No photos of "+filter+" yet." : "The wall is empty. Be the first!")); n.appendChild(document.createTextNode(filter? "Upload one and tag them!" : "Upload an old photo and tag your gang.")); out.appendChild(n); return; }
+    var g=el("div","grid");
+    list.forEach(function(p){
+      var t=el("button","tile"); t.type="button"; t.onclick=function(){ open(p.id); };
+      var i=document.createElement("img"); i.src=img(p.photo,600); i.alt=p.caption||"Photo by "+p.uploader; i.loading="lazy"; i.referrerPolicy="no-referrer"; t.appendChild(i);
+      var c=el("div","cap"); if(p.caption) c.appendChild(el("p",null,p.caption));
+      c.appendChild(el("p","by",(p.source==="booth"?"📸 Booth · ":"")+"by "+p.uploader));
+      var tg=tagsOf(p.id), row=el("div","row");
+      row.appendChild(el("span",null,"🏷 "+tg.length));
+      EMO.forEach(function(e){ if(p.react[e[0]]) row.appendChild(el("span",null,e[1]+" "+p.react[e[0]])); });
+      c.appendChild(row); t.appendChild(c); g.appendChild(t);
+    });
+    out.appendChild(g);
+  }
+
+  function board(){
+    var b=$("board"); b.textContent="";
+    function box(title){ var d=el("div","lb"); d.appendChild(el("h2",null,title)); b.appendChild(d); return d; }
+    function top(map, n){ return Object.keys(map).map(function(k){return [k,map[k]];}).sort(function(a,b){return b[1]-a[1];}).slice(0,n); }
+    function list(d, rows, click){
+      if(!rows.length){ d.appendChild(el("p","empty","Nothing yet. Start tagging!")); return; }
+      var ol=el("ol"); rows.forEach(function(r,i){ var li=el("li"); li.appendChild(el("span","n",(i+1)+".")); var w;
+        if(click){ w=el("button","who",r[0]); w.type="button"; w.onclick=function(){ setFilter(r[0]); }; } else w=el("span","who",r[0]);
+        li.appendChild(w); li.appendChild(el("span","c",r[1])); ol.appendChild(li); }); d.appendChild(ol);
+    }
+    var tagged={}, up={}, bd={};
+    tags.forEach(function(t){ tagged[t.name]=(tagged[t.name]||0)+1; if(t.badge) bd[t.badge]=(bd[t.badge]||0)+1; });
+    photos.forEach(function(p){ up[p.uploader]=(up[p.uploader]||0)+1; });
+    list(box("Most tagged"), top(tagged,5), true);
+    list(box("Top uploaders"), top(up,5), true);
+    var lb=box("Most loved photo"), best=photos.slice().sort(function(a,b){return love(b)-love(a);})[0];
+    if(best && love(best)){ var h=el("button","hero"); h.type="button"; h.onclick=function(){ open(best.id); };
+      var i=document.createElement("img"); i.src=img(best.photo,200); i.alt=""; i.referrerPolicy="no-referrer"; h.appendChild(i);
+      var s=el("span"); s.appendChild(el("b",null,best.caption||"by "+best.uploader)); s.appendChild(document.createElement("br"));
+      s.appendChild(document.createTextNode(EMO.map(function(e){return e[1]+" "+best.react[e[0]];}).join("  "))); h.appendChild(s); lb.appendChild(h);
+    } else lb.appendChild(el("p","empty","No reactions yet."));
+    // title holders: most common badge per person
+    var th=box("Batch titles"), per={};
+    tags.forEach(function(t){ if(!t.badge) return; per[t.badge]=per[t.badge]||{}; per[t.badge][t.name]=(per[t.badge][t.name]||0)+1; });
+    var rows=top(bd,5).map(function(r){ var w=top(per[r[0]],1)[0]; return [r[0]+": "+w[0], ""]; });
+    list(th, rows, false);
+  }
+
+  function setFilter(n){ filter=canon(n); $("findme").value=filter; store("mbm01me", filter); render(); window.scrollTo({top:$("out").offsetTop-120,behavior:"smooth"}); }
+  $("findme").addEventListener("change", function(){ var v=this.value.trim(); if(!v){ filter=""; render(); return; } setFilter(v); });
+  document.querySelectorAll("[data-sort]").forEach(function(b){ b.onclick=function(){ sort=b.dataset.sort; document.querySelectorAll("[data-sort]").forEach(function(x){ x.setAttribute("aria-pressed", x===b); }); render(); }; });
+  document.querySelectorAll("[data-close]").forEach(function(b){ b.onclick=function(){ b.closest("dialog").close(); }; });
+
+  // ---------- lightbox ----------
+  var cur=null, tagging=false, pop=null, view=$("view"), pic=$("pic");
+  function open(id){
+    cur=photos.filter(function(p){return p.id===id;})[0]; if(!cur) return;
+    history.replaceState(null,"","#p="+id);
+    $("vTitle").textContent = cur.caption || "Photo by "+cur.uploader;
+    $("vCap").textContent = cur.caption || ""; $("vBy").textContent = "Posted by "+cur.uploader+(cur.ts?" · "+cur.ts.slice(0,10):"");
+    var im=$("vImg"); im.referrerPolicy="no-referrer"; im.src=img(cur.photo,1600); im.alt=cur.caption||"";
+    $("dl").href="https://drive.google.com/uc?id="+encodeURIComponent(cur.photo);
+    setTagging(false); pins(); reacts();
+    if(view.showModal && !view.open) view.showModal();
+  }
+  view.addEventListener("close", function(){ closePop(); history.replaceState(null,"",location.pathname); render(); board(); });
+  function pins(){
+    pic.querySelectorAll(".pin").forEach(function(p){ p.remove(); });
+    var ul=$("taglist"); ul.textContent="";
+    var tg=tagsOf(cur.id);
+    if(!tg.length) ul.appendChild(el("li",null,"No one tagged yet. Tap “Tag someone”."));
+    tg.forEach(function(t){
+      var p=el("button","pin"); p.type="button"; p.style.left=(t.x*100)+"%"; p.style.top=(t.y*100)+"%"; p.setAttribute("aria-label",t.name+(t.badge?", "+t.badge:""));
+      var lab=el("span","lab",t.name); if(t.badge) lab.appendChild(el("i",null,t.badge)); p.appendChild(lab);
+      p.onclick=function(ev){ ev.stopPropagation(); pic.classList.toggle("showall"); };
+      pic.appendChild(p);
+      var li=el("li"); li.appendChild(el("b",null,t.name)); if(t.badge) li.appendChild(el("i",null,t.badge));
+      var x=el("button",null,"×"); x.type="button"; x.title="Remove tag"; x.setAttribute("aria-label","Remove tag "+t.name);
+      x.onclick=function(){ x.disabled=true; post({action:"untag",id:t.id}).then(function(){ tags=tags.filter(function(z){return z.id!==t.id;}); pins(); }).catch(function(){ x.disabled=false; }); };
+      li.appendChild(x); ul.appendChild(li);
+    });
+  }
+  function reacts(){
+    var r=$("reacts"); r.textContent="";
+    EMO.forEach(function(e){
+      var k=cur.id+":"+e[0], b=el("button","rx",e[1]+" "+cur.react[e[0]]); b.type="button"; b.setAttribute("aria-pressed", !!mine[k]);
+      b.onclick=function(){ var undo=!!mine[k]; cur.react[e[0]]+=undo?-1:1; if(undo) delete mine[k]; else mine[k]=1; store("mbm01reacts",JSON.stringify(mine)); reacts();
+        post({action:"react",photo:cur.id,emoji:e[0],undo:undo}).then(function(d){ if(d.ok){ cur.react=d.react; reacts(); } }).catch(function(){}); };
+      r.appendChild(b);
+    });
+  }
+  function setTagging(on){ tagging=on; pic.classList.toggle("tagging",on); $("tagBtn").textContent= on? "Done tagging" : "Tag someone"; if(!on) closePop(); }
+  $("tagBtn").onclick=function(){ setTagging(!tagging); };
+  function closePop(){ if(pop){ pop.remove(); pop=null; } var g=pic.querySelector(".pin.ghost"); if(g) g.remove(); }
+  pic.addEventListener("click", function(ev){
+    if(!tagging || ev.target.closest(".pop")) return;
+    var r=$("vImg").getBoundingClientRect(); var x=(ev.clientX-r.left)/r.width, y=(ev.clientY-r.top)/r.height;
+    if(x<0||x>1||y<0||y>1) return;
+    closePop();
+    var g=el("span","pin ghost"); g.style.left=(x*100)+"%"; g.style.top=(y*100)+"%"; pic.appendChild(g);
+    pop=el("div","pop"); pop.addEventListener("click",function(e){ e.stopPropagation(); });
+    pop.appendChild(el("h3",null,"Who's this?"));
+    var nm=el("input","inp"); nm.setAttribute("list","names"); nm.placeholder="Type a batchmate's name"; nm.maxLength=60; pop.appendChild(nm);
+    pop.appendChild(el("h3",null,"Give them a title"));
+    var bw=el("div","badges"), chosen="";
+    BADGES.forEach(function(b){ var c=el("button","bdg",b); c.type="button"; c.setAttribute("aria-pressed","false");
+      c.onclick=function(){ chosen = chosen===b ? "" : b; own.value=""; bw.querySelectorAll(".bdg").forEach(function(z){ z.setAttribute("aria-pressed", z.textContent===chosen); }); }; bw.appendChild(c); });
+    pop.appendChild(bw);
+    var own=el("input","inp"); own.placeholder="…or write your own title"; own.maxLength=40; own.oninput=function(){ if(own.value){ chosen=""; bw.querySelectorAll(".bdg").forEach(function(z){ z.setAttribute("aria-pressed","false"); }); } }; pop.appendChild(own);
+    var by=el("input","inp"); by.setAttribute("list","names"); by.placeholder="Tagged by (your name)"; by.value=store("mbm01me")||""; pop.appendChild(by);
+    var m=el("p","msg"); pop.appendChild(m);
+    var row=el("div","acts"); var save=el("button","btn sm","Save tag"); save.type="button"; var cancel=el("button","btn sm ghost","Cancel"); cancel.type="button";
+    row.appendChild(save); row.appendChild(cancel); pop.appendChild(row);
+    cancel.onclick=closePop;
+    save.onclick=function(){
+      var name=canon(nm.value); if(!name){ m.className="msg err"; m.textContent="Type a name."; nm.focus(); return; }
+      if(by.value.trim()) store("mbm01me", canon(by.value));
+      save.disabled=true; m.className="msg"; m.textContent="Saving…";
+      post({action:"tag",photo:cur.id,x:+x.toFixed(4),y:+y.toFixed(4),name:name,badge:own.value.trim()||chosen,by:canon(by.value)}).then(function(d){
+        if(d.ok){ tags.push(d.tag); closePop(); pins(); } else { m.className="msg err"; m.textContent="Couldn't save: "+(d.error||"error"); save.disabled=false; }
+      }).catch(function(){ m.className="msg err"; m.textContent="No connection. Try again."; save.disabled=false; });
+    };
+    pic.appendChild(pop);
+    // place popover inside the photo box
+    var pw=pop.offsetWidth, ph=pop.offsetHeight, W=pic.offsetWidth, H=pic.offsetHeight;
+    var left=Math.min(Math.max(8, x*W-pw/2), Math.max(8, W-pw-8)), top=y*H+22; if(top+ph>H-8) top=Math.max(8, y*H-ph-22);
+    pop.style.left=left+"px"; pop.style.top=top+"px";
+    setTimeout(function(){ nm.focus(); }, 30);
+  });
+
+  // ---------- upload ----------
+  var picked=[], up=$("up");
+  $("openUp").onclick=function(){ picked=[]; $("thumbs").textContent=""; $("files").value=""; $("cap").value=""; $("me").value=store("mbm01me")||""; msg(""); $("uGo").disabled=false; up.showModal(); };
+  function msg(t,c){ var m=$("uMsg"); m.textContent=t; m.className="msg"+(c?" "+c:""); }
+  function shrink(file, cb){
+    var url=URL.createObjectURL(file), im=new Image();
+    im.onload=function(){ var s=Math.min(1,1600/Math.max(im.width,im.height)); var c=document.createElement("canvas"); c.width=Math.round(im.width*s); c.height=Math.round(im.height*s);
+      c.getContext("2d").drawImage(im,0,0,c.width,c.height); URL.revokeObjectURL(url); cb(c.toDataURL("image/jpeg",0.85)); };
+    im.onerror=function(){ URL.revokeObjectURL(url); cb(""); }; im.src=url;
+  }
+  $("files").onchange=function(){
+    var fs=[].slice.call(this.files||[],0,6); picked=[]; $("thumbs").textContent=""; if(!fs.length) return; msg("Preparing photos…");
+    var left=fs.length; fs.forEach(function(f,i){ shrink(f,function(d){ if(d){ picked[i]=d; var t=document.createElement("img"); t.src=d; t.alt=""; $("thumbs").appendChild(t);} if(--left===0) msg(picked.filter(Boolean).length+" ready"); }); });
+  };
+  $("upForm").addEventListener("submit", function(ev){
+    ev.preventDefault();
+    var list=picked.filter(Boolean), me=canon($("me").value);
+    if(!list.length) return msg("Choose at least one photo.","err");
+    if(!me) return msg("Type your name.","err");
+    if(!$("ok").checked) return msg("Tick the box to allow showing the photos.","err");
+    store("mbm01me", me); $("uGo").disabled=true;
+    var i=0, added=[];
+    (function next(){
+      if(i>=list.length){ msg("Done! "+added.length+" photo"+(added.length>1?"s":"")+" added.","ok"); photos=photos.concat(added); render(); board(); setTimeout(function(){ up.close(); if(added[0]) open(added[0].id); }, 900); return; }
+      msg("Uploading "+(i+1)+" of "+list.length+"…");
+      post({action:"wall_upload",photo:list[i],caption:$("cap").value,uploader:me,consent:true,source:"upload"}).then(function(d){
+        if(d.ok) added.push(d.photo); i++; next();
+      }).catch(function(){ msg("Upload stopped (connection). "+added.length+" uploaded.","err"); photos=photos.concat(added); render(); $("uGo").disabled=false; });
+    })();
+  });
+
+  var me=store("mbm01me"); if(me) $("findme").placeholder="Find me: "+me+" (press Enter)";
+  load();
+})();
+</script>
+</body></html>
