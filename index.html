@@ -149,6 +149,8 @@ section{padding-block:72px 8px;scroll-margin-top:60px}
 .video-row{display:grid;grid-template-columns:minmax(0,340px) 1fr;gap:36px;align-items:center;margin-bottom:40px}
 .video-row video{width:100%;aspect-ratio:9/16;border-radius:18px;background:#000;box-shadow:var(--shadow);display:block}
 @media (max-width:760px){.video-row{grid-template-columns:1fr}.video-row video{max-width:340px}}
+.video-row.wide{grid-template-columns:1fr;gap:18px}
+.video-row.wide video{aspect-ratio:16/9;max-width:900px}
 .board{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:26px 22px;padding:8px 4px}
 .pola{margin:0;background:#FFFCF6;padding:10px 10px 0;box-shadow:var(--shadow);transform:rotate(var(--r,0deg));transition:transform .25s ease}
 .pola:hover{transform:rotate(0) scale(1.03);z-index:2}
@@ -286,6 +288,14 @@ footer p{margin:6px auto 0;color:var(--ink-2);font-size:14.5px}
     </div>
     <div class="video-row" id="teaser" style="margin:30px 0 0">
       <video controls playsinline preload="metadata" poster="img/teaser-poster.jpg" src="teaser.mp4" aria-label="MBM '01 Silver Jubilee teaser video"></video>
+      <script>
+      (function(){ // wide screens get the landscape teaser (falls back to portrait if it's missing)
+        if(!window.matchMedia || !matchMedia("(min-width:761px)").matches) return;
+        fetch("teaser-h.mp4",{method:"HEAD"}).then(function(r){ if(!r.ok) return;
+          var row=document.getElementById("teaser"), v=row.querySelector("video");
+          v.poster="teaser-h-poster.jpg"; v.src="teaser-h.mp4"; row.classList.add("wide"); }).catch(function(){});
+      })();
+      </script>
       <div>
         <p class="hand" style="font-size:36px;line-height:1.15;color:var(--blue);margin-bottom:12px">Purani jeans aur guitar…</p>
         <p>Watch the teaser with the sound on. Then scroll down for the programme, venues and the old album. Spot yourself? Spot the guy who still owes you money?</p>
