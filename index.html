@@ -586,7 +586,7 @@ Once MBMites, Always MBMites ❤️</pre>
   function render(){ var term=(q.value||"").trim().toLowerCase(); groups.textContent=""; var shown=0;
     order.forEach(function(k){ if(active!=="All" && active!==k) return; var names=B[k].filter(function(n){return !term || n.toLowerCase().indexOf(term)>-1;}); if(!names.length) return; shown+=names.length;
       var g=document.createElement("div"); g.className="bgroup"; var h=document.createElement("h3"); h.textContent=labels[k]||k; var c=document.createElement("span"); c.textContent=names.length; h.appendChild(c); g.appendChild(h);
-      var ul=document.createElement("ul"); names.forEach(function(n){ var li=document.createElement("li"); li.textContent=n; if(MEM[n]) li.className="mem"; else if(PAID[n]) li.className="paid"; ul.appendChild(li); }); g.appendChild(ul); groups.appendChild(g); });
+      var ul=document.createElement("ul"); names.forEach(function(n){ var li=document.createElement("li"); li.textContent=n; if(MEM[k+"|"+n]) li.className="mem"; else if(PAID[k+"|"+n]) li.className="paid"; ul.appendChild(li); }); g.appendChild(ul); groups.appendChild(g); });
     empty.hidden = shown>0; }
   q.addEventListener("input", render); renderChips(); render();
   // live roll call from the registration sheet: green = advance paid
@@ -595,7 +595,7 @@ Once MBMites, Always MBMites ❤️</pre>
   fetch(API + "?action=roster", {cache:"no-store"}).then(function(r){ return r.json(); }).then(function(d){
     if(!d || !d.ok || !d.roster || !d.roster.length) return;
     var nb = {}, paid = 0, total = 0; PAID = {}; MEM = {};
-    d.roster.forEach(function(r){ var k = MAP[r.b] || r.b; (nb[k] = nb[k] || []).push(r.n); total++; if(r.m) MEM[r.n]=1; else if(r.p){ PAID[r.n]=1; paid++; } });
+    d.roster.forEach(function(r){ var k = MAP[r.b] || r.b; (nb[k] = nb[k] || []).push(r.n); total++; if(r.m) MEM[k+"|"+r.n]=1; else if(r.p){ PAID[k+"|"+r.n]=1; paid++; } });
     Object.keys(nb).forEach(function(k){ nb[k].sort(function(a,b){ return a.localeCompare(b); }); });
     B = nb; order = Object.keys(MAP).map(function(k){ return MAP[k]; }).filter(function(k){ return nb[k]; });
     if(order.indexOf(active) < 0) active = "All";
