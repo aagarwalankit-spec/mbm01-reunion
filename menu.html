@@ -1,0 +1,217 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Food Menu · MBM '01</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Figtree:wght@400;500;600;700;800&family=Permanent+Marker&display=swap">
+<style>
+:root{--ground:#F5EFE4;--paper:#FFFCF6;--ink:#1C2A44;--ink-2:#4A566E;--line:#DDD2BF;--sand:#B8612F;--blue:#2E5597;--mustard:#E8BA4A;--ok:#2E7D4F;
+--display:"Permanent Marker",cursive;--hand:"Caveat","Segoe Print",cursive;--body:"Figtree",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--ground:#0F1526;--paper:#18203A;--ink:#F1E9DA;--ink-2:#B5BCCB;--line:#2C3656;--sand:#E08E5B;--blue:#86A8E6;--mustard:#E4B862;--ok:#6CC08F}}
+:root[data-theme="dark"]{color-scheme:dark;--ground:#0F1526;--paper:#18203A;--ink:#F1E9DA;--ink-2:#B5BCCB;--line:#2C3656;--sand:#E08E5B;--blue:#86A8E6;--mustard:#E4B862;--ok:#6CC08F}
+*{box-sizing:border-box}body{margin:0;background:var(--ground);color:var(--ink);font:17px/1.6 var(--body);-webkit-font-smoothing:antialiased}
+a{color:var(--blue)}:focus-visible{outline:3px solid var(--mustard);outline-offset:2px;border-radius:4px}
+.wrap{max-width:1120px;margin-inline:auto;padding-inline:16px}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:6;background:color-mix(in srgb,var(--ground) 90%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;gap:14px;height:56px}
+.brand{font-family:var(--display);font-size:22px;color:var(--ink);text-decoration:none}.brand b{color:var(--sand);font-weight:400}
+nav .links{margin-left:auto;display:flex;gap:4px}
+nav .links a{padding:6px 10px;border-radius:8px;color:var(--ink-2);text-decoration:none;font-weight:600;font-size:14.5px;white-space:nowrap}
+header{padding-block:32px 6px}
+.label{font-size:12.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--sand)}
+h1{font-size:clamp(38px,7vw,64px);line-height:1;margin:.15em 0 .2em;font-weight:800;letter-spacing:-.02em}
+h1 .hand{font-family:var(--hand);color:var(--blue);font-weight:700}
+.lead{font-size:clamp(17px,2.2vw,20px);max-width:64ch;color:var(--ink-2);margin:0 0 6px}
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 0}
+.pill{font:600 13.5px/1 var(--body);padding:8px 11px;border-radius:999px;background:var(--paper);border:1px solid var(--line);color:var(--ink-2)}
+.pill.veg{color:var(--ok);border-color:color-mix(in srgb,var(--ok) 45%,var(--line))}
+.days{position:sticky;top:56px;z-index:5;background:var(--ground);padding:14px 0 10px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;border-bottom:1px solid var(--line);margin-top:22px}
+.days::-webkit-scrollbar{display:none}
+.day{flex:0 0 auto;font:700 15px/1.1 var(--body);padding:10px 14px;border-radius:12px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);cursor:pointer;text-align:left}
+.day small{display:block;font-weight:600;font-size:12.5px;color:var(--ink-2);margin-top:3px}
+.day[aria-selected="true"]{background:var(--ink);color:var(--ground);border-color:var(--ink)}
+.day[aria-selected="true"] small{color:color-mix(in srgb,var(--ground) 75%,transparent)}
+.jump{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 4px}
+.jump a{font:600 14px/1 var(--body);padding:8px 11px;border-radius:999px;background:color-mix(in srgb,var(--mustard) 28%,var(--paper));color:var(--ink);text-decoration:none}
+.meal{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:18px clamp(14px,3vw,26px) 22px;margin:18px 0;scroll-margin-top:140px}
+.meal>h2{margin:0;font-size:clamp(24px,3.5vw,32px);line-height:1.1;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.meal>h2 .hand{font-family:var(--hand);font-weight:700;color:var(--sand);font-size:.9em}
+.meal>p.sub{margin:4px 0 0;color:var(--ink-2);font-size:15px}
+.secs{columns:3 240px;column-gap:26px;margin-top:14px}
+.sec{break-inside:avoid;margin:0 0 16px}
+.sec h3{margin:0 0 4px;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--sand)}
+.sec ul{margin:0;padding:0;list-style:none}
+.sec li{padding:3px 0;border-bottom:1px dashed color-mix(in srgb,var(--line) 70%,transparent);font-size:16px;line-height:1.35}
+.sec li:last-child{border-bottom:0}
+.sec p{margin:4px 0 0;font-size:13.5px;color:var(--ink-2);font-style:italic;line-height:1.35}
+.live{margin-top:6px;padding-top:14px;border-top:2px solid var(--line)}
+.live>h3{margin:0 0 10px;font-family:var(--hand);font-size:28px;color:var(--blue);font-weight:700;letter-spacing:0;text-transform:none}
+.tea{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-top:12px}
+.tea div{background:var(--ground);border-radius:12px;padding:12px 14px}
+.tea b{display:block}
+.tea span{font-size:15px;color:var(--ink-2)}
+.search{font:500 15px var(--body);padding:10px 12px;border-radius:12px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);width:100%;max-width:320px;margin-top:14px}
+mark{background:color-mix(in srgb,var(--mustard) 60%,transparent);color:inherit;border-radius:3px}
+.none{color:var(--ink-2);padding:20px 0}
+footer{margin-top:50px;border-top:1px solid var(--line);padding-block:26px 40px;text-align:center;color:var(--ink-2);font-size:14.5px}
+footer .hand{font-family:var(--hand);font-size:30px;font-weight:700;color:var(--ink)}
+@media print{nav,.days,.jump,.search,footer{display:none}.meal{break-inside:avoid;border:0}}
+</style>
+<link rel="stylesheet" href="theme.css"></head><body>
+<nav><div class="wrap"><a class="brand" href="index.html">MBM <b>'01</b></a>
+<div class="links"><a href="index.html#schedule">Schedule</a><a href="wall.html">Photo Wall</a><a href="booth.html">Booth</a></div></div></nav>
+<main class="wrap">
+<header>
+  <div class="label">Khana khazana · Garh Govind</div>
+  <h1>Food <span class="hand">Menu</span></h1>
+  <p class="lead">Three days of Jodhpuri feasting by Zaika Caterers. Dal-bati-churma lunch on the 26th, a chaat bazaar and live counters every evening, and chai on tap all day.</p>
+  <div class="pills"><span class="pill veg">● Pure vegetarian</span><span class="pill">Jain option at Friday dinner</span><span class="pill">Tea counter open all day</span></div>
+  <input class="search" id="q" type="search" placeholder="Search a dish, e.g. ghewar" aria-label="Search the menu">
+</header>
+
+<div class="days" role="tablist" aria-label="Day" id="days"></div>
+<div class="jump" id="jump"></div>
+<div id="out"></div>
+
+<section class="meal" id="tea">
+  <h2>Chai counter <span class="hand">all day</span></h2>
+  <p class="sub">Masala tea, coffee and nibbles: khari, biscuits, butter toast, cookies and Bhavnagari gathiya.</p>
+  <div class="tea">
+    <div><b>Garh Govind</b><span>25 &amp; 26 Dec: 6 am – 10 pm<br>27 Dec: 6 am – 12 noon</span></div>
+    <div><b>Hari Kunj</b><span>25 &amp; 26 Dec: 6 am – 10 pm<br>27 Dec: 6 am – 12 noon</span></div>
+  </div>
+</section>
+</main>
+<footer class="wrap"><div class="hand">Khao, piyo, milo, yaad karo ♥</div><p>Menu as shared by the caterer; small changes on the day are possible.</p></footer>
+
+<script>
+(function(){
+  // [section title, [items], note]
+  var M = [
+   {day:0, meal:"Breakfast", secs:[
+     ["Menu",["Indori Poha with Bikaneri Sev","Masala Nylon Khaman","Bhavnagari Gathiya","Khari","Biscuits","Masala Tea","Coffee"]]
+   ]},
+   {day:0, meal:"Lunch", secs:[
+     ["Welcome drinks",["Fresh Pineapple Kiwi Juice","Mint Mojito"],"10 am – 12:30 pm"],
+     ["Starters",["French Fries","Tiranga Kofta"],"10 am – 12:30 pm"],
+     ["The soup pot",["Cream of Tomato Soup"],"Served with bread croutons & cream"],
+     ["Sweet arcade",["Kesar Rajbhog","Dal Badam ka Halwa","Malai Kangan Ghewar","Badam Launj"]],
+     ["Cream ka maza",["Dahi Vada"],"With rich curd & panchratan chutney"],
+     ["Tava ka tadka",["Paneer Butter Masala","Gulab Jamun ki Sabzi","Matar Tamatar","Panchkutta","Dal Tadka"]],
+     ["Achar & chutney",["Methi Mirchi Achar","Laccha Onion Achar","Lahsun Chutney","Tomato Sauce"]],
+     ["Rice",["Shahi Matar Pulao","White Kadhi"]],
+     ["Farsan",["Hing Long Mogar ki Kachori","Roasted Papad","Saleveda Fali"]],
+     ["Salad bahar",["Fresh Green Salad"]],
+     ["Bread station",["Tava Chapati","Laccha Paratha","Tandoori Roti"]]
+   ], live:[
+     ["Cold beverage",["Makhaniya Chaach"]],
+     ["South Indian counter",["Paneer Chilla","Two types of chutney"]],
+     ["Italian pasta lounge",["Live pasta: penne, fusilli, spaghetti","Arrabbiata red sauce","Creamy white sauce with basil & oregano","Garlic Bread"]],
+     ["Ice cream parlour",["Rabdi with Falooda"]],
+     ["Mukhwas counter",["Mukhwas"]]
+   ]},
+   {day:0, meal:"Hi-Tea", secs:[
+     ["Menu",["Kaju Katli","Bhelpuri","Sweet Corn Pakoda","Khari","Biscuits","Mathri","Mini Butter Toast","Masala Tea & Coffee","Pineapple Juice / Tangy Cumin Mint Punch"]]
+   ]},
+   {day:0, meal:"Dinner", secs:[
+     ["The soup pot",["Lemon Coriander Soup","Manchow Soup"],"Served with fried noodles"],
+     ["Sweet arcade",["Gajra Bahar (kulhad)","Kaju Akhrot Halwa","Pistachio Rabdi Malpua"]],
+     ["Cream ka maza",["Fruit Cream"]],
+     ["Tava ka tadka",["Paneer Khushrang","Jodhpuri Chakki Sabzi (Jain)","Jodhpuri Chakki Sabzi (pyaaz, lehsun)","Haldi Matar ki Sabzi","Bhindi Shimla Mirch","Dal Makhani"]],
+     ["Salad bahar",["Fresh Green Salad","Russian Salad","Ankurit (sprouts) Salad"]],
+     ["Achar & chutney",["Mogri Lal Mirchi Achar","Green Dhaniya Chutney","Lahsun Chutney","Tomato Sauce"]],
+     ["Rice",["Jodhpuri Shahi Kabuli","Jeera Rice"]],
+     ["Farsan",["Kurkura Coin Dal Vada","Navratan Mixture","Papad Fali"]],
+     ["Bread station",["Tava Chapati","Tandoori Roti","Butter Naan / Missi Roti"]]
+   ], live:[
+     ["Italian counter",["Thin Crust Pizza"]],
+     ["Chinese counter",["Manchurian","Hakka Noodles"]],
+     ["Indo-Nepali",["Momos"]],
+     ["Chaat bazaar: Delhi chaat",["Palak Vada","Dahi Bhalla","Papdi","Sev","Rich curd & panchratan chutney"],"Soft dumplings with crispy papdi, curd and toppings"],
+     ["Gol gappe",["Suji & atta golgappe","Variety of flavoured water"]],
+     ["Ice cream parlour",["Jamun Natural (tangy with lemon)","Amrood Natural (spicy)","Biscoff Natural","Kesar Pista Malai"]],
+     ["Jodhpuri kadhai counter",["Saffron Pista Laccha Milk (kulhad)","Saffron Jalebi"]],
+     ["Dessert counter",["Waffles (two types)"]],
+     ["Paan counter",["Paan","Mukhwas"]]
+   ]},
+   {day:1, meal:"Breakfast", secs:[
+     ["Sweet arcade",["Saffron Imarti","Gulab Halwa Pali","Kesar Pista Milk"]],
+     ["South Indian",["Sambhar Vada","Idli","Sambhar","Coconut Chutney"]],
+     ["Farsan",["Dry Fruit Upma with Achar","Dal Pakwan","Masala Nylon Khaman","Variety of Paratha"],"Dal pakwan with tamatar, pyaaz, mirchi, imli & dhaniya chutney; parathas with curd & achar"],
+     ["Bakery",["Bread Butter Jam","Vegetable Grilled Sandwich"]],
+     ["Tea counter",["Cornflakes","Chocos","Plain Milk","Masala Tea & Coffee","Khari","Mini Butter Toast"]],
+     ["Fresh fruits",["Apple","Watermelon","Papaya"]]
+   ]},
+   {day:1, meal:"Lunch", note:"Rajasthani special", secs:[
+     ["Welcome drinks",["Mint Mojito","Blue Lagoon"]],
+     ["The soup pot",["Rajasthani Raab"]],
+     ["Rajasthani counter",["Malai Rajbhog","Meva Churma Ladoo","Besan Churma","Rajasthani Plain Bati","Masala Bati (aloo + matar)","Panchmel Dal","Govind Gatte ki Sabzi","Tamatar Pyaaz Puli Sabzi","Sarson ka Saag","Kadhai Paneer","Jodhpuri Kadhi"]],
+     ["Breads & rice",["Makki ki Roti","Bajre ka Sogra","Tava Chapati","Jeera Rice"]],
+     ["On the side",["Mirchi ka Kutta","Lahsun Chutney","Roasted Papad","Fresh Green Salad","Pyaaz Churi (dhungar)","Makhaniya Chaach","Ghee, Gud & Sugar"]]
+   ], live:[
+     ["Ice cream parlour",["Kesar Pista Kulfi","Chocolate Kulfi"]],
+     ["Mukhwas",["Mukhwas"]]
+   ]},
+   {day:1, meal:"Hi-Tea", secs:[
+     ["Menu",["Panch Meva Chakki","Veg Pakoda","Khari","Biscuits","Mathri","Masala Tea","Coffee","Watermelon Juice"]]
+   ]},
+   {day:1, meal:"Dinner", secs:[
+     ["The soup pot",["Tomato Basil Soup","Almond Broccoli Soup"]],
+     ["Sweet arcade",["Amrit Cake","One Bite Rabdi Ghewar","Gajar Halwa","Paneer Hot Gulab Jamun (black)"]],
+     ["Cream ka maza",["Fruit Cocktail"]],
+     ["Tava ka tadka",["Paneer Tikka Masala","Zafrani Malai Kofta","Stuffed Pyaaz & Aloo with Ratalu","Kadhai Navratan Korma (white gravy)","Dal Fry"]],
+     ["Salad bahar",["Fresh Green Salad"]],
+     ["Achar & chutney",["Besan Mirchi (bharwan)","Lahsun Chutney","Tomato Sauce"]],
+     ["Rice",["Ram Khichdi","Jeera Rice"]],
+     ["Farsan",["Jodhpuri Kofta & Mirchi Vada","Meva Mysore","Papad Fali","Jhakas Khichiya"]],
+     ["Bread station",["Tava Chapati","Tandoori Roti","Laccha Paratha"]]
+   ], live:[
+     ["South Indian counter",["Paneer Masala Dosa","Coconut Chutney (two types)"]],
+     ["Mexican counter",["Quesadillas"],"Tortillas folded and filled with cheese"],
+     ["Barbecue",["Achari Paneer Tikka","Malai Paneer Tikka","Masala Pineapple & Apple Tikka"],"Marinated in spiced yoghurt, skewered and grilled"],
+     ["Jodhpuri kadhai counter",["Saffron Pista Laccha Milk (kulhad)","Saffron Jalebi"]],
+     ["Ice cream parlour (Havmor)",["American Nuts","Mango","Choco Chips"]],
+     ["Paan counter",["Paan","Mukhwas"]]
+   ]},
+   {day:2, meal:"Breakfast", note:"Farewell breakfast", secs:[
+     ["Sweet arcade",["Saffron Big Jalebi","Kesar Pista Milk"]],
+     ["South Indian",["Idli","Sambhar","Coconut Chutney"]],
+     ["Farsan",["Vagani (murmura fry)","Gujarati Fafda","Shahi Samosa","Chhole Bhature"],"Fafda with papaya, mirchi & imli chutney; chhole bhature with achar, fried mirchi & pyaaz"],
+     ["Bread station",["Bread Butter Jam"]],
+     ["Tea counter",["Cornflakes","Chocos","Plain Milk","Masala Tea & Coffee","Mini Butter Toast","Khari","Biscuits"]],
+     ["Fresh fruits",["Apple","Papaya","Chiku"]]
+   ]}
+  ];
+  var DAYS=[["Fri 25 Dec","Day 1 · 4 meals"],["Sat 26 Dec","Day 2 · 4 meals"],["Sun 27 Dec","Day 3 · breakfast"]];
+  var $=function(id){return document.getElementById(id);}, cur=0;
+  (function(){ var h=location.hash.match(/day(\d)/); if(h) cur=Math.min(2,+h[1]-1); })();
+  function el(t,c,x){ var e=document.createElement(t); if(c) e.className=c; if(x!=null) e.textContent=x; return e; }
+  function hl(li, text, term){ if(!term){ li.textContent=text; return; } var i=text.toLowerCase().indexOf(term); if(i<0){ li.textContent=text; return; }
+    li.appendChild(document.createTextNode(text.slice(0,i))); li.appendChild(el("mark",null,text.slice(i,i+term.length))); li.appendChild(document.createTextNode(text.slice(i+term.length))); }
+  function sec(s, term){ var d=el("div","sec"); d.appendChild(el("h3",null,s[0])); var ul=el("ul");
+    s[1].forEach(function(x){ if(term && x.toLowerCase().indexOf(term)<0 && s[0].toLowerCase().indexOf(term)<0) return; var li=el("li"); hl(li,x,term); ul.appendChild(li); });
+    if(!ul.children.length) return null; d.appendChild(ul); if(s[2]) d.appendChild(el("p",null,s[2])); return d; }
+  function render(){
+    var term=$("q").value.trim().toLowerCase(), out=$("out"), jump=$("jump"); out.textContent=""; jump.textContent="";
+    var days=$("days"); days.textContent="";
+    DAYS.forEach(function(d,i){ var b=el("button","day"); b.type="button"; b.setAttribute("role","tab"); b.setAttribute("aria-selected", !term && i===cur);
+      b.appendChild(document.createTextNode(d[0])); b.appendChild(el("small",null,d[1])); b.onclick=function(){ $("q").value=""; cur=i; history.replaceState(null,"","#day"+(i+1)); render(); window.scrollTo({top:$("days").offsetTop-56,behavior:"smooth"}); }; days.appendChild(b); });
+    var shown=0;
+    M.forEach(function(m,k){
+      if(!term && m.day!==cur) return;
+      var box=el("section","meal"); box.id="m"+k;
+      var h=el("h2",null,m.meal); h.appendChild(el("span","hand", term? DAYS[m.day][0] : (m.note||""))); box.appendChild(h);
+      if(term && m.note) box.appendChild(el("p","sub",m.note));
+      var g=el("div","secs"), any=0; m.secs.forEach(function(s){ var n=sec(s,term); if(n){ g.appendChild(n); any++; } }); if(any) box.appendChild(g);
+      if(m.live){ var lv=el("div","live"), lg=el("div","secs"), la=0; lv.appendChild(el("h3",null,"Live counters & stalls"));
+        m.live.forEach(function(s){ var n=sec(s,term); if(n){ lg.appendChild(n); la++; } }); if(la){ lv.appendChild(lg); box.appendChild(lv); any+=la; } }
+      if(!any) return;
+      out.appendChild(box); shown++;
+      if(!term){ var a=el("a",null,m.meal); a.href="#m"+k; jump.appendChild(a); }
+    });
+    if(!term){ var a=el("a",null,"Chai counter"); a.href="#tea"; jump.appendChild(a); }
+    if(term && !shown) out.appendChild(el("p","none","Nothing matching “"+$("q").value+"”. Try another dish."));
+  }
+  $("q").addEventListener("input", render);
+  render();
+})();
+</script>
+</body></html>

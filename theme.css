@@ -1,0 +1,55 @@
+/* MBM '01 · Blue City theme (loaded after each page's own styles) */
+:root{
+  --ground:#EAF2FF; --paper:#FFFFFF; --ink:#0A2350; --ink-2:#3D5484; --line:#C9D9F5;
+  --sand:#E0600A; --blue:#1560D4; --mustard:#FFC53D; --mustard-ink:#0A2350;
+  --band:#0B3C91; --band-ink:#FFFFFF; --band-2:#CFE0FF; --btn-ink:#FFFFFF;
+  --saffron:#FF7A00; --pink:#E5337A;
+  --shadow:0 1px 2px rgba(10,35,80,.08),0 10px 28px rgba(21,96,212,.14);
+  --blue-grad:linear-gradient(135deg,#0B3C91 0%,#1D6FE0 58%,#3FA2FF 100%);
+  --dots:radial-gradient(rgba(255,255,255,.13) 2px,transparent 2.5px) 0 0/18px 18px;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#061430; --paper:#0D2250; --ink:#EAF2FF; --ink-2:#A9C1EC; --line:#1E3C74;
+    --sand:#FF9A3D; --blue:#6FB0FF; --mustard:#FFC53D; --mustard-ink:#0A2350;
+    --band:#03102A; --band-ink:#EAF2FF; --band-2:#A9C1EC; --btn-ink:#061430;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px rgba(0,0,0,.45);
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#061430; --paper:#0D2250; --ink:#EAF2FF; --ink-2:#A9C1EC; --line:#1E3C74;
+  --sand:#FF9A3D; --blue:#6FB0FF; --mustard:#FFC53D; --mustard-ink:#0A2350;
+  --band:#03102A; --band-ink:#EAF2FF; --band-2:#A9C1EC; --btn-ink:#061430;
+}
+
+/* colourful rule under the menu bar */
+nav.top, body > nav{border-bottom:3px solid transparent;border-image:linear-gradient(90deg,#1560D4,#3FA2FF 30%,#FFC53D 55%,#FF7A00 75%,#E5337A) 1}
+nav.top li a.cta{background:var(--saffron);color:#fff}
+
+/* buttons: blue primary, saffron on blue backgrounds */
+.btn{background:var(--blue);border-color:var(--blue);color:var(--btn-ink)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--ink)}
+
+/* ---------- home page hero ---------- */
+.hero{background:var(--dots),linear-gradient(180deg,#0B3C91 0%,#1560D4 40%,#2A7FEA 100%);color:#fff;padding-bottom:34px;
+  --ink:#FFFFFF; --ink-2:rgba(255,255,255,.88); --line:rgba(255,255,255,.35); --sand:#FFC53D; --blue:#FFC53D; --paper:rgba(255,255,255,.12)}
+.hero-img::after{background:#0B3C91}
+.hero .btn{background:var(--saffron);border-color:var(--saffron);color:#fff}
+.hero .btn.ghost{background:transparent;border-color:#fff;color:#fff}
+.hero .bubble{--paper:#FFFFFF;--ink:#0A2350}
+.hero .reunion{--mustard-ink:#0A2350}
+.hero a:not(.btn){color:#FFE08A}
+
+/* register band */
+.register{background:var(--dots),var(--blue-grad)}
+.register .btn{background:var(--mustard);border-color:var(--mustard);color:#0A2350}
+
+/* ---------- inner pages: blue header card ---------- */
+main > header{background:var(--dots),var(--blue-grad);color:#fff;border-radius:22px;padding:28px clamp(18px,4vw,36px) 30px;margin-top:18px;
+  --ink:#FFFFFF; --ink-2:rgba(255,255,255,.9); --sand:#FFC53D; --blue:#FFC53D; --line:rgba(255,255,255,.4); --paper:rgba(255,255,255,.14); --ok:#B9F6CA}
+main > header .btn{background:var(--saffron);border-color:var(--saffron);color:#fff}
+main > header .btn.ghost{background:transparent;border-color:#fff;color:#fff}
+main > header input::placeholder{color:rgba(255,255,255,.75)}
+
+/* small bursts of colour */
+.tab[aria-pressed="true"],.day[aria-selected="true"],.chip[aria-pressed="true"]{background:var(--blue);border-color:var(--blue);color:var(--btn-ink)}
