@@ -306,7 +306,7 @@ footer p{margin:6px auto 0;color:var(--ink-2);font-size:14.5px}
       <div class="fact"><div class="k">When</div><div class="v">25 – 27 Dec 2026</div><div class="s">Fri to Sun · Christmas weekend</div></div>
       <div class="fact"><div class="k">Where</div><div class="v">Jodhpur, Rajasthan</div><div class="s">Garh Govind Resort · <a href="#venues">venue</a></div></div>
       <div class="fact"><div class="k">Who</div><div class="v">Batch of 2001</div><div class="s">All branches · families welcome</div></div>
-      <div class="fact"><div class="k">Registered</div><div class="v">129 batchmates</div><div class="s">~360 guests · <a href="#register">details</a></div></div>
+      <div class="fact"><div class="k">Registered</div><div class="v"><span class="st-reg">129</span> batchmates</div><div class="s"><span class="st-guests">~360</span> guests · <a href="#register">details</a></div></div>
     </div>
   </div>
 </header>
@@ -401,8 +401,8 @@ footer p{margin:6px auto 0;color:var(--ink-2);font-size:14.5px}
       <div>
         <div class="label">Count me in</div>
         <h2>Registration</h2>
-        <div class="stat"><div><b>129</b>batchmates registered</div><div><b>~360</b>guests incl. families</div></div>
-        <p style="font-size:14px">As of 20 September 2026.</p>
+        <div class="stat"><div><b class="st-reg">129</b>batchmates registered</div><div><b class="st-guests">~360</b>guests incl. families</div><div><b class="st-paid">141</b>advance paid</div></div>
+        <p style="font-size:14px" id="st-asof">As of 20 September 2026.</p>
         <ol class="steps">
           <li><span><b>Already registered?</b> You're all set. Updates come on the batch WhatsApp group.</span></li>
           <li><span><b>Not yet?</b> Reach out to the organising team to check availability and get the form.</span></li>
@@ -611,6 +611,10 @@ Once MBMites, Always MBMites ❤️</pre>
     if(order.indexOf(active) < 0) active = "All";
     document.getElementById("bcount").textContent = total;
     var lg = document.getElementById("blegend"); lg.innerHTML = '<span class="sw">Name ✓</span> <span><b>' + paid + '</b> batchmates have paid the advance and are coming!</span><span style="font-size:13px">Updated live from the registration sheet · ' + (d.updated||"") + '</span>'; lg.hidden = false;
+    var S = d.stats || {};
+    function setAll(c, v){ if(v==null || v==="") return; document.querySelectorAll(c).forEach(function(e){ e.textContent = v; }); }
+    setAll(".st-reg", S.registered); setAll(".st-guests", S.guests); setAll(".st-paid", S.paid != null ? S.paid : paid);
+    var ao = document.getElementById("st-asof"); if(ao && d.updated) ao.textContent = "Live from the registration sheet · updated " + d.updated + ".";
     renderChips(); render();
   }).catch(function(){});
 })();
