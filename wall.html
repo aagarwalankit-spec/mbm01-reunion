@@ -217,7 +217,7 @@ footer .hand{font-family:var(--hand);font-size:30px;font-weight:700;color:var(--
     var g=el("div","grid");
     list.forEach(function(p){
       var t=el("button","tile"); t.type="button"; t.onclick=function(){ open(p.id); };
-      var i=document.createElement("img"); i.src=img(p.photo,600); i.alt=p.caption||"Photo by "+p.uploader; i.loading="lazy"; i.referrerPolicy="no-referrer"; t.appendChild(i);
+      var i=document.createElement("img"); i.referrerPolicy="no-referrer"; i.loading="lazy"; i.alt=p.caption||"Photo by "+p.uploader; i.src=img(p.photo,600); t.appendChild(i);
       var c=el("div","cap"); if(p.caption) c.appendChild(el("p",null,p.caption));
       c.appendChild(el("p","by",(p.source==="booth"?"📸 Booth · ":"")+"by "+p.uploader));
       var tg=tagsOf(p.id), row=el("div","row");
@@ -245,7 +245,7 @@ footer .hand{font-family:var(--hand);font-size:30px;font-weight:700;color:var(--
     list(box("Top uploaders"), top(up,5), true);
     var lb=box("Most loved photo"), best=photos.slice().sort(function(a,b){return love(b)-love(a);})[0];
     if(best && love(best)){ var h=el("button","hero"); h.type="button"; h.onclick=function(){ open(best.id); };
-      var i=document.createElement("img"); i.src=img(best.photo,200); i.alt=""; i.referrerPolicy="no-referrer"; h.appendChild(i);
+      var i=document.createElement("img"); i.referrerPolicy="no-referrer"; i.alt=""; i.src=img(best.photo,200); h.appendChild(i);
       var s=el("span"); s.appendChild(el("b",null,best.caption||"by "+best.uploader)); s.appendChild(document.createElement("br"));
       s.appendChild(document.createTextNode(EMO.map(function(e){return e[1]+" "+best.react[e[0]];}).join("  "))); h.appendChild(s); lb.appendChild(h);
     } else lb.appendChild(el("p","empty","No reactions yet."));

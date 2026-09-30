@@ -141,7 +141,7 @@ footer .hand{font-family:var(--hand);font-size:30px;font-weight:700;color:var(--
   function photo(cls, url, yr, name){
     var d=document.createElement("div"); d.className="ph "+cls;
     function ini(){ var s=document.createElement("span"); s.className="ini"; s.textContent=initials(name); d.insertBefore(s,d.firstChild); }
-    if(url){ var i=document.createElement("img"); i.src=url; i.alt=name+" in "+yr; i.loading="lazy"; i.referrerPolicy="no-referrer"; i.onerror=function(){ i.remove(); ini(); }; d.appendChild(i); } else ini();
+    if(url){ var i=document.createElement("img"); i.referrerPolicy="no-referrer"; i.loading="lazy"; i.alt=name+" in "+yr; i.src=url; i.onerror=function(){ i.remove(); ini(); }; d.appendChild(i); } else ini();
     var y=document.createElement("span"); y.className="yr"; y.textContent=yr; d.appendChild(y); return d;
   }
   function card(entry, branch){
