@@ -284,23 +284,56 @@ footer p{margin:6px auto 0;color:var(--ink-2);font-size:14.5px}
     <div class="actions">
       <a class="btn" href="#register">Register now
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-      <a class="btn ghost" href="#teaser">Watch the teaser</a>
+      <a class="btn ghost" href="#photos">See the photos</a>
     </div>
-    <div class="video-row" id="teaser" style="margin:30px 0 0">
-      <video controls playsinline preload="metadata" poster="img/teaser-poster.jpg" src="teaser.mp4" aria-label="MBM '01 Silver Jubilee teaser video"></video>
+    <section class="hwall" id="photos" aria-labelledby="hwallT">
+      <style>
+      .hwall{margin:30px 0 0;padding:0}
+      .hwall .hd{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 16px;margin-bottom:14px}
+      .hwall h2{margin:0;font-family:var(--hand);font-weight:700;font-size:clamp(30px,5vw,42px);color:var(--blue);line-height:1}
+      .hwall .hd p{margin:0;color:var(--ink-2);font-size:15px}
+      .hwall .hd a.btn{margin-left:auto;padding:10px 14px;font-size:15px}
+      .hgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+      @media (max-width:760px){.hgrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}}
+      .hph{display:block;position:relative;background:#FFFCF6;padding:8px 8px 34px;border-radius:4px;box-shadow:0 1px 2px rgba(40,30,15,.1),0 8px 22px rgba(40,30,15,.14);text-decoration:none;color:#1C2A44;transform:rotate(var(--r,0deg));transition:transform .2s}
+      .hph:hover{transform:rotate(0) scale(1.03);z-index:2}
+      .hph img{display:block;width:100%;aspect-ratio:1;object-fit:cover;background:#E8E1D3}
+      .hph span{position:absolute;left:8px;right:8px;bottom:6px;font-family:var(--hand);font-weight:700;font-size:19px;line-height:1.1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:center}
+      .hph b{position:absolute;top:14px;left:14px;font:700 11px/1 var(--body);letter-spacing:.08em;background:rgba(28,42,68,.85);color:#F5EFE4;padding:4px 7px;border-radius:5px}
+      </style>
+      <div class="hd">
+        <h2 id="hwallT">Fresh on the Photo Wall</h2>
+        <p id="hwallSub">Old college pics and new selfies from the batch.</p>
+        <a class="btn" href="wall.html">See all &amp; upload yours →</a>
+      </div>
+      <div class="hgrid" id="hgrid"></div>
       <script>
-      (function(){ // wide screens get the landscape teaser (falls back to portrait if it's missing)
-        if(!window.matchMedia || !matchMedia("(min-width:761px)").matches) return;
-        fetch("teaser-h.mp4",{method:"HEAD"}).then(function(r){ if(!r.ok) return;
-          var row=document.getElementById("teaser"), v=row.querySelector("video");
-          v.poster="teaser-h-poster.jpg"; v.src="teaser-h.mp4"; row.classList.add("wide"); }).catch(function(){});
+      (function(){
+        var API="https://script.google.com/macros/s/AKfycby7EIHjCJ053khkkMHN4-gx1mttPKGnQrIkiNw7YXcTFotYF1it1OUQYgCQzlJSMfd9Ng/exec";
+        var g=document.getElementById("hgrid"), N=8, rot=[-2.5,1.8,-1.2,2.4,1.4,-2,2.2,-1.6];
+        function th(id){ return "https://drive.google.com/thumbnail?id="+encodeURIComponent(id)+"&sz=w500"; }
+        function tile(src, cap, href, badge, k){
+          var a=document.createElement("a"); a.className="hph"; a.href=href; a.style.setProperty("--r", rot[k%rot.length]+"deg");
+          var im=document.createElement("img"); im.src=src; im.alt=cap||"Batch photo"; im.loading="lazy"; im.referrerPolicy="no-referrer"; im.onerror=function(){ a.remove(); };
+          a.appendChild(im); if(badge){ var b=document.createElement("b"); b.textContent=badge; a.appendChild(b); }
+          var s=document.createElement("span"); s.textContent=cap||""; a.appendChild(s); g.appendChild(a);
+        }
+        function fallback(have){ for(var i=1;i<=12 && g.children.length<N;i++){ tile("img/m"+(i<10?"0":"")+i+".jpg","Memories '01","#memories","",g.children.length); } }
+        Promise.all([
+          fetch(API+"?action=wall",{cache:"no-store"}).then(function(r){return r.json();}).catch(function(){return {};}),
+          fetch(API,{cache:"no-store"}).then(function(r){return r.json();}).catch(function(){return {};})
+        ]).then(function(res){
+          var items=[];
+          (res[0].photos||[]).forEach(function(p){ items.push({ts:p.ts||"", src:th(p.photo), cap:p.caption||("by "+p.uploader), href:"wall.html#p="+p.id, badge:p.source==="booth"?"BOOTH":""}); });
+          (res[1].entries||[]).forEach(function(e){ var id=e.now||e.then; if(id) items.push({ts:"", src:th(id), cap:e.name, href:"batchmates.html", badge:e.now?"2026":"2001"}); });
+          items.sort(function(a,b){ return a.ts<b.ts?1:a.ts>b.ts?-1:0; });
+          items.slice(0,N).forEach(function(it,k){ tile(it.src,it.cap,it.href,it.badge,k); });
+          if(!items.length) document.getElementById("hwallSub").textContent="Be the first to post! Until then, a few from the old album.";
+          if(g.children.length<N) fallback();
+        });
       })();
       </script>
-      <div>
-        <p class="hand" style="font-size:36px;line-height:1.15;color:var(--blue);margin-bottom:12px">Purani jeans aur guitar…</p>
-        <p>Watch the teaser with the sound on. Then scroll down for the programme, venues and the old album. Spot yourself? Spot the guy who still owes you money?</p>
-      </div>
-    </div>
+    </section>
 
     <div class="facts">
       <div class="fact"><div class="k">When</div><div class="v">25 – 27 Dec 2026</div><div class="s">Fri to Sun · Christmas weekend</div></div>
