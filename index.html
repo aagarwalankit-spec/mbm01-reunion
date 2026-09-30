@@ -314,7 +314,7 @@ footer p{margin:6px auto 0;color:var(--ink-2);font-size:14.5px}
         function th(id){ return "https://drive.google.com/thumbnail?id="+encodeURIComponent(id)+"&sz=w500"; }
         function tile(src, cap, href, badge, k){
           var a=document.createElement("a"); a.className="hph"; a.href=href; a.style.setProperty("--r", rot[k%rot.length]+"deg");
-          var im=document.createElement("img"); im.referrerPolicy="no-referrer"; im.loading="lazy"; im.alt=cap||"Batch photo"; im.src=src; im.onerror=function(){ a.remove(); };
+          var im=document.createElement("img"); im.referrerPolicy="no-referrer"; im.decoding="async"; im.alt=cap||"Batch photo"; im.src=src; im.onerror=function(){ a.remove(); };
           a.appendChild(im); if(badge){ var b=document.createElement("b"); b.textContent=badge; a.appendChild(b); }
           var s=document.createElement("span"); s.textContent=cap||""; a.appendChild(s); g.appendChild(a);
         }
