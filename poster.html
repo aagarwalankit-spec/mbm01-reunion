@@ -102,6 +102,8 @@ footer{padding-block:34px 44px;text-align:center;color:var(--ink-2)}footer .hand
     <button class="btn ghost" id="wall" type="button">Post to Photo Wall</button>
   </div>
   <p class="msg" id="msg" role="status" aria-live="polite"></p>
+  <label style="display:flex;align-items:center;gap:8px;font-weight:600;font-size:14.5px"><input type="checkbox" id="toHome" checked style="width:18px;height:18px;accent-color:var(--sand)"> Show it on the home page for the batch</label>
+  <div id="saveBox"></div>
   <p class="small">“Post to Photo Wall” is for registered batchmates and puts the poster on the site for everyone.</p>
 </section>
 </div>
@@ -310,12 +312,16 @@ footer{padding-block:34px 44px;text-align:center;color:var(--ink-2)}footer .hand
           else { if(d.error==="auth") MBMAuth.clear(); msg(d.error==="auth"?"Please confirm it's you again.":"Couldn't post. Please try again.","err"); } }); })
       .catch(function(e){ btn.disabled=false; if(e!=="cancel") msg("No connection. Try again.","err"); }); };
 
+  function mbmSig(){ try{ var c=document.createElement("canvas"); c.width=24; c.height=30; c.getContext("2d").drawImage(cv,0,0,24,30); return c.toDataURL("image/png"); }catch(e){ return String(Date.now()); } }
+  function mbmSave(){ if(!st.photos.length||!window.MBMCreations) return; setTimeout(function(){ MBMCreations.after({kind:"poster",style:st.t,title:$("title").value.trim(),to:names().slice(0,3).join(", "),sig:mbmSig(),data:function(){ return cv.toDataURL("image/jpeg",.86); },box:$("saveBox"),want:function(){ return $("toHome").checked; }}); },1200); }
+  ["dl","share"].forEach(function(id){ $(id).addEventListener("click",mbmSave); });
   draw();
   if(document.fonts){ Promise.all(["112px 'Permanent Marker'","700 56px Caveat","400 230px 'Bebas Neue'","900 104px 'Playfair Display'","italic 700 32px 'Playfair Display'","500 23px 'Special Elite'","800 34px Figtree","600 26px Figtree"].map(function(f){ return document.fonts.load(f); })).then(draw,draw); document.fonts.ready.then(draw); }
 })();
 </script>
 <script src="names.js"></script>
 <script>(function(){ var nl=document.getElementById("nl"); if(nl.children.length) return; Object.keys(window.MBM_ROSTER||{}).forEach(function(k){ window.MBM_ROSTER[k].forEach(function(n){ var o=document.createElement("option"); o.value=n.split("|")[0]; nl.appendChild(o); }); }); })();</script>
+<script src="creations.js" defer></script>
 <script src="nav.js" defer></script>
 <script src="news.js" defer></script>
 </body></html>

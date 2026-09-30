@@ -104,6 +104,8 @@ footer{padding-block:34px 44px;text-align:center;color:var(--ink-2)}footer .hand
     <button class="btn ghost" id="copy" type="button">Copy dare link</button>
   </div>
   <p class="msg" id="msg"></p>
+  <label style="display:flex;align-items:center;gap:8px;font-weight:600;font-size:14.5px"><input type="checkbox" id="toHome" checked style="width:18px;height:18px;accent-color:var(--sand)"> Show it on the home page for the batch</label>
+  <div id="saveBox"></div>
   <p class="small">On a phone, “Send on WhatsApp” attaches the poster. On a computer, download it and drop it into the chat; the dare link opens in WhatsApp.</p>
 </section>
 </div>
@@ -111,6 +113,7 @@ footer{padding-block:34px 44px;text-align:center;color:var(--ink-2)}footer .hand
 <datalist id="names"></datalist>
 <footer class="wrap"><div class="hand">See you in Jodhpur · 25–27 Dec 2026</div><p>MBM '01 Silver Jubilee Reunion · Garh Govind</p></footer>
 
+<script src="auth.js"></script>
 <script src="names.js"></script>
 <script>
 (function(){
@@ -260,10 +263,14 @@ footer{padding-block:34px 44px;text-align:center;color:var(--ink-2)}footer .hand
       openWa(); }); };
   function openWa(){ window.open("https://wa.me/?text="+encodeURIComponent(text()),"_blank","noopener"); msg("Opened WhatsApp with the dare link. Download the poster to attach it too.","ok"); }
 
+  function mbmSig(){ try{ var c=document.createElement("canvas"); c.width=24; c.height=30; c.getContext("2d").drawImage(cv,0,0,24,30); return c.toDataURL("image/png"); }catch(e){ return String(Date.now()); } }
+  function mbmSave(){ if(!name()||!window.MBMCreations) return; setTimeout(function(){ MBMCreations.after({kind:"dare",style:st.t,title:$("charge").selectedOptions[0].textContent,to:name(),sig:mbmSig(),data:function(){ return cv.toDataURL("image/jpeg",.86); },box:$("saveBox"),want:function(){ return $("toHome").checked; }}); },1200); }
+  ["dl","share","copy"].forEach(function(id){ $(id).addEventListener("click",mbmSave); });
   var fontsReady=Promise.all(["170px Rye","36px 'Special Elite'","700 44px Caveat","800 30px Figtree","700 30px Figtree","500 30px Figtree"].map(function(f){ return document.fonts?document.fonts.load(f):0; }));
   draw(); fontsReady.then(draw,draw); if(document.fonts) document.fonts.ready.then(draw);
 })();
 </script>
+<script src="creations.js" defer></script>
 <script src="nav.js" defer></script>
 <script src="news.js" defer></script>
 </body></html>

@@ -90,6 +90,12 @@ textarea.inp{min-height:130px;resize:vertical;line-height:1.45}
       <p class="small" style="margin:6px 0 12px">Faded items are hidden or past their date. Changes reach visitors within about a minute.</p>
       <div class="items" id="items"></div>
     </section>
+
+    <section style="margin:0 0 40px">
+      <div class="row" style="justify-content:space-between"><h2 style="margin:0">Dares &amp; posters on the home page</h2><button class="btn ghost sm" id="cRefresh" type="button">Refresh</button></div>
+      <p class="small" style="margin:6px 0 12px">Hide anything that shouldn't be on the home page. Faded ones are hidden.</p>
+      <div class="cgrid" id="cItems" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px"></div>
+    </section>
   </div>
 </main>
 <script src="auth.js"></script>
@@ -106,7 +112,7 @@ textarea.inp{min-height:130px;resize:vertical;line-height:1.45}
 
   function signIn(){ msg("gMsg","");
     MBMAuth.ensure().then(function(){ msg("gMsg","Checking admin access…"); return post({action:"news_list"}); }).then(function(d){
-      if(d.ok){ $("gate").hidden=true; $("app").hidden=false; list(d.news); }
+      if(d.ok){ $("gate").hidden=true; $("app").hidden=false; list(d.news); cList(); }
       else { if(d.error==="auth") MBMAuth.clear(); msg("gMsg",ERR[d.error]||"Couldn't sign in.","err"); } }).catch(function(e){ if(e!=="cancel") msg("gMsg","No connection. Try again.","err"); }); }
   $("login").onclick=signIn; if(MBMAuth.get()) signIn();
 
@@ -122,6 +128,15 @@ textarea.inp{min-height:130px;resize:vertical;line-height:1.45}
           post({action:"news_set",id:n.id,field:b[0],value:val}).then(function(d){ if(d.ok){ MBMNews.reload(); refresh(); } else { k.disabled=false; alert(ERR[d.error]||"Couldn't update."); } }).catch(function(){ k.disabled=false; }); };
         r.appendChild(k); });
       c.appendChild(r); box.appendChild(c); }); }
+
+  function cList(){ var box=$("cItems"); post({action:"creation_list"}).then(function(d){ box.textContent=""; if(!d.ok){ box.appendChild(el("p","small",ERR[d.error]||"Couldn't load.")); return; }
+    if(!d.items.length){ box.appendChild(el("p","small","Nothing saved yet.")); return; }
+    d.items.forEach(function(it){ var c=el("article","it"+(it.show?"":" off")); c.style.padding="8px";
+      var im=new Image(); im.referrerPolicy="no-referrer"; im.alt=""; im.src="https://drive.google.com/thumbnail?id="+encodeURIComponent(it.photo)+"&sz=w300"; im.style.cssText="width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:8px;background:#ddd"; c.appendChild(im);
+      c.appendChild(el("div","meta",(it.kind==="dare"?"Dare":"Poster")+" · "+it.by+(it.to?" → "+it.to:"")));
+      var k=el("button","btn ghost sm",it.show?"Hide":"Show"); k.type="button"; k.onclick=function(){ k.disabled=true; post({action:"creation_set",id:it.id,value:!it.show}).then(function(r){ if(r.ok) cList(); else { k.disabled=false; alert(ERR[r.error]||"Couldn't update."); } }).catch(function(){ k.disabled=false; }); };
+      c.appendChild(k); box.appendChild(c); }); }).catch(function(){}); }
+  $("cRefresh").onclick=cList;
   function refresh(){ post({action:"news_list"}).then(function(d){ if(d.ok) list(d.news); }); }
   $("refresh").onclick=refresh;
 

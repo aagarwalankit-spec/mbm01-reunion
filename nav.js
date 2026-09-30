@@ -27,6 +27,8 @@
     ".mbm-nav .g.cur .gb{box-shadow:inset 0 -2px 0 var(--sand,#B8612F)}" +
     ".mbm-nav .dd{position:absolute;top:calc(100% + 6px);left:0;min-width:220px;background:var(--paper,#FFFCF6);border:1px solid var(--line,#DDD2BF);border-radius:14px;box-shadow:0 16px 40px rgba(20,30,60,.18);padding:6px;display:none}" +
     ".mbm-nav .g.open .dd{display:grid}" +
+    ".mbm-nav .dd::before{content:'';position:absolute;left:0;right:0;top:-12px;height:12px}" +
+    "html{scroll-padding-top:72px}" +
     ".mbm-nav .dd a,.mbm-nav .mp a{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;color:var(--ink,#1C2A44);text-decoration:none;font-weight:600;font-size:15px}" +
     ".mbm-nav .dd a:hover,.mbm-nav .mp a:hover{background:var(--ground,#F5EFE4)}" +
     ".mbm-nav a[aria-current=page]{background:color-mix(in srgb,var(--sand,#B8612F) 14%,transparent)}" +
@@ -58,8 +60,8 @@
     b.type = "button"; b.setAttribute("aria-expanded", "false"); b.setAttribute("aria-controls", "mbmdd" + i); d.id = "mbmdd" + i;
     g.items.forEach(function(it){ d.appendChild(link(it)); if (isCur(it[1])) w.classList.add("cur"); });
     b.onclick = function(e){ e.stopPropagation(); var o = matchMedia("(hover:hover)").matches || !w.classList.contains("open"); closeAll(); if (o) { w.classList.add("open"); b.setAttribute("aria-expanded", "true"); } };
-    w.addEventListener("mouseenter", function(){ if (matchMedia("(hover:hover)").matches) { closeAll(); w.classList.add("open"); b.setAttribute("aria-expanded", "true"); } });
-    w.addEventListener("mouseleave", function(){ if (matchMedia("(hover:hover)").matches) { w.classList.remove("open"); b.setAttribute("aria-expanded", "false"); } });
+    w.addEventListener("mouseenter", function(){ if (matchMedia("(hover:hover)").matches) { clearTimeout(w._t); closeAll(); w.classList.add("open"); b.setAttribute("aria-expanded", "true"); } });
+    w.addEventListener("mouseleave", function(){ if (matchMedia("(hover:hover)").matches) { clearTimeout(w._t); w._t = setTimeout(function(){ w.classList.remove("open"); b.setAttribute("aria-expanded", "false"); }, 250); } });
     w.appendChild(b); w.appendChild(d); inr.appendChild(w); groups.push(w);
   });
   function closeAll(){ groups.forEach(function(w){ w.classList.remove("open"); w.firstChild.setAttribute("aria-expanded", "false"); }); }
