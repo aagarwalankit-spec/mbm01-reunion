@@ -11,7 +11,7 @@
       ["Food menu", "menu.html", "🍛"], ["FAQ", H("#faq"), "❓"] ] },
     { t: "Batchmates", items: [
       ["Who's coming", H("#batch"), "✅"], ["Then & Now", "batchmates.html", "📸"], ["Slam Book", "slam.html", "📖"], ["Memories", H("#memories"), "🎞️"] ] },
-    { t: "Photos", items: [ ["Photo Wall", "wall.html", "🖼️"], ["Photo Booth", "booth.html", "🤳"] ] },
+    { t: "Photos", items: [ ["Photo Wall", "wall.html", "🖼️"], ["Photo Booth", "booth.html", "🤳"], ["Poster Maker", "poster.html", "🎨"] ] },
     { t: "Games", items: [ ["Canteen Catch", "game.html", "🥟"], ["Dare Card", "dare.html", "🎯"] ] }
   ];
 

@@ -1,0 +1,321 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Poster Maker · MBM '01</title>
+<meta property="og:title" content="MBM '01 Poster Maker">
+<meta property="og:description" content="Turn your batch photos into a lively reunion poster. 25–27 Dec 2026, Garh Govind, Jodhpur.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Caveat:wght@500;700&family=Figtree:wght@400;500;600;700;800&family=Permanent+Marker&family=Playfair+Display:wght@700;900&family=Special+Elite&display=swap">
+<style>
+:root{--ground:#F5EFE4;--paper:#FFFCF6;--ink:#1C2A44;--ink-2:#4A566E;--line:#DDD2BF;--sand:#B8612F;--blue:#2E5597;--mustard:#E8BA4A;--ok:#2E7D4F;--err:#B03A2E;
+--display:"Permanent Marker",cursive;--hand:"Caveat","Segoe Print",cursive;--body:"Figtree",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--ground:#0F1526;--paper:#18203A;--ink:#F1E9DA;--ink-2:#B5BCCB;--line:#2C3656;--sand:#E08E5B;--blue:#86A8E6;--mustard:#E4B862;--ok:#6CC08F;--err:#F08A7E}}
+:root[data-theme="dark"]{color-scheme:dark;--ground:#0F1526;--paper:#18203A;--ink:#F1E9DA;--ink-2:#B5BCCB;--line:#2C3656;--sand:#E08E5B;--blue:#86A8E6;--mustard:#E4B862;--ok:#6CC08F;--err:#F08A7E}
+*{box-sizing:border-box}body{margin:0;background:var(--ground);color:var(--ink);font:17px/1.55 var(--body);-webkit-font-smoothing:antialiased}
+a{color:var(--blue)}:focus-visible{outline:3px solid var(--mustard);outline-offset:2px;border-radius:4px}
+.wrap{max-width:1080px;margin-inline:auto;padding-inline:16px}
+nav{position:sticky;top:0;z-index:5;background:var(--ground);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;gap:14px;height:56px}
+.brand{font-family:var(--display);font-size:22px;color:var(--ink);text-decoration:none}.brand b{color:var(--sand);font-weight:400}
+nav .links{margin-left:auto;display:flex;gap:4px}nav .links a{padding:6px 10px;border-radius:8px;color:var(--ink-2);text-decoration:none;font-weight:600;font-size:14.5px}
+header{padding-block:22px 6px}
+.label{font-size:12.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--sand)}
+h1{font-size:clamp(34px,7vw,54px);line-height:1;margin:.12em 0 .2em;font-weight:800;letter-spacing:-.02em}
+h1 .hand{font-family:var(--hand);color:var(--blue);font-weight:700}
+.lead{color:var(--ink-2);margin:0 0 8px;font-size:clamp(16px,2.2vw,18px);max-width:62ch}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px;margin-top:14px;align-items:start}
+@media (max-width:820px){.grid{grid-template-columns:1fr}.preview{position:static!important}}
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:18px clamp(14px,3vw,22px) 20px;display:grid;gap:14px}
+.step{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--sand);margin-bottom:-6px}
+.inp{font:500 16px var(--body);padding:11px 12px;border-radius:10px;border:1.5px solid var(--line);background:var(--ground);color:var(--ink);width:100%}
+label.f{display:grid;gap:5px;font-weight:600;font-size:14.5px}label.f small{font-weight:500;color:var(--ink-2)}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:700 16px/1 var(--body);padding:13px 18px;border-radius:12px;border:2px solid var(--ink);background:var(--ink);color:var(--ground);text-decoration:none;cursor:pointer}
+.btn.big{background:#E8BA4A;border-color:#E8BA4A;color:#1C2A44}.btn.ghost{background:transparent;color:var(--ink)}.btn.wa{background:#1FAF55;border-color:#1FAF55;color:#fff}
+.btn.sm{font-size:14px;padding:9px 12px;border-radius:10px}.btn:disabled{opacity:.55}
+.file{position:relative;overflow:hidden}.file input{position:absolute;inset:0;opacity:0;cursor:pointer}
+.thumbs{display:grid;grid-template-columns:repeat(auto-fill,minmax(86px,1fr));gap:8px}
+.th{position:relative;aspect-ratio:1;border-radius:10px;overflow:hidden;border:2px solid transparent;cursor:pointer;background:var(--ground)}
+.th[aria-pressed="true"]{border-color:var(--sand)}
+.th img{width:100%;height:100%;object-fit:cover;display:block}
+.th .n{position:absolute;left:5px;top:5px;background:rgba(0,0,0,.6);color:#fff;font:700 12px/1 var(--body);padding:4px 6px;border-radius:6px}
+.th .x{position:absolute;right:4px;top:4px;width:26px;height:26px;border-radius:50%;border:0;background:rgba(0,0,0,.65);color:#fff;font-size:16px;line-height:1;cursor:pointer}
+.th .mv{position:absolute;left:0;right:0;bottom:0;display:flex;justify-content:space-between}
+.th .mv button{border:0;background:rgba(0,0,0,.55);color:#fff;font-size:14px;padding:3px 8px;cursor:pointer}
+.empty{border:2px dashed var(--line);border-radius:12px;padding:18px;text-align:center;color:var(--ink-2);font-size:15px}
+.tpls{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}@media (max-width:480px){.tpls{grid-template-columns:repeat(2,1fr)}}
+.tpls button,.pal button{font:700 13.5px/1.2 var(--body);padding:10px 6px;border-radius:12px;border:2px solid var(--line);background:var(--ground);color:var(--ink);cursor:pointer;display:grid;gap:4px;justify-items:center}
+.tpls button span{font-size:24px}
+.tpls button[aria-pressed="true"],.pal button[aria-pressed="true"]{border-color:var(--sand);background:color-mix(in srgb,var(--sand) 14%,var(--ground))}
+.pal{display:flex;gap:8px;flex-wrap:wrap}.pal button{grid-auto-flow:column;align-items:center;padding:8px 10px}
+.pal i{width:22px;height:22px;border-radius:50%;display:block}
+.chk{display:flex;align-items:center;gap:8px;font-weight:600;font-size:14.5px}.chk input{width:18px;height:18px;accent-color:var(--sand)}
+.preview{position:sticky;top:72px;display:grid;gap:12px}
+.cvwrap{border-radius:14px;overflow:hidden;box-shadow:0 10px 30px rgba(28,42,68,.18);background:#ddd;touch-action:none}
+#cv{display:block;width:100%;height:auto;cursor:grab}
+.small{font-size:14px;color:var(--ink-2);margin:0}
+.msg{font-weight:600;min-height:1.4em;margin:0}.msg.ok{color:var(--ok)}.msg.err{color:var(--err)}
+input[type=range]{width:100%;accent-color:var(--sand)}
+footer{padding-block:34px 44px;text-align:center;color:var(--ink-2)}footer .hand{font-family:var(--hand);font-size:28px;color:var(--sand)}
+[hidden]{display:none!important}
+</style>
+<link rel="stylesheet" href="theme.css?v=2"></head><body>
+<nav><div class="wrap"><a class="brand" href="index.html">MBM <b>'01</b></a><div class="links"><a href="index.html">Home</a><a href="wall.html">Photo Wall</a><a href="index.html#register">Register</a></div></div></nav>
+<main class="wrap">
+<header>
+  <div class="label">Poster maker</div>
+  <h1>Make it a <span class="hand">poster</span></h1>
+  <p class="lead">Add up to 6 photos: hostel days, farewell, your gang today. Pick a style and share a poster that makes everyone want to be in Jodhpur this December.</p>
+</header>
+
+<div class="grid">
+<section class="panel" aria-label="Poster settings">
+  <div class="step">1 · Photos</div>
+  <div class="row">
+    <label class="btn sm file">📷 Add photos<input type="file" id="file" accept="image/*" multiple></label>
+    <span class="small" id="cnt">0 of 6</span>
+  </div>
+  <div class="thumbs" id="thumbs"><div class="empty" style="grid-column:1/-1">No photos yet. Old or new, both work.</div></div>
+  <div id="zoomRow" hidden><label class="f">Zoom photo <span id="zN">1</span><input type="range" id="zoom" min="1" max="3" step=".01" value="1"></label><p class="small">Drag a photo on the poster to reposition it.</p></div>
+  <p class="small">Photos stay on your phone unless you post the finished poster to the Photo Wall.</p>
+
+  <div class="step">2 · Style</div>
+  <div class="tpls" id="tpls">
+    <button type="button" data-t="gang" aria-pressed="true"><span>🎉</span>Gang collage</button>
+    <button type="button" data-t="then" aria-pressed="false"><span>⏳</span>Then &amp; Now</button>
+    <button type="button" data-t="movie" aria-pressed="false"><span>🎬</span>Movie poster</button>
+    <button type="button" data-t="news" aria-pressed="false"><span>📰</span>Front page</button>
+  </div>
+  <div class="pal" id="pal" aria-label="Colours"></div>
+  <label class="chk" id="stkRow"><input type="checkbox" id="stk" checked> Confetti &amp; stickers</label>
+
+  <div class="step">3 · Words</div>
+  <label class="f">Headline<input class="inp" id="title" maxlength="44"></label>
+  <label class="f">Tagline<input class="inp" id="sub" maxlength="70"></label>
+  <label class="f">Names<small>Comma separated. Used as photo captions, “Starring” credits or the news story.</small><input class="inp" id="names" list="nl" maxlength="160" placeholder="e.g. Anoop, Vishal, Rahul"></label>
+  <label class="f">Made by<input class="inp" id="me" maxlength="40" placeholder="Your name"></label>
+</section>
+
+<section class="preview" aria-label="Poster preview">
+  <div class="cvwrap"><canvas id="cv" width="1080" height="1350" aria-label="Poster preview"></canvas></div>
+  <div class="row">
+    <button class="btn wa" id="share" type="button">Share</button>
+    <button class="btn" id="dl" type="button">Download</button>
+    <button class="btn ghost" id="wall" type="button">Post to Photo Wall</button>
+  </div>
+  <p class="msg" id="msg" role="status" aria-live="polite"></p>
+  <p class="small">“Post to Photo Wall” is for registered batchmates and puts the poster on the site for everyone.</p>
+</section>
+</div>
+</main>
+<datalist id="nl"></datalist>
+<footer class="wrap"><div class="hand">See you in Jodhpur · 25–27 Dec 2026</div><p>MBM '01 Silver Jubilee Reunion · Garh Govind</p></footer>
+
+<script src="auth.js"></script>
+<script>
+(function(){
+  var API="https://script.google.com/macros/s/AKfycby7EIHjCJ053khkkMHN4-gx1mttPKGnQrIkiNw7YXcTFotYF1it1OUQYgCQzlJSMfd9Ng/exec";
+  var $=function(id){return document.getElementById(id);};
+  var cv=$("cv"), g=cv.getContext("2d"), W=1080, H=1350;
+  function store(k,v){ try{ if(v===undefined) return localStorage.getItem(k); localStorage.setItem(k,v); }catch(e){ return null; } }
+  function msg(t,c){ var m=$("msg"); m.textContent=t||""; m.className="msg "+(c||""); }
+
+  var DEF={
+    gang:{title:"The Gang is Back!",sub:"25 years later, same chai, same jokes"},
+    then:{title:"25 Years Later…",sub:"Some things change. The friendship doesn't."},
+    movie:{title:"MBM '01",sub:"THE RETURN"},
+    news:{title:"Batch of 2001 Reunites!",sub:"Jodhpur braces for three days of nostalgia, dancing and unlimited chai"}
+  };
+  var PAL=[
+    {n:"Blue City",a:"#0B3C91",b:"#3FA2FF",c:"#FFC53D",t:"#FFFFFF"},
+    {n:"Sunset",a:"#E5337A",b:"#FF7A00",c:"#FFE08A",t:"#FFFFFF"},
+    {n:"Desert",a:"#C99B5C",b:"#F3E1B6",c:"#8B1E0F",t:"#3B230C"},
+    {n:"Night",a:"#0F1526",b:"#2C3656",c:"#E8BA4A",t:"#F1E9DA"}
+  ];
+  var st={t:"gang",pal:0,photos:[],sel:-1,edited:{title:false,sub:false}}, slots=[];
+
+  // ---- controls ----
+  PAL.forEach(function(p,i){ var b=document.createElement("button"); b.type="button"; b.setAttribute("aria-pressed",i===0?"true":"false");
+    b.innerHTML='<i style="background:linear-gradient(135deg,'+p.a+','+p.b+')"></i>'; b.appendChild(document.createTextNode(p.n));
+    b.onclick=function(){ st.pal=i; [].forEach.call($("pal").children,function(x,j){ x.setAttribute("aria-pressed",j===i?"true":"false"); }); draw(); }; $("pal").appendChild(b); });
+  function setDefaults(){ if(!st.edited.title) $("title").value=DEF[st.t].title; if(!st.edited.sub) $("sub").value=DEF[st.t].sub; }
+  [].forEach.call(document.querySelectorAll("#tpls button"),function(b){ b.onclick=function(){ st.t=b.dataset.t;
+    [].forEach.call(document.querySelectorAll("#tpls button"),function(x){ x.setAttribute("aria-pressed",x===b?"true":"false"); });
+    $("pal").hidden=st.t==="news"; $("stkRow").hidden=!(st.t==="gang"||st.t==="then"); setDefaults(); draw(); }; });
+  $("title").addEventListener("input",function(){ st.edited.title=true; draw(); });
+  $("sub").addEventListener("input",function(){ st.edited.sub=true; draw(); });
+  ["names","me"].forEach(function(id){ $(id).addEventListener("input",draw); });
+  $("stk").onchange=draw;
+  var m0=store("mbm01me"); if(m0) $("me").value=m0;
+  setDefaults();
+  try{ Object.keys(window.MBM_ROSTER||{}).forEach(function(k){ window.MBM_ROSTER[k].forEach(function(n){ var o=document.createElement("option"); o.value=n.split("|")[0]; $("nl").appendChild(o); }); }); }catch(e){}
+
+  // ---- photos ----
+  function loadFile(f){ return new Promise(function(res){ if(!/^image\//.test(f.type)) return res(null);
+    var u=URL.createObjectURL(f), im=new Image(); im.onload=function(){ var s=Math.min(1,1600/Math.max(im.naturalWidth,im.naturalHeight)), c=document.createElement("canvas");
+      c.width=Math.round(im.naturalWidth*s); c.height=Math.round(im.naturalHeight*s); c.getContext("2d").drawImage(im,0,0,c.width,c.height); URL.revokeObjectURL(u); res({c:c,ox:0,oy:0,zoom:1,f:{}}); };
+    im.onerror=function(){ res(null); }; im.src=u; }); }
+  $("file").onchange=function(){ var fs=[].slice.call(this.files||[]); this.value=""; var room=6-st.photos.length;
+    if(!room){ msg("That's 6 photos already. Remove one to add another.","err"); return; }
+    if(fs.length>room) msg("Only the first "+room+" were added (6 max).","err"); else msg("");
+    Promise.all(fs.slice(0,room).map(loadFile)).then(function(a){ a.filter(Boolean).forEach(function(p){ st.photos.push(p); }); if(st.sel<0&&st.photos.length) st.sel=0; thumbs(); draw(); }); };
+  function thumbs(){ var t=$("thumbs"); t.textContent=""; $("cnt").textContent=st.photos.length+" of 6";
+    if(!st.photos.length){ t.innerHTML='<div class="empty" style="grid-column:1/-1">No photos yet. Old or new, both work.</div>'; $("zoomRow").hidden=true; return; }
+    st.photos.forEach(function(p,i){ var d=document.createElement("div"); d.className="th"; d.setAttribute("role","button"); d.tabIndex=0; d.setAttribute("aria-pressed",i===st.sel?"true":"false"); d.setAttribute("aria-label","Photo "+(i+1));
+      var im=new Image(); im.alt=""; im.src=p.c.toDataURL("image/jpeg",.5); d.appendChild(im);
+      var n=document.createElement("span"); n.className="n"; n.textContent=i+1; d.appendChild(n);
+      var x=document.createElement("button"); x.className="x"; x.type="button"; x.textContent="×"; x.setAttribute("aria-label","Remove photo "+(i+1));
+      x.onclick=function(e){ e.stopPropagation(); st.photos.splice(i,1); st.sel=Math.min(st.sel,st.photos.length-1); thumbs(); draw(); }; d.appendChild(x);
+      var mv=document.createElement("div"); mv.className="mv";
+      [["‹",-1,"Move earlier"],["›",1,"Move later"]].forEach(function(q){ var b=document.createElement("button"); b.type="button"; b.textContent=q[0]; b.setAttribute("aria-label",q[2]);
+        b.onclick=function(e){ e.stopPropagation(); var j=i+q[1]; if(j<0||j>=st.photos.length) return; var tmp=st.photos[i]; st.photos[i]=st.photos[j]; st.photos[j]=tmp; st.sel=j; thumbs(); draw(); }; mv.appendChild(b); });
+      d.appendChild(mv);
+      d.onclick=function(){ st.sel=i; thumbs(); };
+      t.appendChild(d); });
+    $("zoomRow").hidden=st.sel<0; if(st.sel>=0){ $("zoom").value=st.photos[st.sel].zoom; $("zN").textContent=st.sel+1; } }
+  $("zoom").oninput=function(){ if(st.sel<0) return; st.photos[st.sel].zoom=parseFloat(this.value); draw(); };
+
+  // filtered copies (works on every browser, no ctx.filter needed)
+  function filtered(p,kind){ if(!kind) return p.c; if(p.f[kind]) return p.f[kind];
+    var c=document.createElement("canvas"); c.width=p.c.width; c.height=p.c.height; var x=c.getContext("2d"); x.drawImage(p.c,0,0);
+    var d=x.getImageData(0,0,c.width,c.height), a=d.data;
+    for(var i=0;i<a.length;i+=4){ var r=a[i],gg=a[i+1],b=a[i+2];
+      if(kind==="sepia"){ a[i]=Math.min(255,r*.393+gg*.769+b*.189); a[i+1]=Math.min(255,r*.349+gg*.686+b*.168); a[i+2]=Math.min(255,r*.272+gg*.534+b*.131); }
+      else { var y=r*.299+gg*.587+b*.114; y=(y-128)*1.15+128; a[i]=a[i+1]=a[i+2]=Math.max(0,Math.min(255,y)); } }
+    x.putImageData(d,0,0); p.f[kind]=c; return c; }
+
+  // ---- drawing helpers ----
+  function names(){ return $("names").value.split(",").map(function(s){ return s.trim(); }).filter(Boolean); }
+  function rr(x,y,w,h,r){ g.beginPath(); g.moveTo(x+r,y); g.arcTo(x+w,y,x+w,y+h,r); g.arcTo(x+w,y+h,x,y+h,r); g.arcTo(x,y+h,x,y,r); g.arcTo(x,y,x+w,y,r); g.closePath(); }
+  function fit(t,font,max,px,min){ var s=px; do{ g.font=font.replace("#",s); if(g.measureText(t).width<=max) break; s-=2; }while(s>(min||16)); return s; }
+  function wrap(t,x,y,max,lh,maxLines){ var w=String(t).split(" "), line="", n=0;
+    for(var i=0;i<w.length;i++){ var tt=line?line+" "+w[i]:w[i]; if(g.measureText(tt).width>max&&line){ if(maxLines&&n===maxLines-1){ g.fillText(line+"…",x,y+n*lh); return n+1; } g.fillText(line,x,y+n*lh); n++; line=w[i]; } else line=tt; }
+    if(line){ g.fillText(line,x,y+n*lh); n++; } return n; }
+  // photo i into box (in current transform), cover-fit with pan/zoom; records slot for dragging
+  function photo(i,x,y,w,h,kind,tr){ var p=st.photos[i];
+    g.save(); g.beginPath(); g.rect(x,y,w,h); g.clip();
+    if(p){ var src=filtered(p,kind), s=Math.max(w/src.width,h/src.height)*p.zoom, iw=src.width*s, ih=src.height*s;
+      var mx=(iw-w)/2, my=(ih-h)/2; p.ox=Math.max(-mx,Math.min(mx,p.ox)); p.oy=Math.max(-my,Math.min(my,p.oy));
+      g.drawImage(src,x+(w-iw)/2+p.ox,y+(h-ih)/2+p.oy,iw,ih); }
+    else { g.fillStyle="rgba(128,128,128,.28)"; g.fillRect(x,y,w,h); g.fillStyle="rgba(255,255,255,.85)"; g.textAlign="center"; g.textBaseline="middle"; g.font="700 "+Math.round(Math.min(w,h)*.12)+"px Figtree"; g.fillText("＋ photo "+(i+1),x+w/2,y+h/2); g.textBaseline="alphabetic"; }
+    g.restore();
+    var t=tr||{cx:0,cy:0,r:0}; slots.push({i:i,x:x,y:y,w:w,h:h,cx:t.cx,cy:t.cy,r:t.r}); }
+  function polaroid(i,cx,cy,s,deg,cap,kind){ var r=deg*Math.PI/180, fh=s*1.17, pad=s*.055;
+    g.save(); g.translate(cx,cy); g.rotate(r);
+    g.shadowColor="rgba(0,0,0,.35)"; g.shadowBlur=24; g.shadowOffsetY=10; g.fillStyle="#FFFDF7"; g.fillRect(-s/2,-fh/2,s,fh); g.shadowColor="transparent";
+    photo(i,-s/2+pad,-fh/2+pad,s-2*pad,s-2*pad,kind,{cx:cx,cy:cy,r:r});
+    if(cap){ g.fillStyle="#1C2A44"; g.textAlign="center"; fit(cap,"700 #px Caveat",s-2*pad,Math.round(s*.13),18); g.fillText(cap,0,fh/2-pad*1.1); }
+    // tape
+    g.fillStyle="rgba(232,186,74,.75)"; g.save(); g.translate(0,-fh/2); g.rotate(-.05); g.fillRect(-s*.14,-s*.035,s*.28,s*.07); g.restore();
+    g.restore(); }
+  function seeded(n){ var x=Math.sin(n*9301+49297)*233280; return x-Math.floor(x); }
+  function confetti(P,count,yMin,yMax){ var cols=[P.c,"#fff","#E5337A","#3FA2FF","#FF7A00","#7ED957"];
+    for(var i=0;i<count;i++){ var x=seeded(i+1)*W, y=yMin+seeded(i+77)*(yMax-yMin), s=6+seeded(i+31)*12; g.save(); g.translate(x,y); g.rotate(seeded(i+5)*6.28); g.fillStyle=cols[i%cols.length]; g.globalAlpha=.85;
+      if(i%3===0){ g.beginPath(); g.arc(0,0,s/2,0,6.28); g.fill(); } else g.fillRect(-s/2,-s/5,s,s/2.5); g.restore(); } }
+  function stickers(list){ g.textAlign="center"; g.textBaseline="middle"; list.forEach(function(s){ g.save(); g.translate(s[1],s[2]); g.rotate(s[4]||0); g.font=s[3]+"px 'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif"; g.fillText(s[0],0,0); g.restore(); }); g.textBaseline="alphabetic"; }
+  function band(P,y){ g.fillStyle="rgba(0,0,0,.28)"; g.fillRect(0,y,W,H-y); g.fillStyle=P.c; g.fillRect(0,y,W,5);
+    g.textAlign="center"; g.fillStyle=P.t; g.font="800 34px Figtree"; g.fillText("MBM '01 SILVER JUBILEE  ·  25–27 DEC 2026",W/2,y+58);
+    g.font="600 26px Figtree"; g.globalAlpha=.9; g.fillText("Garh Govind, Jodhpur  ·  Register at mbm01.life",W/2,y+100); g.globalAlpha=1;
+    var me=$("me").value.trim(); if(me){ g.font="700 30px Caveat"; g.fillText("Poster by "+me,W/2,y+136); } }
+  function bg(P){ var gr=g.createLinearGradient(0,0,W,H); gr.addColorStop(0,P.a); gr.addColorStop(1,P.b); g.fillStyle=gr; g.fillRect(0,0,W,H);
+    g.fillStyle="rgba(255,255,255,.08)"; for(var y=12;y<H;y+=28) for(var x=12+((y/28)%2)*14;x<W;x+=28){ g.beginPath(); g.arc(x,y,2.4,0,6.28); g.fill(); } }
+
+  var LAY={1:[[540,730,620,-3]],2:[[330,700,440,-6],[750,790,440,5]],3:[[290,520,360,-7],[790,545,360,6],[540,948,360,-2]],
+    4:[[300,560,360,-6],[780,580,360,5],[300,955,360,4],[780,965,360,-5]],5:[[265,560,320,-7],[815,560,320,6],[540,760,350,-2],[265,1000,320,5],[815,1000,320,-6]],
+    6:[[215,570,300,-6],[540,600,300,4],[865,570,300,-4],[215,960,300,5],[540,990,300,-3],[865,960,300,6]]};
+
+  function drawGang(){ var P=PAL[st.pal], n=Math.max(1,st.photos.length), nm=names(); bg(P);
+    if($("stk").checked) confetti(P,90,0,H-220);
+    g.textAlign="center"; g.fillStyle=P.t; g.shadowColor="rgba(0,0,0,.25)"; g.shadowBlur=12;
+    var t=$("title").value.trim()||" "; fit(t,"#px 'Permanent Marker'",W-110,112,40); g.fillText(t,W/2,165); g.shadowColor="transparent";
+    g.fillStyle=P.c; fit($("sub").value,"700 #px Caveat",W-120,56,24); g.fillText($("sub").value,W/2,240);
+    LAY[n].forEach(function(l,i){ polaroid(i,l[0],l[1],l[2],l[3],nm[i]||""); });
+    if($("stk").checked) stickers([["🎉",110,300,70,-.3],["☕",980,300,64,.2],["🕺",70,1150,70,0],["✨",1010,1150,60,0]]);
+    band(P,H-175); }
+  function drawThen(){ var P=PAL[st.pal], nm=names(); bg(P); if($("stk").checked) confetti(P,50,0,300);
+    g.textAlign="center"; g.fillStyle=P.t; var t=$("title").value.trim()||" "; fit(t,"#px 'Permanent Marker'",W-110,104,40); g.fillText(t,W/2,160);
+    g.fillStyle=P.c; fit($("sub").value,"700 #px Caveat",W-120,50,22); g.fillText($("sub").value,W/2,228);
+    [[0,280,"2001","sepia",-3],[1,800,"2026","",3]].forEach(function(q){ var i=q[0], cx=q[1], cy=690, w=470, h=620, r=q[4]*Math.PI/180;
+      g.save(); g.translate(cx,cy); g.rotate(r); g.shadowColor="rgba(0,0,0,.35)"; g.shadowBlur=26; g.fillStyle="#FFFDF7"; g.fillRect(-w/2-16,-h/2-16,w+32,h+96); g.shadowColor="transparent";
+      photo(i,-w/2,-h/2,w,h,q[3],{cx:cx,cy:cy,r:r});
+      g.fillStyle="#1C2A44"; g.textAlign="center"; g.font="64px 'Permanent Marker'"; g.fillText(q[2],0,h/2+66); g.restore(); });
+    g.save(); g.translate(540,640); g.fillStyle=P.c; g.beginPath(); g.arc(0,0,58,0,6.28); g.fill(); g.fillStyle=P.a; g.font="800 30px Figtree"; g.textAlign="center"; g.textBaseline="middle"; g.fillText("→",0,2); g.restore(); g.textBaseline="alphabetic";
+    if(nm.length){ g.fillStyle=P.t; g.textAlign="center"; var s=nm.join(" · "); fit(s,"700 #px Figtree",W-120,40,20); g.fillText(s,W/2,1128); }
+    if($("stk").checked) stickers([["💫",90,1080,56,0],["🎓",990,330,60,.2]]);
+    band(P,H-175); }
+  function drawMovie(){ var P=PAL[st.pal], n=st.photos.length, nm=names();
+    g.fillStyle="#07080C"; g.fillRect(0,0,W,H);
+    photo(0,0,0,W,900,"",null);
+    var gr=g.createLinearGradient(0,520,0,920); gr.addColorStop(0,"rgba(7,8,12,0)"); gr.addColorStop(1,"rgba(7,8,12,1)"); g.fillStyle=gr; g.fillRect(0,520,W,400);
+    var tint=g.createLinearGradient(0,0,W,900); tint.addColorStop(0,P.a+"55"); tint.addColorStop(1,P.b+"22"); g.fillStyle=tint; g.fillRect(0,0,W,900);
+    g.textAlign="center"; g.fillStyle="rgba(255,255,255,.85)"; g.font="400 30px 'Bebas Neue'"; g.fillText("THE BATCH OF 2001 PRESENTS",W/2,70);
+    var extra=Math.min(3,Math.max(0,n-1));
+    for(var k=0;k<extra;k++){ var cx=W/2+(k-(extra-1)/2)*210, cy=770, r=88; g.save(); g.beginPath(); g.arc(cx,cy,r+6,0,6.28); g.fillStyle=P.c; g.fill(); g.beginPath(); g.arc(cx,cy,r,0,6.28); g.clip(); photo(k+1,cx-r,cy-r,2*r,2*r,"",null); g.restore(); }
+    var t=($("title").value.trim()||" ").toUpperCase(); g.fillStyle="#fff"; g.shadowColor=P.c; g.shadowBlur=30; fit(t,"400 #px 'Bebas Neue'",W-100,230,80); g.fillText(t,W/2,1040); g.shadowBlur=0; g.shadowColor="transparent";
+    g.fillStyle=P.c; fit(($("sub").value||"").toUpperCase(),"400 #px 'Bebas Neue'",W-140,96,40); g.fillText(($("sub").value||"").toUpperCase(),W/2,1120);
+    g.fillStyle="#fff"; g.font="600 26px Figtree"; g.fillText("25 years. One batch. One epic reunion.",W/2,1168);
+    if(nm.length){ g.fillStyle="rgba(255,255,255,.9)"; var s="STARRING  "+nm.join("  ·  ").toUpperCase(); fit(s,"400 #px 'Bebas Neue'",W-100,40,20); g.fillText(s,W/2,1218); }
+    g.fillStyle="rgba(255,255,255,.55)"; g.font="400 21px 'Bebas Neue'";
+    g.fillText("A GARH GOVIND PRODUCTION · MUSIC BY HOSTEL BATHROOM SINGERS · CATERING BY CANTEEN LEGENDS · NO PROXY ATTENDANCE",W/2,1262,W-80);
+    g.fillStyle=P.c; g.font="400 44px 'Bebas Neue'"; g.fillText("IN JODHPUR  25–27 DEC 2026",W/2,1316);
+    var me=$("me").value.trim(); g.fillStyle="rgba(255,255,255,.6)"; g.font="600 20px Figtree"; g.textAlign="right"; g.fillText("mbm01.life"+(me?" · poster by "+me:""),W-30,40); }
+  function drawNews(){ var nm=names(), n=st.photos.length;
+    g.fillStyle="#F4EFE3"; g.fillRect(0,0,W,H);
+    for(var i=0;i<1400;i++){ g.fillStyle="rgba(60,50,30,"+(seeded(i+3)*.05)+")"; g.fillRect(seeded(i+11)*W,seeded(i+19)*H,2,2); }
+    g.fillStyle="#111"; g.textAlign="center"; g.font="900 104px 'Playfair Display'"; g.fillText("The MBM Times",W/2,120);
+    g.fillRect(50,142,W-100,4); g.fillRect(50,196,W-100,2);
+    g.font="600 22px Figtree"; g.textAlign="left"; g.fillText("JODHPUR · VOL. 25",56,178); g.textAlign="center"; g.fillText("DECEMBER 2026",W/2,178); g.textAlign="right"; g.fillText("PRICE: ONE CUTTING CHAI",W-56,178);
+    g.textAlign="center"; var t=$("title").value.trim()||" "; fit(t,"900 #px 'Playfair Display'",W-100,88,40); g.fillText(t,W/2,300);
+    g.font="italic 700 32px 'Playfair Display'"; g.fillStyle="#333"; var sl=wrap($("sub").value,W/2,352,W-160,40,2);
+    var py=352+sl*40+10, ph=n>1?420:480; photo(0,56,py,W-112,ph,"gray",null); g.strokeStyle="#111"; g.lineWidth=2; g.strokeRect(56,py,W-112,ph);
+    g.fillStyle="#333"; g.textAlign="left"; g.font="italic 500 21px Figtree"; g.fillText("Then and now: the Batch of 2001, as seen in the archives.",56,py+ph+30);
+    var y0=py+ph+64, colW=(W-112-40)/2, txt="JODHPUR — In a development no one saw coming, the Batch of 2001 of MBM Engineering College will reunite at Garh Govind from 25 to 27 December 2026. "+
+      (nm.length? "Sources confirm "+nm.slice(0,4).join(", ")+" have already started practising their dance moves. " : "Sources confirm the batch has already started practising its dance moves. ")+
+      "Canteen staff are on high alert, professors have been warned, and the hostel wardens are said to be “concerned”. Registrations are open at mbm01.life. Attendance, as always, is compulsory.";
+    g.fillStyle="#111"; g.font="500 22px 'Special Elite'";
+    var lines=[], w=txt.split(" "), line=""; w.forEach(function(x){ var tt=line?line+" "+x:x; if(g.measureText(tt).width>colW&&line){ lines.push(line); line=x; } else line=tt; }); if(line) lines.push(line);
+    var lh=29, perCol=Math.floor((H-70-y0)/lh), c2x=56+colW+40;
+    var useSecond=n>1; if(useSecond){ var sh=170; photo(1,c2x,y0-22,colW,sh,"gray",null); g.strokeRect(c2x,y0-22,colW,sh); var rest=Math.floor((H-70-(y0-22+sh+30))/lh);
+      lines.slice(0,perCol).forEach(function(l,i){ g.fillText(l,56,y0+i*lh); }); lines.slice(perCol,perCol+rest).forEach(function(l,i){ g.fillText(l,c2x,y0-22+sh+34+i*lh); }); }
+    else { lines.slice(0,perCol).forEach(function(l,i){ g.fillText(l,56,y0+i*lh); }); lines.slice(perCol,perCol*2).forEach(function(l,i){ g.fillText(l,c2x,y0+i*lh); }); }
+    g.fillStyle="#111"; g.fillRect(50,H-54,W-100,2); g.font="700 20px Figtree"; g.textAlign="center"; var me=$("me").value.trim();
+    g.fillText("MBM '01 SILVER JUBILEE · GARH GOVIND, JODHPUR · 25–27 DEC 2026 · mbm01.life"+(me?" · BY "+me.toUpperCase():""),W/2,H-24,W-100); }
+
+  function draw(){ slots=[]; g.setTransform(1,0,0,1,0,0); g.clearRect(0,0,W,H); ({gang:drawGang,then:drawThen,movie:drawMovie,news:drawNews})[st.t](); }
+
+  // ---- drag to reposition ----
+  var drag=null;
+  function toCanvas(e){ var r=cv.getBoundingClientRect(), k=W/r.width; return {x:(e.clientX-r.left)*k,y:(e.clientY-r.top)*k,k:k}; }
+  function hit(pt){ for(var j=slots.length-1;j>=0;j--){ var s=slots[j], x=pt.x-s.cx, y=pt.y-s.cy, c=Math.cos(-s.r), sn=Math.sin(-s.r), lx=x*c-y*sn, ly=x*sn+y*c;
+      if(lx>=s.x&&lx<=s.x+s.w&&ly>=s.y&&ly<=s.y+s.h&&st.photos[s.i]) return s; } return null; }
+  cv.addEventListener("pointerdown",function(e){ var pt=toCanvas(e), s=hit(pt); if(!s) return; var p=st.photos[s.i]; drag={p:p,s:s,x:pt.x,y:pt.y,ox:p.ox,oy:p.oy}; st.sel=s.i; thumbs(); cv.setPointerCapture(e.pointerId); e.preventDefault(); });
+  cv.addEventListener("pointermove",function(e){ if(!drag) return; var pt=toCanvas(e), dx=pt.x-drag.x, dy=pt.y-drag.y, c=Math.cos(-drag.s.r), sn=Math.sin(-drag.s.r);
+    drag.p.ox=drag.ox+dx*c-dy*sn; drag.p.oy=drag.oy+dx*sn+dy*c; draw(); });
+  ["pointerup","pointercancel"].forEach(function(ev){ cv.addEventListener(ev,function(){ drag=null; }); });
+
+  // ---- output ----
+  function ready(){ if(!st.photos.length){ msg("Add at least one photo first.","err"); return false; } if($("me").value.trim()) store("mbm01me",$("me").value.trim()); return true; }
+  function blob(){ return new Promise(function(r){ cv.toBlob(r,"image/jpeg",.92); }); }
+  function fname(){ return "MBM01-poster-"+st.t+".jpg"; }
+  var TXT="Made this for our MBM '01 Silver Jubilee, 25–27 Dec 2026 at Garh Govind, Jodhpur 🎉 Make yours and register: https://mbm01.life/poster.html";
+  $("dl").onclick=function(){ if(!ready()) return; blob().then(function(b){ var a=document.createElement("a"); a.href=URL.createObjectURL(b); a.download=fname(); document.body.appendChild(a); a.click(); a.remove(); msg("Poster downloaded.","ok"); }); };
+  $("share").onclick=function(){ if(!ready()) return; blob().then(function(b){ var f=new File([b],fname(),{type:"image/jpeg"});
+    if(navigator.canShare&&navigator.canShare({files:[f]})) return navigator.share({files:[f],text:TXT}).then(function(){ msg("Shared!","ok"); },function(){});
+    var a=document.createElement("a"); a.href=URL.createObjectURL(b); a.download=fname(); document.body.appendChild(a); a.click(); a.remove();
+    window.open("https://wa.me/?text="+encodeURIComponent(TXT),"_blank","noopener"); msg("Poster downloaded. Attach it in the WhatsApp chat that just opened.","ok"); }); };
+  $("wall").onclick=function(){ if(!ready()) return; var btn=this;
+    MBMAuth.ensure().then(function(a){ btn.disabled=true; msg("Posting to the Photo Wall…");
+      var ttl=$("title").value.trim(), cap=(ttl? ttl+" · " : "")+"poster"+($("me").value.trim()?" by "+$("me").value.trim():"");
+      return fetch(API,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({action:"wall_upload",code:"MBM2001",me:a.me,pin:a.pin,photo:cv.toDataURL("image/jpeg",.86),uploader:a.name,caption:cap.slice(0,120),consent:true,source:"booth"})})
+        .then(function(r){ return r.json(); }).then(function(d){ btn.disabled=false;
+          if(d.ok){ msg("Posted! See it on the Photo Wall.","ok"); var l=document.createElement("a"); l.href="wall.html"; l.textContent=" Open wall →"; $("msg").appendChild(l); }
+          else { if(d.error==="auth") MBMAuth.clear(); msg(d.error==="auth"?"Please confirm it's you again.":"Couldn't post. Please try again.","err"); } }); })
+      .catch(function(e){ btn.disabled=false; if(e!=="cancel") msg("No connection. Try again.","err"); }); };
+
+  draw();
+  if(document.fonts){ Promise.all(["112px 'Permanent Marker'","700 56px Caveat","400 230px 'Bebas Neue'","900 104px 'Playfair Display'","italic 700 32px 'Playfair Display'","500 23px 'Special Elite'","800 34px Figtree","600 26px Figtree"].map(function(f){ return document.fonts.load(f); })).then(draw,draw); document.fonts.ready.then(draw); }
+})();
+</script>
+<script src="names.js"></script>
+<script>(function(){ var nl=document.getElementById("nl"); if(nl.children.length) return; Object.keys(window.MBM_ROSTER||{}).forEach(function(k){ window.MBM_ROSTER[k].forEach(function(n){ var o=document.createElement("option"); o.value=n.split("|")[0]; nl.appendChild(o); }); }); })();</script>
+<script src="nav.js" defer></script>
+<script src="news.js" defer></script>
+</body></html>
