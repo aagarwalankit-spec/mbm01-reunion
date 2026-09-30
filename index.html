@@ -246,6 +246,7 @@ footer p{margin:6px auto 0;color:var(--ink-2);font-size:14.5px}
     <ul>
       <li><a href="#schedule">Schedule</a></li>
       <li><a href="menu.html">Food menu</a></li>
+      <li><a href="game.html">Game</a></li>
       <li><a href="#venues">Venues</a></li>
       <li><a href="#travel">Travel &amp; stay</a></li>
       <li><a href="#memories">Memories</a></li>
@@ -285,6 +286,7 @@ footer p{margin:6px auto 0;color:var(--ink-2);font-size:14.5px}
       <a class="btn" href="#register">Register now
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       <a class="btn ghost" href="#photos">See the photos</a>
+      <a class="btn ghost" href="game.html">🥟 Dare a batchmate</a>
     </div>
     <section class="hwall" id="photos" aria-labelledby="hwallT">
       <style>
@@ -312,9 +314,11 @@ footer p{margin:6px auto 0;color:var(--ink-2);font-size:14.5px}
         var API="https://script.google.com/macros/s/AKfycby7EIHjCJ053khkkMHN4-gx1mttPKGnQrIkiNw7YXcTFotYF1it1OUQYgCQzlJSMfd9Ng/exec";
         var g=document.getElementById("hgrid"), N=8, rot=[-2.5,1.8,-1.2,2.4,1.4,-2,2.2,-1.6];
         function th(id){ return "https://drive.google.com/thumbnail?id="+encodeURIComponent(id)+"&sz=w500"; }
-        function tile(src, cap, href, badge, k){
+        function tile(src, cap, href, badge, k, rot, auto){
           var a=document.createElement("a"); a.className="hph"; a.href=href; a.style.setProperty("--r", rot[k%rot.length]+"deg");
-          var im=document.createElement("img"); im.referrerPolicy="no-referrer"; im.decoding="async"; im.alt=cap||"Batch photo"; im.src=src; im.onerror=function(){ a.remove(); };
+          var im=document.createElement("img"); im.referrerPolicy="no-referrer"; im.decoding="async"; im.alt=cap||"Batch photo";
+          if(auto) im.onload=function(){ var d=(rot!=null && !isNaN(rot)) ? rot : (im.naturalHeight>im.naturalWidth*1.05 ? 90 : 0); if(d) im.style.transform="rotate("+d+"deg)"; };
+          im.src=src; im.onerror=function(){ a.remove(); };
           a.appendChild(im); if(badge){ var b=document.createElement("b"); b.textContent=badge; a.appendChild(b); }
           var s=document.createElement("span"); s.textContent=cap||""; a.appendChild(s); g.appendChild(a);
         }
@@ -324,10 +328,10 @@ footer p{margin:6px auto 0;color:var(--ink-2);font-size:14.5px}
           fetch(API,{cache:"no-store"}).then(function(r){return r.json();}).catch(function(){return {};})
         ]).then(function(res){
           var items=[];
-          (res[0].photos||[]).forEach(function(p){ items.push({ts:p.ts||"", src:th(p.photo), cap:p.caption||("by "+p.uploader), href:"wall.html#p="+p.id, badge:p.source==="booth"?"BOOTH":""}); });
+          (res[0].photos||[]).forEach(function(p){ items.push({ts:p.ts||"", src:th(p.photo), cap:p.caption||("by "+p.uploader), href:"wall.html#p="+p.id, badge:p.source==="booth"?"BOOTH":"", rot:p.rot, auto:true}); });
           (res[1].entries||[]).forEach(function(e){ var id=e.now||e.then; if(id) items.push({ts:"", src:th(id), cap:e.name, href:"batchmates.html", badge:e.now?"2026":"2001"}); });
           items.sort(function(a,b){ return a.ts<b.ts?1:a.ts>b.ts?-1:0; });
-          items.slice(0,N).forEach(function(it,k){ tile(it.src,it.cap,it.href,it.badge,k); });
+          items.slice(0,N).forEach(function(it,k){ tile(it.src,it.cap,it.href,it.badge,k,it.rot,it.auto); });
           if(!items.length) document.getElementById("hwallSub").textContent="Be the first to post! Until then, a few from the old album.";
           if(g.children.length<N) fallback();
         });

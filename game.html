@@ -1,0 +1,193 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<title>Canteen Catch · MBM '01</title>
+<meta property="og:title" content="Canteen Catch · MBM '01">
+<meta property="og:description" content="A batchmate has challenged you! Beat their score, then see you in Jodhpur, 25–27 Dec 2026.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Figtree:wght@400;500;600;700;800&family=Permanent+Marker&display=swap">
+<style>
+:root{--ground:#F5EFE4;--paper:#FFFCF6;--ink:#1C2A44;--ink-2:#4A566E;--line:#DDD2BF;--sand:#B8612F;--blue:#2E5597;--mustard:#E8BA4A;--ok:#2E7D4F;--err:#B03A2E;
+--display:"Permanent Marker",cursive;--hand:"Caveat","Segoe Print",cursive;--body:"Figtree",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--ground:#0F1526;--paper:#18203A;--ink:#F1E9DA;--ink-2:#B5BCCB;--line:#2C3656;--sand:#E08E5B;--blue:#86A8E6;--mustard:#E4B862;--ok:#6CC08F;--err:#F08A7E}}
+:root[data-theme="dark"]{color-scheme:dark;--ground:#0F1526;--paper:#18203A;--ink:#F1E9DA;--ink-2:#B5BCCB;--line:#2C3656;--sand:#E08E5B;--blue:#86A8E6;--mustard:#E4B862;--ok:#6CC08F;--err:#F08A7E}
+*{box-sizing:border-box}body{margin:0;background:var(--ground);color:var(--ink);font:17px/1.55 var(--body);-webkit-font-smoothing:antialiased}
+a{color:var(--blue)}:focus-visible{outline:3px solid var(--mustard);outline-offset:2px;border-radius:4px}
+.wrap{max-width:760px;margin-inline:auto;padding-inline:16px}
+nav{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--ground) 90%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;gap:14px;height:56px}
+.brand{font-family:var(--display);font-size:22px;color:var(--ink);text-decoration:none}.brand b{color:var(--sand);font-weight:400}
+nav .links{margin-left:auto;display:flex;gap:4px}
+nav .links a{padding:6px 10px;border-radius:8px;color:var(--ink-2);text-decoration:none;font-weight:600;font-size:14.5px}
+header{padding-block:22px 6px}
+.label{font-size:12.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--sand)}
+h1{font-size:clamp(34px,7vw,54px);line-height:1;margin:.12em 0 .2em;font-weight:800;letter-spacing:-.02em}
+h1 .hand{font-family:var(--hand);color:var(--blue);font-weight:700}
+.lead{color:var(--ink-2);margin:0 0 8px;font-size:clamp(16px,2.2vw,18px)}
+.dare{display:none;background:var(--mustard);color:#1C2A44;border-radius:14px;padding:12px 16px;margin:10px 0 4px;font-weight:600}
+.dare.on{display:block}
+.dare b{font-family:var(--hand);font-size:26px;line-height:1}
+.stage{position:relative;margin-top:12px;border-radius:18px;overflow:hidden;background:#1C2A44;touch-action:none;user-select:none;-webkit-user-select:none}
+canvas{display:block;width:100%;height:auto}
+.hud{position:absolute;inset:10px 12px auto;display:flex;justify-content:space-between;color:#F5EFE4;font:800 20px/1 var(--body);pointer-events:none;text-shadow:0 2px 6px rgba(0,0,0,.5)}
+.over{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:20px;background:rgba(15,21,38,.72);color:#F5EFE4}
+.over.hide{display:none}
+.over h2{margin:0 0 6px;font-family:var(--hand);font-size:42px;line-height:1;color:#E8BA4A}
+.over p{margin:0 0 14px;max-width:34ch}
+.legend{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:0 0 16px;font-size:14.5px}
+.legend span{background:rgba(255,255,255,.1);border-radius:999px;padding:5px 10px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:700 16px/1 var(--body);padding:13px 18px;border-radius:12px;border:2px solid var(--ink);background:var(--ink);color:var(--ground);text-decoration:none;cursor:pointer}
+.btn.big{font-size:18px;padding:16px 26px;background:#E8BA4A;border-color:#E8BA4A;color:#1C2A44}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn.wa{background:#1FAF55;border-color:#1FAF55;color:#fff}
+.result{display:none;margin:18px 0 0;background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:18px clamp(14px,4vw,24px) 20px}
+.result.on{display:grid;gap:12px}
+.result h2{margin:0;font-size:24px;line-height:1.2}
+.result .score{font-family:var(--display);font-size:56px;line-height:1;color:var(--sand)}
+.result .verdict{font-family:var(--hand);font-size:26px;color:var(--blue);line-height:1.1}
+.inp{font:500 16px var(--body);padding:11px 12px;border-radius:10px;border:1.5px solid var(--line);background:var(--ground);color:var(--ink);width:100%}
+label.f{display:grid;gap:5px;font-weight:600;font-size:14.5px}
+.acts{display:flex;flex-wrap:wrap;gap:10px}
+.sugg{display:flex;flex-wrap:wrap;gap:6px}
+.sugg button{font:600 13.5px/1 var(--body);padding:8px 10px;border-radius:999px;border:1.5px solid var(--line);background:var(--ground);color:var(--ink);cursor:pointer}
+.small{font-size:13.5px;color:var(--ink-2);margin:0}
+.msg{font-weight:600;font-size:14.5px;min-height:1.2em;margin:0;color:var(--ok)}
+footer{margin-top:40px;border-top:1px solid var(--line);padding-block:24px 36px;text-align:center;color:var(--ink-2);font-size:14.5px}
+footer .hand{font-family:var(--hand);font-size:28px;font-weight:700;color:var(--ink)}
+</style>
+<link rel="stylesheet" href="theme.css?v=2"></head><body>
+<nav><div class="wrap"><a class="brand" href="index.html">MBM <b>'01</b></a><div class="links"><a href="index.html">Home</a><a href="index.html#register">Register</a></div></div></nav>
+<main class="wrap">
+<header>
+  <div class="label">30-second challenge</div>
+  <h1>Canteen <span class="hand">Catch</span></h1>
+  <p class="lead">Tap the samosas, chai and kachoris before they fall. Dodge the assignments, vivas and attendance sheets. Then dare a batchmate to beat you, and to come to Jodhpur.</p>
+  <div class="dare" id="dare"></div>
+</header>
+
+<div class="stage" id="stage">
+  <canvas id="c" width="720" height="900" aria-label="Canteen Catch game area"></canvas>
+  <div class="hud"><span id="hs">0</span><span id="ht">30s</span></div>
+  <div class="over" id="over">
+    <div>
+      <h2 id="ovT">Ready, MBMite?</h2>
+      <p id="ovP">You get 30 seconds. Canteen favourites give points, college horrors take them away.</p>
+      <div class="legend"><span>🥟 Samosa +10</span><span>☕ Chai +10</span><span>🍩 Kachori +15</span><span>🌶️ Mirchi vada +25</span><span>📝 Viva −15</span><span>📋 Attendance −20</span></div>
+      <button class="btn big" id="play" type="button">Play</button>
+    </div>
+  </div>
+</div>
+
+<section class="result" id="result" aria-live="polite">
+  <div class="score" id="rScore">0</div>
+  <div class="verdict" id="rVerdict"></div>
+  <h2>Now dare a batchmate</h2>
+  <p class="small">Pick someone who hasn't registered yet. The link lets them play, try to beat you, and register.</p>
+  <label class="f">Your name<input class="inp" id="me" list="names" maxlength="40" placeholder="Your name"></label>
+  <label class="f">Challenge<input class="inp" id="to" list="names" maxlength="40" placeholder="Batchmate's name"></label>
+  <div><p class="small" style="margin-bottom:6px">Not registered yet (tap to pick):</p><div class="sugg" id="sugg"></div></div>
+  <div class="acts">
+    <a class="btn wa" id="wa" href="#" target="_blank" rel="noopener">Challenge on WhatsApp</a>
+    <button class="btn ghost" id="copy" type="button">Copy challenge</button>
+    <button class="btn ghost" id="again" type="button">Play again</button>
+  </div>
+  <p class="msg" id="msg"></p>
+  <p class="small">Coming yourself? <a href="index.html#register">Registration and payment details →</a></p>
+</section>
+</main>
+<datalist id="names"></datalist>
+<footer class="wrap"><div class="hand">See you in Jodhpur · 25–27 Dec 2026</div><p>MBM '01 Silver Jubilee Reunion · Garh Govind</p></footer>
+
+<script src="names.js"></script>
+<script>
+(function(){
+  var API="https://script.google.com/macros/s/AKfycby7EIHjCJ053khkkMHN4-gx1mttPKGnQrIkiNw7YXcTFotYF1it1OUQYgCQzlJSMfd9Ng/exec";
+  var SITE="https://mbm01.life/game.html";
+  var $=function(id){return document.getElementById(id);};
+  function store(k,v){ try{ if(v===undefined) return localStorage.getItem(k); localStorage.setItem(k,v); }catch(e){ return null; } }
+  function clean(s){ return String(s||"").replace(/[<>]/g,"").replace(/\s+/g," ").trim().slice(0,40); }
+
+  // ---- incoming challenge ----
+  var q=new URLSearchParams(location.search), from=clean(q.get("from")), target=Math.max(0,Math.min(9999,parseInt(q.get("s"),10)||0)), forName=clean(q.get("to"));
+  if(from && target){ var d=$("dare"); d.classList.add("on");
+    d.innerHTML=""; var b=document.createElement("b"); b.textContent=(forName? forName+", ":"")+from+" scored "+target+"!"; d.appendChild(b);
+    d.appendChild(document.createElement("br")); d.appendChild(document.createTextNode("Beat that, then prove you'll be in Jodhpur on 25–27 Dec."));
+    $("ovT").textContent="Can you beat "+target+"?"; }
+  if(forName) store("mbm01me", forName);
+
+  // ---- names ----
+  var ALL={}; Object.keys(window.MBM_ROSTER||{}).forEach(function(k){ (window.MBM_ROSTER[k]||[]).forEach(function(n){ if(n.indexOf("|")<0) ALL[n]=1; }); });
+  Object.keys(ALL).sort().forEach(function(n){ var o=document.createElement("option"); o.value=n; $("names").appendChild(o); });
+  var notYet=[];
+  fetch(API+"?action=roster").then(function(r){return r.json();}).then(function(d){
+    if(!d||!d.roster) return; var extra=$("names");
+    d.roster.forEach(function(r){ if(!ALL[r.n]){ ALL[r.n]=1; var o=document.createElement("option"); o.value=r.n; extra.appendChild(o); } if(!r.p && !r.m) notYet.push(r.n); });
+    showSugg();
+  }).catch(function(){});
+  function showSugg(){ var s=$("sugg"); s.textContent=""; var pool=notYet.slice(); for(var i=pool.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=pool[i]; pool[i]=pool[j]; pool[j]=t; }
+    var mine=($("me").value||"").toLowerCase(); pool=pool.filter(function(n){ return n.toLowerCase()!==mine; });
+    pool.slice(0,8).forEach(function(n){ var b=document.createElement("button"); b.type="button"; b.textContent=n; b.onclick=function(){ $("to").value=n; share(); }; s.appendChild(b); });
+    if(!pool.length) s.innerHTML='<span class="small">Everyone on the list has paid. Dare anyone!</span>'; }
+
+  // ---- game ----
+  var cv=$("c"), g=cv.getContext("2d"), W=cv.width, H=cv.height;
+  var GOOD=[["🥟",10],["☕",10],["🍩",15],["🌶️",25]], BAD=[["📝",-15],["📋",-20]];
+  var items=[], pops=[], score=0, t0=0, running=false, last=0, spawnAcc=0, DUR=30;
+  function spawn(elapsed){
+    var bad=Math.random()<Math.min(.38,.18+elapsed/120), set=bad?BAD:GOOD, k=set[Math.floor(Math.random()*set.length)];
+    if(!bad && k[1]===25 && Math.random()<.6) k=GOOD[0];
+    var sp=180+elapsed*9+Math.random()*120;
+    items.push({x:60+Math.random()*(W-120), y:-50, vy:sp, e:k[0], v:k[1], r:46, rot:(Math.random()-.5)*2});
+  }
+  function drawBg(){
+    var gr=g.createLinearGradient(0,0,0,H); gr.addColorStop(0,"#1C2A44"); gr.addColorStop(1,"#2B3E63"); g.fillStyle=gr; g.fillRect(0,0,W,H);
+    g.fillStyle="rgba(232,186,74,.10)"; for(var i=0;i<12;i++){ g.beginPath(); g.arc((i*97)%W, (i*173)%H, 3, 0, 7); g.fill(); }
+    g.fillStyle="#B8612F"; g.fillRect(0,H-70,W,70); g.fillStyle="#E8BA4A"; for(var x=0;x<W;x+=48){ g.fillRect(x,H-70,24,8); }
+    g.fillStyle="rgba(245,239,228,.9)"; g.font="700 26px Caveat, cursive"; g.textAlign="center"; g.fillText("MBM Canteen · since forever", W/2, H-26);
+  }
+  function frame(ts){
+    if(!running) return;
+    var dt=Math.min(.05,(ts-(last||ts))/1000); last=ts; var el=(ts-t0)/1000, left=Math.max(0,DUR-el);
+    spawnAcc+=dt; var every=Math.max(.32,.75-el/60); while(spawnAcc>every){ spawnAcc-=every; spawn(el); }
+    drawBg();
+    g.textAlign="center"; g.textBaseline="middle";
+    items=items.filter(function(it){ it.y+=it.vy*dt; if(it.y>H-60) return false;
+      g.save(); g.translate(it.x,it.y); g.rotate(it.rot*Math.sin(ts/400)); g.font="76px 'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif"; g.fillText(it.e,0,0); g.restore(); return true; });
+    pops=pops.filter(function(p){ p.t+=dt; g.globalAlpha=Math.max(0,1-p.t/0.8); g.fillStyle=p.v>0?"#E8BA4A":"#F08A7E"; g.font="800 40px Figtree, sans-serif"; g.fillText((p.v>0?"+":"")+p.v, p.x, p.y-p.t*80); g.globalAlpha=1; return p.t<0.8; });
+    $("hs").textContent=score; $("ht").textContent=Math.ceil(left)+"s";
+    if(left<=0){ end(); return; }
+    requestAnimationFrame(frame);
+  }
+  function hit(ev){
+    if(!running) return; ev.preventDefault();
+    var r=cv.getBoundingClientRect(), x=(ev.clientX-r.left)*W/r.width, y=(ev.clientY-r.top)*H/r.height;
+    for(var i=items.length-1;i>=0;i--){ var it=items[i]; if(Math.hypot(it.x-x,it.y-y)<it.r+16){ score=Math.max(0,score+it.v); pops.push({x:it.x,y:it.y,v:it.v,t:0}); items.splice(i,1);
+      if(navigator.vibrate && it.v<0) try{ navigator.vibrate(60); }catch(e){} return; } }
+  }
+  cv.addEventListener("pointerdown", hit);
+  function start(){ items=[]; pops=[]; score=0; spawnAcc=0; last=0; $("over").classList.add("hide"); $("result").classList.remove("on"); running=true; t0=performance.now(); requestAnimationFrame(function(ts){ t0=ts; last=ts; frame(ts); }); }
+  function verdict(s){
+    if(target) return s>target ? "You beat "+from+"! Now it's your turn to dare someone." : s===target ? "A tie with "+from+"! Settle it in Jodhpur." : "So close. "+from+" wins this round… rematch at the reunion?";
+    return s>=400 ? "Canteen legend. The samosa-wala still remembers you." : s>=250 ? "Chai-break champion!" : s>=120 ? "Not bad for someone 25 years out of practice." : "Clearly you need a refresher at the canteen, 25–27 Dec.";
+  }
+  function end(){
+    running=false; drawBg(); var best=Math.max(score, Number(store("mbm01best")||0)); store("mbm01best", String(best));
+    $("ovT").textContent="Time up! "+score+" points"; $("ovP").textContent="Best on this phone: "+best+"."; $("play").textContent="Play again"; $("over").classList.remove("hide");
+    $("rScore").textContent=score; $("rVerdict").textContent=verdict(score); $("result").classList.add("on");
+    $("me").value = $("me").value || store("mbm01me") || ""; if(from && !$("to").value) $("to").value = from; share(); showSugg();
+    setTimeout(function(){ $("result").scrollIntoView({behavior:"smooth", block:"start"}); }, 250);
+  }
+  $("play").onclick=start; $("again").onclick=function(){ window.scrollTo({top:$("stage").offsetTop-70,behavior:"smooth"}); start(); };
+
+  // ---- challenge ----
+  function link(){ var me=clean($("me").value)||"A batchmate", to=clean($("to").value); var u=SITE+"?from="+encodeURIComponent(me)+"&s="+score; if(to) u+="&to="+encodeURIComponent(to); return u; }
+  function text(){ var to=clean($("to").value);
+    return (to? to+", ":"")+"I just scored "+score+" in Canteen Catch 🥟☕ Bet you can't beat me!\n\nLoser buys the chai at the MBM '01 Silver Jubilee, 25–27 Dec 2026 in Jodhpur. Register if you haven't. 25 saal ho gaye, ab toh aa ja! 😄\n\n"+link(); }
+  function share(){ if($("me").value.trim()) store("mbm01me", clean($("me").value)); $("wa").href="https://wa.me/?text="+encodeURIComponent(text()); }
+  $("me").addEventListener("input", share); $("to").addEventListener("input", share);
+  $("copy").onclick=function(){ var t=text(); function ok(){ $("msg").textContent="Copied! Paste it in WhatsApp."; setTimeout(function(){ $("msg").textContent=""; },2500); }
+    if(navigator.clipboard&&navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(ok,function(){ prompt("Copy this:",t); }); else prompt("Copy this:",t); };
+  $("wa").addEventListener("click", function(){ share(); });
+
+  drawBg();
+})();
+</script>
+</body></html>
