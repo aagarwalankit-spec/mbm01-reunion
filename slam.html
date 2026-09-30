@@ -1,0 +1,347 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Slam Book · MBM '01</title>
+<meta property="og:title" content="MBM '01 Slam Book · 25 years, one page each">
+<meta property="og:description" content="Where life took the 2001 batch of MBM Engineering College, Jodhpur. Read the pages, write in your friends' books.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Figtree:wght@400;500;600;700;800&family=Permanent+Marker&display=swap">
+<style>
+:root{--ground:#F5EFE4;--paper:#FFFCF6;--ink:#1C2A44;--ink-2:#4A566E;--line:#DDD2BF;--sand:#B8612F;--blue:#2E5597;--mustard:#E8BA4A;--ok:#2E7D4F;--err:#B03A2E;--rule:rgba(46,85,151,.12);
+--display:"Permanent Marker",cursive;--hand:"Caveat","Segoe Print",cursive;--body:"Figtree",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--ground:#0F1526;--paper:#18203A;--ink:#F1E9DA;--ink-2:#B5BCCB;--line:#2C3656;--sand:#E08E5B;--blue:#86A8E6;--mustard:#E4B862;--ok:#6CC08F;--err:#F08A7E;--rule:rgba(134,168,230,.10)}}
+:root[data-theme="dark"]{color-scheme:dark;--ground:#0F1526;--paper:#18203A;--ink:#F1E9DA;--ink-2:#B5BCCB;--line:#2C3656;--sand:#E08E5B;--blue:#86A8E6;--mustard:#E4B862;--ok:#6CC08F;--err:#F08A7E;--rule:rgba(134,168,230,.10)}
+*{box-sizing:border-box}body{margin:0;background:var(--ground);color:var(--ink);font:17px/1.55 var(--body);-webkit-font-smoothing:antialiased}
+a{color:var(--blue)}:focus-visible{outline:3px solid var(--mustard);outline-offset:2px;border-radius:4px}
+.wrap{max-width:1080px;margin-inline:auto;padding-inline:16px}
+nav{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--ground) 90%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;gap:14px;height:56px}
+.brand{font-family:var(--display);font-size:22px;color:var(--ink);text-decoration:none}.brand b{color:var(--sand);font-weight:400}
+nav .links{margin-left:auto;display:flex;gap:4px;flex-wrap:wrap}
+nav .links a{padding:6px 10px;border-radius:8px;color:var(--ink-2);text-decoration:none;font-weight:600;font-size:14.5px}
+header{padding-block:22px 6px}
+.label{font-size:12.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--sand)}
+h1{font-size:clamp(34px,7vw,56px);line-height:1;margin:.12em 0 .2em;font-weight:800;letter-spacing:-.02em}
+h1 .hand{font-family:var(--hand);color:var(--blue);font-weight:700}
+.lead{color:var(--ink-2);margin:0 0 10px;font-size:clamp(16px,2.2vw,18px);max-width:64ch}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:700 16px/1 var(--body);padding:13px 18px;border-radius:12px;border:2px solid var(--ink);background:var(--ink);color:var(--ground);text-decoration:none;cursor:pointer}
+.btn.big{background:#E8BA4A;border-color:#E8BA4A;color:#1C2A44}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn.wa{background:#1FAF55;border-color:#1FAF55;color:#fff}
+.btn.sm{font-size:14px;padding:9px 12px;border-radius:10px}
+.btn:disabled{opacity:.55;cursor:default}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.tools{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:16px 0 8px}
+.inp{font:500 16px var(--body);padding:11px 12px;border-radius:10px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);width:100%}
+textarea.inp{resize:vertical;min-height:84px;line-height:1.45}
+.tools .inp{max-width:320px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips button{font:600 13.5px/1 var(--body);padding:8px 11px;border-radius:999px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);cursor:pointer}
+.chips button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--ground)}
+.small{font-size:14px;color:var(--ink-2);margin:0}
+.msg{font-weight:600;min-height:1.4em;margin:0}.msg.ok{color:var(--ok)}.msg.err{color:var(--err)}
+/* directory */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px;margin:14px 0 8px}
+.pcard{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:14px;display:grid;gap:8px;text-decoration:none;color:var(--ink);box-shadow:0 1px 2px rgba(28,42,68,.06);transition:transform .15s}
+.pcard:hover{transform:translateY(-2px)}
+.pcard .ph{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.pcard .ph div{aspect-ratio:1;border-radius:10px;background:var(--ground) center/cover no-repeat;display:grid;place-items:center;font:700 22px var(--body);color:var(--ink-2);overflow:hidden}
+.pcard .ph img{width:100%;height:100%;object-fit:cover;display:block}
+.pcard h3{margin:0;font-size:18px;line-height:1.2}
+.pcard .b{font-size:13px;font-weight:700;color:var(--sand);letter-spacing:.04em;text-transform:uppercase}
+.pcard .h{font-size:14.5px;color:var(--ink-2);margin:0}
+.pcard .nick{font-family:var(--hand);font-size:22px;color:var(--blue);line-height:1}
+.pcard .nc{font-size:13px;color:var(--ink-2)}
+.empty{background:var(--paper);border:1.5px dashed var(--line);border-radius:16px;padding:22px;text-align:center;color:var(--ink-2)}
+details.yet{margin:22px 0 0;background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:14px 16px}
+details.yet summary{cursor:pointer;font-weight:700}
+.yetl{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.yetl a{font:600 13.5px/1 var(--body);padding:8px 10px;border-radius:999px;border:1.5px solid var(--line);color:var(--ink);text-decoration:none}
+/* profile */
+.page{background:var(--paper);border:1px solid var(--line);border-radius:22px;margin:16px 0;padding:clamp(18px,4vw,36px);
+  background-image:repeating-linear-gradient(180deg,transparent 0 31px,var(--rule) 31px 32px);position:relative}
+.page::before{content:"";position:absolute;top:0;bottom:0;left:clamp(10px,3vw,26px);border-left:2px solid rgba(176,58,46,.25)}
+.phead{display:grid;grid-template-columns:auto 1fr;gap:clamp(16px,3vw,30px);align-items:center}
+@media (max-width:640px){.phead{grid-template-columns:1fr}}
+.pol{display:flex;gap:10px}
+.pol figure{margin:0;background:#fff;padding:8px 8px 28px;box-shadow:0 6px 18px rgba(0,0,0,.18);width:clamp(118px,18vw,160px);position:relative}
+.pol figure:first-child{transform:rotate(-4deg)}.pol figure:last-child{transform:rotate(3deg)}
+.pol .im{aspect-ratio:1;background:#e9e2d4;display:grid;place-items:center;font:700 34px var(--body);color:#8a7a60;overflow:hidden}
+.pol img{width:100%;height:100%;object-fit:cover;display:block}
+.pol figcaption{position:absolute;bottom:4px;left:0;right:0;text-align:center;font:700 20px var(--hand);color:#1C2A44}
+.pname{font-size:clamp(30px,5vw,44px);font-weight:800;line-height:1.05;margin:0}
+.pnick{font-family:var(--hand);font-size:30px;color:var(--blue);line-height:1;margin:4px 0}
+.pmeta{color:var(--ink-2);margin:4px 0 0}
+.sec{margin-top:28px}
+.sec h2{font-family:var(--hand);font-size:34px;color:var(--sand);margin:0 0 10px;line-height:1;font-weight:700}
+.tl{list-style:none;margin:0;padding:0 0 0 18px;border-left:3px solid var(--mustard);display:grid;gap:12px}
+.tl li{position:relative}
+.tl li::before{content:"";position:absolute;left:-26px;top:7px;width:13px;height:13px;border-radius:50%;background:var(--paper);border:3px solid var(--sand)}
+.tl b{display:inline-block;min-width:3.2em;color:var(--sand)}
+.qa{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.qa div{background:color-mix(in srgb,var(--mustard) 14%,var(--paper));border-radius:12px;padding:12px 14px}
+.qa dt{font-size:13px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2)}
+.qa dd{margin:4px 0 0;font:700 23px/1.2 var(--hand);color:var(--ink)}
+.letter{font:700 26px/1.3 var(--hand);color:var(--blue);margin:0;white-space:pre-line}
+.notes{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+.note{background:#FFF3B8;color:#1C2A44;padding:14px 14px 12px;border-radius:4px;box-shadow:0 6px 14px rgba(0,0,0,.14);position:relative}
+.note:nth-child(3n+2){background:#DDF1FF;transform:rotate(1deg)}.note:nth-child(3n){background:#FFE0EA;transform:rotate(-1deg)}
+.note p{margin:0;font:700 22px/1.25 var(--hand)}
+.note .by{margin-top:8px;font-size:13px;font-weight:700;color:#4A566E}
+.note button{position:absolute;top:4px;right:6px;border:0;background:none;color:#4A566E;font-size:18px;cursor:pointer}
+.write{margin-top:14px;display:grid;gap:8px;max-width:560px}
+.lnk{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:14.5px;color:#0A66C2;text-decoration:none;border:1.5px solid currentColor;border-radius:999px;padding:6px 11px;margin-top:8px}
+/* form */
+dialog.f{border:0;padding:0;max-height:calc(100dvh - 24px);overflow:auto;border-radius:20px;max-width:680px;width:calc(100% - 24px);background:var(--paper);color:var(--ink);box-shadow:0 20px 60px rgba(0,0,0,.35)}
+dialog.f::backdrop{background:rgba(15,21,38,.6)}
+dialog.f form{padding:clamp(18px,3vw,26px);display:grid;gap:14px}
+dialog.f h2{margin:0;font-size:24px}
+.steps{display:flex;gap:6px}.steps span{flex:1;height:6px;border-radius:3px;background:var(--line)}.steps span.on{background:var(--sand)}
+.fs{display:none;gap:12px}.fs.on{display:grid}
+label.q{display:grid;gap:5px;font-weight:600;font-size:14.5px}
+label.q small{font-weight:500;color:var(--ink-2)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media (max-width:560px){.two{grid-template-columns:1fr}}
+.jr{display:grid;grid-template-columns:88px 1fr auto;gap:8px;align-items:center}
+.jr button{border:0;background:none;color:var(--ink-2);font-size:20px;cursor:pointer}
+footer{padding-block:34px 44px;text-align:center;color:var(--ink-2)}footer .hand{font-family:var(--hand);font-size:28px;color:var(--sand)}
+[hidden]{display:none!important}
+@media print{
+  nav,footer,header,.tools,#dir,.noprint,.write,.note button{display:none!important}
+  body{background:#fff;color:#000;font-size:13px}
+  .page{border:0;margin:0;padding:0 10px;background-image:none;box-shadow:none}
+  .page::before{display:none}
+  .sec{break-inside:avoid-page;margin-top:18px}
+  .qa div,.note{break-inside:avoid;box-shadow:none;border:1px solid #ccc}
+  .pol figure{box-shadow:none;border:1px solid #ccc}
+}
+</style>
+<link rel="stylesheet" href="theme.css?v=2"></head><body>
+<nav><div class="wrap"><a class="brand" href="index.html">MBM <b>'01</b></a><div class="links"><a href="index.html">Home</a><a href="batchmates.html">Then &amp; Now</a><a href="slam.html">Slam Book</a><a href="index.html#register">Register</a></div></div></nav>
+<main class="wrap">
+<header>
+  <div class="label">Digital slam book</div>
+  <h1>25 years, <span class="hand">one page each</span></h1>
+  <p class="lead">Remember passing a slam book around the hostel? This one covers 2001 to 2026: where life took you, what stayed the same, and a note in each other's books before we meet in Jodhpur.</p>
+  <div class="row"><button class="btn big" id="fill" type="button">✍️ Fill my slam book</button><span class="small" id="count"></span></div>
+</header>
+
+<section id="dir">
+  <div class="tools">
+    <input class="inp" id="q" type="search" placeholder="Search a name, city or company" aria-label="Search">
+    <div class="chips" id="br"></div>
+  </div>
+  <div class="grid" id="grid"></div>
+  <details class="yet" id="yet"><summary id="yetS">Yet to write their page</summary><p class="small" style="margin-top:8px">Tap a name to send them a Dare Card.</p><div class="yetl" id="yetL"></div></details>
+</section>
+
+<section id="prof" hidden>
+  <div class="row noprint" style="margin-top:14px"><a class="btn ghost sm" href="#" id="toDir">← All pages</a><button class="btn wa sm" id="pShare" type="button">Share this page</button><button class="btn ghost sm" id="pPdf" type="button">Save as PDF</button><button class="btn sm" id="pEdit" type="button" hidden>Edit my page</button></div>
+  <article class="page" id="page"></article>
+</section>
+</main>
+
+<dialog class="f" id="dlg" aria-labelledby="fT"><form id="form" novalidate>
+  <h2 id="fT">My slam book page</h2>
+  <div class="steps" aria-hidden="true"><span></span><span></span><span></span></div>
+  <p class="small" id="fStep"></p>
+
+  <div class="fs" data-s="0">
+    <div class="two">
+      <label class="q">Branch<select class="inp" name="branch"></select></label>
+      <label class="q">Nickname in college<input class="inp" name="nick" maxlength="40"></label>
+    </div>
+    <label class="q">What do you do now?<small>Role and company, or whatever you'd like to say</small><input class="inp" name="headline" maxlength="90" placeholder="e.g. VP Engineering, Coforge"></label>
+    <div class="two">
+      <label class="q">City<input class="inp" name="city" maxlength="60"></label>
+      <label class="q">LinkedIn (optional)<input class="inp" name="linkedin" maxlength="120" placeholder="linkedin.com/in/…" inputmode="url"></label>
+    </div>
+    <label class="q">Family<small>Optional</small><input class="inp" name="family" maxlength="120" placeholder="e.g. Married, two kids, one very spoilt dog"></label>
+    <div class="q" style="display:grid;gap:6px"><b style="font-size:14.5px">Your 25-year journey</b><small class="small">Milestones since 2001: jobs, cities, moves, big life moments.</small><div id="jr" style="display:grid;gap:8px"></div><button class="btn ghost sm" type="button" id="jAdd" style="justify-self:start">+ Add a milestone</button></div>
+    <label class="q">Proudest moment of the last 25 years<textarea class="inp" name="proud" maxlength="220"></textarea></label>
+  </div>
+
+  <div class="fs" data-s="1">
+    <div class="two">
+      <label class="q">Hostel &amp; room (or day scholar)<input class="inp" name="hostel" maxlength="50"></label>
+      <label class="q">Favourite canteen order<input class="inp" name="canteen" maxlength="60"></label>
+      <label class="q">Class you bunked the most<input class="inp" name="bunk" maxlength="60"></label>
+      <label class="q">Song of our college days<input class="inp" name="song" maxlength="70"></label>
+      <label class="q">Favourite professor<input class="inp" name="prof" maxlength="60"></label>
+      <label class="q">What keeps you busy outside work<input class="inp" name="hobby" maxlength="120"></label>
+    </div>
+    <label class="q">Best MBM memory<textarea class="inp" name="memory" maxlength="260"></textarea></label>
+    <label class="q">Craziest thing you did in college (that you can admit)<textarea class="inp" name="crazy" maxlength="220"></textarea></label>
+  </div>
+
+  <div class="fs" data-s="2">
+    <label class="q">One thing you'd tell your 2001 self<textarea class="inp" name="tell2001" maxlength="220"></textarea></label>
+    <label class="q">Biggest lesson from 25 years<textarea class="inp" name="learnt" maxlength="220"></textarea></label>
+    <label class="q">Bucket list for the next 25<textarea class="inp" name="bucket" maxlength="220"></textarea></label>
+    <label class="q">A message to the batch<textarea class="inp" name="msg" maxlength="320" style="min-height:110px"></textarea></label>
+    <p class="small">Everything here is visible to anyone with the site link. Leave out anything you'd rather not share.</p>
+  </div>
+
+  <p class="msg" id="fMsg" role="status" aria-live="polite"></p>
+  <div class="row"><button class="btn ghost" type="button" id="fBack">Back</button><button class="btn" type="button" id="fNext">Next</button><button class="btn big" type="submit" id="fSave" hidden>Save my page</button><button class="btn ghost" type="button" id="fClose" style="margin-left:auto">Close</button></div>
+</form></dialog>
+
+<footer class="wrap"><div class="hand">See you in Jodhpur · 25–27 Dec 2026</div><p>MBM '01 Silver Jubilee Reunion · Garh Govind</p></footer>
+
+<script src="names.js"></script>
+<script src="auth.js"></script>
+<script>
+(function(){
+  var API="https://script.google.com/macros/s/AKfycby7EIHjCJ053khkkMHN4-gx1mttPKGnQrIkiNw7YXcTFotYF1it1OUQYgCQzlJSMfd9Ng/exec";
+  var SITE="https://mbm01.life/slam.html";
+  var $=function(id){return document.getElementById(id);};
+  function el(tag,cls,txt){ var e=document.createElement(tag); if(cls) e.className=cls; if(txt!=null) e.textContent=txt; return e; }
+  function norm(s){ return String(s||"").toLowerCase().replace(/[^a-z]/g,""); }
+  function same(a,b){ a=norm(a); b=norm(b); return !!a&&!!b&&(a===b||(Math.min(a.length,b.length)>=6&&(a.indexOf(b)===0||b.indexOf(a)===0))); }
+  function initials(n){ var p=String(n).split(" ").filter(Boolean); return ((p[0]||"?")[0]+(p.length>1?p[p.length-1][0]:"")).toUpperCase(); }
+  function img(id,label){ if(!id) return el("span",null,label); var i=new Image(); i.referrerPolicy="no-referrer"; i.alt=""; i.decoding="async"; i.src="https://drive.google.com/thumbnail?id="+encodeURIComponent(id)+"&sz=w600"; return i; }
+
+  var Q=[["nick","Nickname"],["hostel","Hostel & room"],["canteen","Canteen order"],["bunk","Bunked the most"],["song","Song of our college days"],["prof","Favourite professor"],["hobby","Outside work"],["memory","Best MBM memory"],["crazy","Craziest thing in college"]];
+  var Q2=[["tell2001","To my 2001 self"],["learnt","Biggest lesson in 25 years"],["bucket","Bucket list for the next 25"],["proud","Proudest moment"]];
+
+  // ---- roster ----
+  var ROSTER=[], BR=[];
+  Object.keys(window.MBM_ROSTER||{}).forEach(function(b){ if(b!=="Branch not listed") BR.push(b); (window.MBM_ROSTER[b]||[]).forEach(function(n){ var p=n.split("|"); ROSTER.push({n:p[0],b:b,m:p[1]==="memory"}); }); });
+  function branchOf(n){ for(var i=0;i<ROSTER.length;i++) if(same(ROSTER[i].n,n)) return ROSTER[i].b; return ""; }
+
+  var DATA={profiles:[],notes:[]}, ENTRIES=[], filter="All";
+  function entryOf(n){ for(var i=0;i<ENTRIES.length;i++) if(same(ENTRIES[i].name,n)) return ENTRIES[i]; return null; }
+  function profOf(n){ for(var i=0;i<DATA.profiles.length;i++) if(same(DATA.profiles[i].n,n)) return DATA.profiles[i]; return null; }
+  function notesFor(n){ return DATA.notes.filter(function(x){ return same(x.to,n); }); }
+
+  // ---- directory ----
+  var chips=$("br"); ["All"].concat(BR).forEach(function(b){ var c=el("button",null,b); c.type="button"; c.setAttribute("aria-pressed",b==="All"?"true":"false"); c.onclick=function(){ filter=b; [].forEach.call(chips.children,function(x){ x.setAttribute("aria-pressed",x===c?"true":"false"); }); renderDir(); }; chips.appendChild(c); });
+  $("q").addEventListener("input",renderDir);
+
+  function renderDir(){
+    var q=norm($("q").value), g=$("grid"); g.textContent="";
+    var list=DATA.profiles.slice().sort(function(a,b){ return String(b.ts).localeCompare(String(a.ts)); }).filter(function(p){
+      if(filter!=="All" && (p.b||branchOf(p.n))!==filter) return false;
+      if(!q) return true; var a=p.a||{}; return norm([p.n,a.city,a.headline,a.nick].join(" ")).indexOf(q)>-1; });
+    list.forEach(function(p){ var a=p.a||{}, e=entryOf(p.n);
+      var c=el("a","pcard"); c.href="#p="+encodeURIComponent(p.n);
+      var ph=el("div","ph"), t=el("div"), n=el("div"); t.appendChild(img(e&&e.then, initials(p.n))); n.appendChild(img(e&&e.now,"2026")); ph.appendChild(t); ph.appendChild(n); c.appendChild(ph);
+      c.appendChild(el("div","b",p.b||branchOf(p.n)||"MBM '01")); c.appendChild(el("h3",null,p.n));
+      if(a.nick) c.appendChild(el("div","nick","“"+a.nick+"”"));
+      var h=[a.headline,a.city].filter(Boolean).join(" · "); if(h) c.appendChild(el("p","h",h));
+      var nc=notesFor(p.n).length; c.appendChild(el("div","nc",nc? "📝 "+nc+" note"+(nc>1?"s":"")+" from batchmates":"Be the first to write a note"));
+      g.appendChild(c); });
+    if(!list.length){ var em=el("div","empty", DATA.profiles.length? "No pages match that search." : "No pages yet. Be the first to fill yours!"); g.appendChild(em); }
+    // not yet written
+    var yl=$("yetL"); yl.textContent=""; var yet=ROSTER.filter(function(r){ return !r.m && !profOf(r.n) && (filter==="All"||r.b===filter) && (!q||norm(r.n).indexOf(q)>-1); });
+    $("yetS").textContent=yet.length+" batchmates yet to write their page";
+    yet.forEach(function(r){ var a=el("a",null,r.n); a.href="dare.html?to="+encodeURIComponent(r.n)+"&t=notice"; yl.appendChild(a); });
+    $("count").textContent=DATA.profiles.length? DATA.profiles.length+" page"+(DATA.profiles.length>1?"s":"")+" written so far":"";
+  }
+
+  // ---- profile ----
+  var current=null;
+  function renderProfile(name){
+    var p=profOf(name), pg=$("page"); pg.textContent=""; current=p? p.n : name;
+    var a=(p&&p.a)||{}, e=entryOf(name), b=(p&&p.b)||branchOf(name);
+    document.title=current+" · Slam Book · MBM '01";
+    var head=el("div","phead"), pol=el("div","pol");
+    [["2001",e&&e.then],["2026",e&&e.now]].forEach(function(x,i){ var f=el("figure"), im=el("div","im"); im.appendChild(img(x[1], i? "?" : initials(current))); f.appendChild(im); f.appendChild(el("figcaption",null,x[0])); pol.appendChild(f); });
+    head.appendChild(pol);
+    var info=el("div"); info.appendChild(el("div","label",b||"MBM '01")); info.appendChild(el("h2","pname",current));
+    if(a.nick) info.appendChild(el("p","pnick","a.k.a. “"+a.nick+"”"));
+    var hl=a.headline||(e&&e.work); if(hl) info.appendChild(el("p","pmeta",hl));
+    var ct=[a.city||(e&&e.city), a.family||(e&&e.family)].filter(Boolean).join(" · "); if(ct) info.appendChild(el("p","pmeta",ct));
+    var li=a.linkedin||(e&&e.linkedin); if(li && /^https:\/\/www\.linkedin\.com\/in\//.test(li)){ var l=el("a","lnk","in · LinkedIn"); l.href=li; l.target="_blank"; l.rel="noopener noreferrer"; info.appendChild(l); }
+    head.appendChild(info); pg.appendChild(head);
+
+    if(!p){ var s=el("div","sec"); s.appendChild(el("h2",null,"This page is still blank")); s.appendChild(el("p",null,current+" hasn't filled their slam book yet. You can still leave a note below, or nudge them.")); var r=el("div","row noprint"), d=el("a","btn ghost sm","🎯 Send a Dare Card"); d.href="dare.html?to="+encodeURIComponent(current)+"&t=notice"; r.appendChild(d); s.appendChild(r); pg.appendChild(s); }
+
+    if(a.journey && a.journey.length){ var sj=el("div","sec"); sj.appendChild(el("h2",null,"2001 → 2026")); var ul=el("ul","tl");
+      a.journey.slice().sort(function(x,y){ return (Number(x.y)||0)-(Number(y.y)||0); }).forEach(function(j){ var li2=el("li"); if(j.y){ li2.appendChild(el("b",null,j.y)); li2.appendChild(document.createTextNode(" ")); } li2.appendChild(document.createTextNode(j.t)); ul.appendChild(li2); });
+      sj.appendChild(ul); pg.appendChild(sj); }
+
+    var qa=Q.filter(function(x){ return a[x[0]] && x[0]!=="nick"; }); if(!a.memory && e&&e.memory) { a=Object.assign({},a,{memory:e.memory}); qa=Q.filter(function(x){ return a[x[0]] && x[0]!=="nick"; }); }
+    if(qa.length){ var sq=el("div","sec"); sq.appendChild(el("h2",null,"The slam book questions")); var dl=el("dl","qa"); qa.forEach(function(x){ var d=el("div"); d.appendChild(el("dt",null,x[1])); d.appendChild(el("dd",null,a[x[0]])); dl.appendChild(d); }); sq.appendChild(dl); pg.appendChild(sq); }
+    var q2=Q2.filter(function(x){ return a[x[0]]; });
+    if(q2.length){ var s2=el("div","sec"); s2.appendChild(el("h2",null,"25 years wiser")); var dl2=el("dl","qa"); q2.forEach(function(x){ var d=el("div"); d.appendChild(el("dt",null,x[1])); d.appendChild(el("dd",null,a[x[0]])); dl2.appendChild(d); }); s2.appendChild(dl2); pg.appendChild(s2); }
+    if(a.msg){ var sm=el("div","sec"); sm.appendChild(el("h2",null,"Dear batch,")); sm.appendChild(el("p","letter",a.msg)); sm.appendChild(el("p","small","— "+current)); pg.appendChild(sm); }
+
+    // notes
+    var sn=el("div","sec"); sn.appendChild(el("h2",null,"Notes from batchmates")); var nl=el("div","notes"), ns=notesFor(current), me=(MBMAuth.get()||{}).name;
+    ns.forEach(function(n){ var d=el("div","note"); d.appendChild(el("p",null,n.t)); d.appendChild(el("div","by","— "+n.from));
+      if(me && (same(me,n.from)||same(me,n.to))){ var x=el("button",null,"×"); x.type="button"; x.title="Remove note"; x.setAttribute("aria-label","Remove note"); x.onclick=function(){ delNote(n.id); }; d.appendChild(x); }
+      nl.appendChild(d); });
+    if(!ns.length) nl.appendChild(el("p","small","No notes yet. Write the first one!"));
+    sn.appendChild(nl);
+    var w=el("div","write"); w.innerHTML='<label class="q" for="nT"></label><textarea class="inp" id="nT" maxlength="280" placeholder="A memory, an inside joke, or just “see you in Jodhpur!”"></textarea><div class="row"><button class="btn" type="button" id="nGo">Post note</button><span class="small" id="nC">0/280</span></div><p class="msg" id="nM" role="status" aria-live="polite"></p>';
+    w.querySelector("label").textContent="Write in "+current.split(" ")[0]+"'s slam book"; sn.appendChild(w); pg.appendChild(sn);
+    $("nT").addEventListener("input",function(){ $("nC").textContent=this.value.length+"/280"; });
+    $("nGo").onclick=addNote;
+    $("pEdit").hidden=!(me && same(me,current));
+    $("dir").hidden=true; $("prof").hidden=false; document.querySelector("header").hidden=true; window.scrollTo(0,0);
+  }
+  function showDir(){ document.title="Slam Book · MBM '01"; $("dir").hidden=false; $("prof").hidden=true; document.querySelector("header").hidden=false; renderDir(); }
+  function route(){ var h=location.hash; if(/^#p=/.test(h)) renderProfile(decodeURIComponent(h.slice(3))); else showDir(); if(h==="#edit") openForm(); }
+  window.addEventListener("hashchange",route);
+  $("toDir").onclick=function(e){ e.preventDefault(); history.pushState(null,"",location.pathname); showDir(); };
+  $("pPdf").onclick=function(){ window.print(); };
+  $("pShare").onclick=function(){ var u=SITE+"#p="+encodeURIComponent(current), t="📖 "+current+"'s page in the MBM '01 slam book. Read it and write a note: "+u;
+    if(navigator.share) navigator.share({title:current+" · MBM '01 Slam Book",text:t}).catch(function(){}); else window.open("https://wa.me/?text="+encodeURIComponent(t),"_blank","noopener"); };
+  $("pEdit").onclick=function(){ openForm(); };
+
+  // ---- server ----
+  function post(body){ return MBMAuth.ensure().then(function(a){ body.code="MBM2001"; body.me=a.me; body.pin=a.pin;
+    return fetch(API,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(body)}).then(function(r){ return r.json(); })
+      .then(function(d){ if(!d.ok && d.error==="auth"){ MBMAuth.clear(); } return d; }); }); }
+  function errText(d){ return {auth:"Please confirm it's you again.",locked:"Too many tries. Wait 30 minutes.",limit:"You've already left 5 notes here. Leave some room for others!",self:"You can't write in your own slam book. Edit your page instead.",text:"Write something first."}[d&&d.error]||"Something went wrong. Please try again."; }
+
+  function addNote(){ var t=$("nT").value.trim(), m=$("nM"); if(!t){ m.className="msg err"; m.textContent="Write something first."; return; }
+    $("nGo").disabled=true; m.className="msg"; m.textContent="Posting…";
+    post({action:"note_add",to:current,text:t}).then(function(d){ $("nGo").disabled=false;
+      if(d.ok){ DATA.notes.push(d.note); renderProfile(current); var mm=$("nM"); mm.className="msg ok"; mm.textContent="Posted. Thank you!"; }
+      else { m.className="msg err"; m.textContent=errText(d); } }).catch(function(e){ $("nGo").disabled=false; if(e!=="cancel"){ m.className="msg err"; m.textContent="No connection. Try again."; } else m.textContent=""; }); }
+  function delNote(id){ if(!confirm("Remove this note?")) return;
+    post({action:"note_del",id:id}).then(function(d){ if(d.ok){ DATA.notes=DATA.notes.filter(function(n){ return n.id!==id; }); renderProfile(current); } else alert(errText(d)); }).catch(function(){}); }
+
+  // ---- form ----
+  var F=$("form"), dlg=$("dlg"), step=0, TIPS=["Step 1 of 3 · Where life took you","Step 2 of 3 · The classic slam book questions","Step 3 of 3 · 25 years wiser"];
+  var bs=F.branch; [""].concat(BR).forEach(function(b){ var o=el("option",null,b||"Choose branch"); o.value=b; bs.appendChild(o); });
+  function jRow(y,t){ var r=el("div","jr"); r.innerHTML='<input class="inp" inputmode="numeric" maxlength="4" placeholder="Year" aria-label="Year"><input class="inp" maxlength="100" placeholder="e.g. Joined Infosys, Pune" aria-label="Milestone"><button type="button" aria-label="Remove milestone">×</button>';
+    var i=r.querySelectorAll("input"); i[0].value=y||""; i[1].value=t||""; r.querySelector("button").onclick=function(){ r.remove(); }; $("jr").appendChild(r); }
+  $("jAdd").onclick=function(){ if($("jr").children.length<10) jRow(); };
+  function show(s){ step=s; [].forEach.call(F.querySelectorAll(".fs"),function(x){ x.classList.toggle("on",Number(x.dataset.s)===s); });
+    [].forEach.call(F.querySelectorAll(".steps span"),function(x,i){ x.classList.toggle("on",i<=s); });
+    $("fStep").textContent=TIPS[s]; $("fBack").hidden=s===0; $("fNext").hidden=s===2; $("fSave").hidden=s!==2; $("fMsg").textContent=""; F.querySelector(".fs.on input,.fs.on textarea").focus(); }
+  $("fNext").onclick=function(){ if(step===0 && !F.branch.value){ $("fMsg").className="msg err"; $("fMsg").textContent="Choose your branch."; F.branch.focus(); return; } show(step+1); };
+  $("fBack").onclick=function(){ show(step-1); };
+  $("fClose").onclick=function(){ dlg.close(); if(location.hash==="#edit") history.replaceState(null,"",location.pathname); };
+
+  function openForm(){ MBMAuth.ensure().then(function(a){
+      var p=profOf(a.name), x=(p&&p.a)||{}, e=entryOf(a.name)||{};
+      F.reset(); $("jr").textContent="";
+      F.branch.value=(p&&p.b)||branchOf(a.name)||(BR.indexOf(e.branch)>-1?e.branch:"");
+      var pre={headline:x.headline||e.work,city:x.city||e.city,family:x.family||e.family,memory:x.memory||e.memory,linkedin:x.linkedin||e.linkedin};
+      ["nick","headline","city","linkedin","family","proud","hostel","canteen","bunk","song","prof","hobby","memory","crazy","tell2001","learnt","bucket","msg"].forEach(function(k){ if(F[k]) F[k].value=x[k]||pre[k]||""; });
+      (x.journey&&x.journey.length? x.journey : [{y:"2001",t:"Graduated from MBM, Jodhpur"},{},{}]).forEach(function(j){ jRow(j.y,j.t); });
+      $("fT").textContent=(p?"Edit":"Fill")+" my slam book · "+a.name;
+      if(dlg.showModal) dlg.showModal(); else dlg.setAttribute("open",""); show(0);
+    }).catch(function(){}); }
+  $("fill").onclick=openForm;
+
+  F.onsubmit=function(ev){ ev.preventDefault(); var ans={}, m=$("fMsg");
+    ["nick","headline","city","linkedin","family","proud","hostel","canteen","bunk","song","prof","hobby","memory","crazy","tell2001","learnt","bucket","msg"].forEach(function(k){ var v=(F[k].value||"").trim(); if(v) ans[k]=v; });
+    if(ans.linkedin && !/linkedin\.com\/in\/[A-Za-z0-9\-_%.]{2,}/i.test(ans.linkedin)){ show(0); m.className="msg err"; m.textContent="LinkedIn should look like linkedin.com/in/your-name"; F.linkedin.focus(); return; }
+    ans.journey=[].map.call($("jr").children,function(r){ var i=r.querySelectorAll("input"); return {y:i[0].value.replace(/\D/g,"").slice(0,4),t:i[1].value.trim()}; }).filter(function(j){ return j.t; });
+    $("fSave").disabled=true; m.className="msg"; m.textContent="Saving…";
+    post({action:"slam_save",branch:F.branch.value,answers:ans}).then(function(d){ $("fSave").disabled=false;
+      if(d.ok){ DATA.profiles=DATA.profiles.filter(function(p){ return !same(p.n,d.profile.n); }); DATA.profiles.push(d.profile);
+        m.className="msg ok"; m.textContent="Saved! Opening your page…"; setTimeout(function(){ dlg.close(); location.hash="p="+encodeURIComponent(d.profile.n); route(); },800); }
+      else { m.className="msg err"; m.textContent=errText(d); } }).catch(function(e){ $("fSave").disabled=false; if(e!=="cancel"){ m.className="msg err"; m.textContent="No connection. Try again."; } else m.textContent=""; }); };
+
+  // ---- load ----
+  $("grid").appendChild(el("div","empty","Opening the slam book…"));
+  Promise.all([
+    fetch(API+"?action=slam").then(function(r){ return r.json(); }).catch(function(){ return {profiles:[],notes:[]}; }),
+    fetch(API).then(function(r){ return r.json(); }).catch(function(){ return {entries:[]}; })
+  ]).then(function(r){ DATA={profiles:r[0].profiles||[],notes:r[0].notes||[]}; ENTRIES=r[1].entries||[]; route(); });
+})();
+</script>
+</body></html>
