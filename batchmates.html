@@ -109,6 +109,7 @@ footer .hand{font-family:var(--hand);font-size:30px;font-weight:700;color:var(--
 
 <footer class="wrap"><div class="hand">Once MBMites, Always MBMites ♥</div><p>Only what you share appears here. No phone numbers or emails are collected. Uploaded again? Your latest one replaces the earlier card.</p></footer>
 
+<script src="auth.js"></script>
 <script>
 (function(){
   // Web app URL of the Google Apps Script backend (ends in /exec)
@@ -187,6 +188,7 @@ footer .hand{font-family:var(--hand);font-size:30px;font-weight:700;color:var(--
   fBranch.onchange=function(){ fillNames(); };
   function setMsg(t,cls){ fMsg.textContent=t; fMsg.className="msg"+(cls?" "+cls:""); }
   function openDlg(branch, name){
+    if(window.MBMAuth && !MBMAuth.get()){ MBMAuth.ensure().then(function(){ openDlg(branch, name); }).catch(function(){}); return; }
     fBranch.value = branch || active; fillNames(name);
     var r = name && entries[norm(name)];
     ["fCity","fWork","fFamily","fMemory"].forEach(function(id){ $(id).value = r ? (r[{fCity:"city",fWork:"work",fFamily:"family",fMemory:"memory"}[id]]||"") : ""; });
@@ -221,12 +223,13 @@ footer .hand{font-family:var(--hand);font-size:30px;font-weight:700;color:var(--
     if(!API_URL){ setMsg("Uploads open very soon. Please try again in a day or two.","err"); return; }
     fSubmit.disabled=true; setMsg("Uploading… this can take up to a minute.");
     var body={ branch:fBranch.value, name:name, then:pics.then, now:pics.now, city:$("fCity").value, work:$("fWork").value, family:$("fFamily").value, memory:$("fMemory").value, code:code, consent:true };
-    fetch(API_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(body)})
+    MBMAuth.ensure().then(function(a){ body.me=a.me; body.pin=a.pin; return fetch(API_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(body)}); })
       .then(function(r){return r.json();})
       .then(function(d){
         if(d.ok){
           entries[norm(d.entry.name)]=d.entry; active=d.entry.branch in ROSTER ? d.entry.branch : active; renderTabs(); render();
           setMsg("Done! Your card is up. Thank you!","ok"); setTimeout(function(){ dlg.close(); }, 1600); }
+        else if(d.error==="auth"||d.error==="locked"){ MBMAuth.clear(); setMsg(d.error==="locked"?"Too many tries. Please wait 30 minutes.":"We couldn't confirm your registration. Close this and verify again.","err"); fSubmit.disabled=false; }
         else if(d.error==="code"){ setMsg("Upload failed. Please try again.","err"); fSubmit.disabled=false; }
         else { setMsg("Upload failed: "+(d.error||"unknown error")+". Please try again.","err"); fSubmit.disabled=false; }
       })

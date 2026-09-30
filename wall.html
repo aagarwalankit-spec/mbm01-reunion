@@ -170,6 +170,7 @@ footer .hand{font-family:var(--hand);font-size:30px;font-weight:700;color:var(--
 <footer class="wrap"><div class="hand">Once MBMites, Always MBMites ♥</div><p>Photos are stored in the reunion's Google Drive. The organisers can take down any photo or tag on request.</p></footer>
 
 <script src="names.js"></script>
+<script src="auth.js"></script>
 <script>
 (function(){
   var API_URL = "https://script.google.com/macros/s/AKfycby7EIHjCJ053khkkMHN4-gx1mttPKGnQrIkiNw7YXcTFotYF1it1OUQYgCQzlJSMfd9Ng/exec";
@@ -182,7 +183,7 @@ footer .hand{font-family:var(--hand);font-size:30px;font-weight:700;color:var(--
   function el(tag, cls, txt){ var e=document.createElement(tag); if(cls) e.className=cls; if(txt!=null) e.textContent=txt; return e; }
   function img(id, w){ return "https://drive.google.com/thumbnail?id="+encodeURIComponent(id)+"&sz=w"+(w||600); }
   function store(k,v){ try{ if(v===undefined) return localStorage.getItem(k); localStorage.setItem(k,v); }catch(e){ return null; } }
-  function post(body){ body.code=CODE; return fetch(API_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(body)}).then(function(r){return r.json();}); }
+  function post(body){ body.code=CODE; var au=window.MBMAuth&&MBMAuth.get(); if(au){ body.me=au.me; body.pin=au.pin; } return fetch(API_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(body)}).then(function(r){return r.json();}); }
 
   // names list
   var ALL=[], NAMEMAP={};
@@ -339,7 +340,7 @@ footer .hand{font-family:var(--hand);font-size:30px;font-weight:700;color:var(--
 
   // ---------- upload ----------
   var picked=[], up=$("up");
-  $("openUp").onclick=function(){ picked=[]; $("thumbs").textContent=""; $("files").value=""; $("cap").value=""; $("me").value=store("mbm01me")||""; msg(""); $("uGo").disabled=false; up.showModal(); };
+  $("openUp").onclick=function(){ if(!MBMAuth.get()){ MBMAuth.ensure().then(function(){ $("openUp").onclick(); }).catch(function(){}); return; } picked=[]; $("thumbs").textContent=""; $("files").value=""; $("cap").value=""; $("me").value=(MBMAuth.get()||{}).name||store("mbm01me")||""; msg(""); $("uGo").disabled=false; up.showModal(); };
   function msg(t,c){ var m=$("uMsg"); m.textContent=t; m.className="msg"+(c?" "+c:""); }
   function shrink(file, cb){
     var url=URL.createObjectURL(file), im=new Image();
@@ -363,7 +364,7 @@ footer .hand{font-family:var(--hand);font-size:30px;font-weight:700;color:var(--
       if(i>=list.length){ msg("Done! "+added.length+" photo"+(added.length>1?"s":"")+" added.","ok"); photos=photos.concat(added); render(); board(); setTimeout(function(){ up.close(); if(added[0]) open(added[0].id); }, 900); return; }
       msg("Uploading "+(i+1)+" of "+list.length+"…");
       post({action:"wall_upload",photo:list[i],caption:$("cap").value,uploader:me,consent:true,source:"upload"}).then(function(d){
-        if(d.ok) added.push(d.photo); i++; next();
+        if(d.ok) added.push(d.photo); else if(d.error==="auth"||d.error==="locked"){ MBMAuth.clear(); msg("We couldn't confirm your registration. Close and tap Upload photos to verify again.","err"); $("uGo").disabled=false; return; } i++; next();
       }).catch(function(){ msg("Upload stopped (connection). "+added.length+" uploaded.","err"); photos=photos.concat(added); render(); $("uGo").disabled=false; });
     })();
   });

@@ -141,6 +141,7 @@ footer .hand{font-family:var(--hand);font-size:30px;font-weight:700;color:var(--
 <footer class="wrap"><div class="hand">Once MBMites, Always MBMites ♥</div><p>The camera works only on this page and nothing is saved unless you download or post.</p></footer>
 
 <script src="names.js"></script>
+<script src="auth.js"></script>
 <script>
 (function(){
   var API_URL = "https://script.google.com/macros/s/AKfycby7EIHjCJ053khkkMHN4-gx1mttPKGnQrIkiNw7YXcTFotYF1it1OUQYgCQzlJSMfd9Ng/exec";
@@ -398,11 +399,11 @@ footer .hand{font-family:var(--hand);font-size:30px;font-weight:700;color:var(--
     // keep the upload small: long side 1600px
     var s=Math.min(1,1600/Math.max(c.width,c.height)), d=document.createElement("canvas"); d.width=Math.round(c.width*s); d.height=Math.round(c.height*s); d.getContext("2d").drawImage(c,0,0,d.width,d.height);
     $("postBtn").disabled=true; m.className="msg"; m.textContent="Posting…";
-    fetch(API_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({action:"wall_upload",code:CODE,photo:d.toDataURL("image/jpeg",.86),uploader:me,caption:$("cap").value,consent:true,source:"booth"})})
+    MBMAuth.ensure().then(function(a){ return fetch(API_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({action:"wall_upload",code:CODE,me:a.me,pin:a.pin,photo:d.toDataURL("image/jpeg",.86),uploader:me,caption:$("cap").value,consent:true,source:"booth"})}); })
       .then(function(r){return r.json();}).then(function(x){
         if(x.ok){ m.className="msg ok"; m.innerHTML='Posted! <a href="wall.html#p='+x.photo.id+'">See it on the wall and tag your friends →</a>'; }
-        else { m.className="msg err"; m.textContent="Couldn't post: "+(x.error||"error"); $("postBtn").disabled=false; }
-      }).catch(function(){ m.className="msg err"; m.textContent="No connection. Try again."; $("postBtn").disabled=false; });
+        else { if(x.error==="auth"||x.error==="locked") MBMAuth.clear(); m.className="msg err"; m.textContent = x.error==="auth" ? "We couldn't confirm your registration. Tap Post to wall to verify again." : x.error==="locked" ? "Too many tries. Please wait 30 minutes." : "Couldn't post: "+(x.error||"error"); $("postBtn").disabled=false; }
+      }).catch(function(e){ $("postBtn").disabled=false; if(e==="cancel"){ m.className="msg"; m.textContent="Posting to the wall is for registered batchmates. You can still download or share."; return; } m.className="msg err"; m.textContent="No connection. Try again."; });
   };
 
   if(document.fonts && document.fonts.load){ Promise.all(["76px 'Permanent Marker'","700 40px Caveat","700 26px Figtree","800 30px Figtree"].map(function(f){ return document.fonts.load(f); })).then(function(){ render.dirty=true; render(); }); }
