@@ -38,6 +38,7 @@ h1 .hand{font-family:var(--hand);color:var(--blue);font-weight:700}
 .card h3{margin:0;font-size:18px;line-height:1.25}
 .meta{margin:0;font-size:14.5px;color:var(--ink-2);line-height:1.45}
 .quote{margin:0;font-family:var(--hand);font-size:21px;line-height:1.15;color:var(--blue)}
+.lnk{align-self:flex-start;display:inline-flex;gap:6px;align-items:center;font:700 13.5px/1 var(--body);color:#0A66C2;background:color-mix(in srgb,#0A66C2 10%,var(--paper));border-radius:999px;padding:6px 10px;text-decoration:none}
 .addme{align-self:flex-start;font:700 14px/1 var(--body);color:var(--sand);background:none;border:0;padding:4px 0;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
 .card.memory{border-style:dashed;align-items:center;justify-content:center;text-align:center;min-height:220px}
 .card.memory .flame{width:22px;height:34px;border-radius:50%/60% 60% 40% 40%;background:radial-gradient(circle at 50% 70%,#FFE9A8,#E8BA4A 55%,#B8612F);margin:0 auto 6px}
@@ -99,6 +100,7 @@ footer .hand{font-family:var(--hand);font-size:30px;font-weight:700;color:var(--
       <label class="f">City you live in<input type="text" id="fCity" maxlength="60" placeholder="e.g. Pune"></label>
       <label class="f">What you do now<input type="text" id="fWork" maxlength="90" placeholder="e.g. Project Director, L&amp;T"></label>
     </div>
+    <label class="f"><span>LinkedIn profile <span class="o">(optional)</span></span><input type="url" id="fLinkedin" maxlength="200" inputmode="url" autocomplete="url" placeholder="e.g. linkedin.com/in/your-name"></label>
     <label class="f"><span>Family <span class="o">(optional)</span></span><input type="text" id="fFamily" maxlength="90" placeholder="e.g. Wife Neha, son (14), daughter (9)"></label>
     <label class="f"><span>A favourite MBM memory <span class="o">(one line)</span></span><textarea id="fMemory" maxlength="160" placeholder="e.g. Bread pakoda at the canteen after every exam"></textarea></label>
     <label class="consent"><input type="checkbox" id="fOk" required> Show my photos and these details on this website.</label>
@@ -156,6 +158,7 @@ footer .hand{font-family:var(--hand);font-size:30px;font-weight:700;color:var(--
       var bits=[r.work, r.city].filter(Boolean).join(" · "); if(bits){ var m=document.createElement("p"); m.className="meta"; m.textContent=bits; c.appendChild(m); }
       if(r.family){ var f=document.createElement("p"); f.className="meta"; f.textContent=r.family; c.appendChild(f); }
       if(r.memory){ var qn=document.createElement("p"); qn.className="quote"; qn.textContent="“"+r.memory+"”"; c.appendChild(qn); }
+      if(r.linkedin && /^https:\/\/www\.linkedin\.com\/in\//.test(r.linkedin)){ var li=document.createElement("a"); li.className="lnk"; li.href=r.linkedin; li.target="_blank"; li.rel="noopener noreferrer"; li.innerHTML='<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V23h-4V8zm7.5 0h3.8v2.1h.06c.53-1 1.84-2.1 3.8-2.1 4.06 0 4.8 2.67 4.8 6.14V23h-4v-7.8c0-1.86-.03-4.26-2.6-4.26-2.6 0-3 2.03-3 4.12V23h-4V8z"/></svg> LinkedIn'; li.setAttribute("aria-label", r.name+" on LinkedIn"); c.appendChild(li); }
     }
     var a=document.createElement("button"); a.type="button"; a.className="addme"; a.textContent = r ? "This is me: update" : "This is me: add photos";
     a.onclick=function(){ openDlg(branch, name); }; c.appendChild(a);
@@ -191,7 +194,7 @@ footer .hand{font-family:var(--hand);font-size:30px;font-weight:700;color:var(--
     if(window.MBMAuth && !MBMAuth.get()){ MBMAuth.ensure().then(function(){ openDlg(branch, name); }).catch(function(){}); return; }
     fBranch.value = branch || active; fillNames(name);
     var r = name && entries[norm(name)];
-    ["fCity","fWork","fFamily","fMemory"].forEach(function(id){ $(id).value = r ? (r[{fCity:"city",fWork:"work",fFamily:"family",fMemory:"memory"}[id]]||"") : ""; });
+    ["fCity","fWork","fLinkedin","fFamily","fMemory"].forEach(function(id){ $(id).value = r ? (r[{fCity:"city",fWork:"work",fLinkedin:"linkedin",fFamily:"family",fMemory:"memory"}[id]]||"") : ""; });
     resetPick("then"); resetPick("now"); setMsg(""); fSubmit.disabled=false;
     if(dlg.showModal) dlg.showModal(); else dlg.setAttribute("open","");
   }
@@ -216,13 +219,14 @@ footer .hand{font-family:var(--hand);font-size:30px;font-weight:700;color:var(--
   $("upForm").addEventListener("submit", function(ev){
     ev.preventDefault();
     var name=fName.value, code="MBM2001";
+    var liv=$("fLinkedin").value.trim(); if(liv && !/^(https?:\/\/)?([a-z]{2,3}\.)?linkedin\.com\/in\/[A-Za-z0-9\-_%.]{2,100}\/?([?#].*)?$/i.test(liv)){ setMsg("LinkedIn link should look like linkedin.com/in/your-name","err"); $("fLinkedin").focus(); return; }
     if(!name){ setMsg("Choose your name from the list.","err"); return; }
     var existing=entries[norm(name)];
     if(!pics.then && !pics.now && !existing){ setMsg("Add at least one photo.","err"); return; }
     if(!$("fOk").checked){ setMsg("Tick the box to allow showing your card on the website.","err"); return; }
     if(!API_URL){ setMsg("Uploads open very soon. Please try again in a day or two.","err"); return; }
     fSubmit.disabled=true; setMsg("Uploading… this can take up to a minute.");
-    var body={ branch:fBranch.value, name:name, then:pics.then, now:pics.now, city:$("fCity").value, work:$("fWork").value, family:$("fFamily").value, memory:$("fMemory").value, code:code, consent:true };
+    var body={ branch:fBranch.value, name:name, then:pics.then, now:pics.now, city:$("fCity").value, work:$("fWork").value, family:$("fFamily").value, memory:$("fMemory").value, linkedin:$("fLinkedin").value.trim(), code:code, consent:true };
     MBMAuth.ensure().then(function(a){ body.me=a.me; body.pin=a.pin; return fetch(API_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(body)}); })
       .then(function(r){return r.json();})
       .then(function(d){
