@@ -12,11 +12,13 @@
       body: JSON.stringify({ action: "creation_add", code: "MBM2001", me: a.me, pin: a.pin, consent: true, kind: o.kind, style: o.style || "", title: o.title || "", to: o.to || "", photo: o.data() }) })
       .then(function(r){ return r.json(); });
   }
-  function say(box, text, cls, btn){ if (!box) return; box.textContent = ""; var p = el("p", "msg " + (cls || ""), text); p.style.margin = "4px 0 0"; box.appendChild(p); if (btn) { btn.style.marginTop = "8px"; box.appendChild(btn); } }
+  function toast(text, cls){ var t = document.getElementById("mbmToast"); if (!t) { t = el("div"); t.id = "mbmToast"; t.setAttribute("role", "status"); t.style.cssText = "position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:99;max-width:calc(100% - 32px);padding:12px 16px;border-radius:12px;font:700 15px/1.35 var(--body,system-ui,sans-serif);box-shadow:0 10px 30px rgba(0,0,0,.3);transition:opacity .3s"; document.body.appendChild(t); }
+    t.textContent = text; t.style.background = cls === "err" ? "#B03A2E" : "#1C2A44"; t.style.color = "#fff"; t.style.opacity = 1; clearTimeout(t._h); t._h = setTimeout(function(){ t.style.opacity = 0; }, 4200); }
+  function say(box, text, cls, btn){ if (cls === "ok" || cls === "err") toast(text, cls); if (!box) return; box.textContent = ""; var p = el("p", "msg " + (cls || ""), text); p.style.margin = "4px 0 0"; box.appendChild(p); if (btn) { btn.style.marginTop = "8px"; box.appendChild(btn); } }
   function doSave(a, o, sig){
     say(o.box, "Adding it to the home page…");
     return post(a, o).then(function(d){
-      if (d.ok) { lastSig = sig; say(o.box, "✓ Added to the home page gallery.", "ok"); try { sessionStorage.removeItem("mbm01cre"); } catch (e) {} }
+      if (d.ok) { lastSig = sig; say(o.box, "✓ Added to the home page. Everyone can see it under “Dares & posters”.", "ok"); try { sessionStorage.removeItem("mbm01cre"); } catch (e) {} }
       else { if (d.error === "auth" && window.MBMAuth) MBMAuth.clear(); say(o.box, d.error === "limit" ? "You've added a lot today. Try again in an hour." : d.error === "auth" ? "Couldn't confirm it's you. Tap below to try again." : "Couldn't add it to the home page right now.", "err", d.error === "auth" ? askBtn(o, sig) : null); }
     }).catch(function(){ say(o.box, "No connection, so it wasn't added to the home page.", "err"); });
   }
@@ -31,7 +33,10 @@
     if (o.sig && o.sig === lastSig) return; // this exact card is already on the home page
     var a = window.MBMAuth && MBMAuth.get();
     if (a) return doSave(a, o, o.sig);
-    say(o.box, "Want this on the home page too? Registered batchmates can add it.", "", askBtn(o, o.sig));
+    if (!window.MBMAuth) return;
+    say(o.box, "Confirm it's you to add this to the home page…");
+    MBMAuth.ensure().then(function(a){ doSave(a, o, o.sig); })
+      .catch(function(){ say(o.box, "Not added to the home page. Only registered batchmates can add.", "", askBtn(o, o.sig)); });
   }
 
   // ---------- home-page gallery ----------
