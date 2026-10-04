@@ -1,0 +1,208 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Professional Wall · MBM '01</title>
+<meta property="og:title" content="MBM '01 Professional Wall · where the batch works">
+<meta property="og:description" content="25 years after MBM: the companies, roles and cities of the 2001 batch on one wall.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Figtree:wght@400;500;600;700;800&family=Permanent+Marker&display=swap">
+<style>
+:root{--ground:#F5EFE4;--paper:#FFFCF6;--ink:#1C2A44;--ink-2:#4A566E;--line:#DDD2BF;--sand:#B8612F;--blue:#2E5597;--mustard:#E8BA4A;--ok:#2E7D4F;--err:#B03A2E;
+--display:"Permanent Marker",cursive;--hand:"Caveat","Segoe Print",cursive;--body:"Figtree",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--ground:#0F1526;--paper:#18203A;--ink:#F1E9DA;--ink-2:#B5BCCB;--line:#2C3656;--sand:#E08E5B;--blue:#86A8E6;--mustard:#E4B862;--ok:#6CC08F;--err:#F08A7E}}
+:root[data-theme="dark"]{color-scheme:dark;--ground:#0F1526;--paper:#18203A;--ink:#F1E9DA;--ink-2:#B5BCCB;--line:#2C3656;--sand:#E08E5B;--blue:#86A8E6;--mustard:#E4B862;--ok:#6CC08F;--err:#F08A7E}
+*{box-sizing:border-box}body{margin:0;background:var(--ground);color:var(--ink);font:17px/1.55 var(--body);-webkit-font-smoothing:antialiased}
+a{color:var(--blue)}:focus-visible{outline:3px solid var(--mustard);outline-offset:2px;border-radius:4px}
+.wrap{max-width:1120px;margin-inline:auto;padding-inline:16px}
+nav{position:sticky;top:0;z-index:5;background:var(--ground);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;gap:14px;height:56px}
+.brand{font-family:var(--display);font-size:22px;color:var(--ink);text-decoration:none}.brand b{color:var(--sand);font-weight:400}
+nav .links{margin-left:auto;display:flex;gap:4px}nav .links a{padding:6px 10px;border-radius:8px;color:var(--ink-2);text-decoration:none;font-weight:600;font-size:14.5px}
+header{padding-block:22px 6px}
+.label{font-size:12.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--sand)}
+h1{font-size:clamp(32px,6.5vw,54px);line-height:1.02;margin:.12em 0 .2em;font-weight:800;letter-spacing:-.02em}
+h1 .hand{font-family:var(--hand);color:var(--blue);font-weight:700}
+.lead{color:var(--ink-2);margin:0 0 12px;font-size:clamp(16px,2.2vw,18px);max-width:64ch}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:700 16px/1 var(--body);padding:13px 18px;border-radius:12px;border:2px solid var(--ink);background:var(--ink);color:var(--ground);text-decoration:none;cursor:pointer}
+.btn.big{background:#E8BA4A;border-color:#E8BA4A;color:#1C2A44}.btn.ghost{background:transparent;color:var(--ink)}
+.btn.sm{font-size:14px;padding:9px 12px;border-radius:10px}.btn:disabled{opacity:.55}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.stats{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0 4px}
+.stat{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:10px 16px;min-width:120px}
+.stat b{display:block;font-size:28px;line-height:1.1;font-weight:800}
+.stat span{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+.tools{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:16px 0 10px}
+.inp{font:500 16px var(--body);padding:11px 12px;border-radius:10px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);width:100%}
+.tools .inp{max-width:320px}
+.small{font-size:14px;color:var(--ink-2);margin:0}
+.msg{font-weight:600;min-height:1.4em;margin:0}.msg.ok{color:var(--ok)}.msg.err{color:var(--err)}
+/* the wall */
+.wall{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));grid-auto-flow:dense;gap:12px;margin:6px 0 10px}
+@media (max-width:520px){.wall{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}}
+.co{position:relative;display:grid;grid-template-rows:1fr auto;gap:8px;background:#fff;color:#1C2A44;border:1px solid var(--line);border-radius:16px;padding:14px 12px 10px;cursor:pointer;text-align:center;font:inherit;min-height:150px;box-shadow:0 1px 2px rgba(28,42,68,.06);transition:transform .15s,box-shadow .15s}
+.co:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(28,42,68,.14)}
+.co.big{grid-column:span 2;grid-row:span 2;min-height:312px}
+@media (max-width:520px){.co.big{grid-row:span 1;min-height:170px}}
+.co .lg{display:grid;place-items:center;min-height:0}
+.co .lg img{max-width:100%;max-height:84px;object-fit:contain;display:block}
+.co.big .lg img{max-height:180px}
+.co .lm{width:74px;height:74px;border-radius:18px;display:grid;place-items:center;color:#fff;font:800 28px/1 var(--body);letter-spacing:.02em}
+.co.big .lm{width:130px;height:130px;font-size:48px;border-radius:28px}
+.co .nm{font-weight:700;font-size:15px;line-height:1.2;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.co .ct{position:absolute;top:8px;right:8px;background:#1C2A44;color:#F5EFE4;font:800 12.5px/1 var(--body);padding:5px 8px;border-radius:999px}
+.empty{background:var(--paper);border:1.5px dashed var(--line);border-radius:16px;padding:26px;text-align:center;color:var(--ink-2);grid-column:1/-1}
+dialog{border:0;padding:0;border-radius:20px;max-width:560px;width:calc(100% - 24px);max-height:calc(100dvh - 24px);overflow:auto;background:var(--paper);color:var(--ink);box-shadow:0 20px 60px rgba(0,0,0,.35)}
+dialog::backdrop{background:rgba(15,21,38,.6)}
+dialog .in{padding:clamp(18px,3vw,24px);display:grid;gap:12px}
+dialog h2{margin:0;font-size:23px;line-height:1.2}
+.chead{display:flex;gap:14px;align-items:center}
+.chead .lgb{flex:none;width:84px;height:84px;border-radius:16px;background:#fff;border:1px solid var(--line);display:grid;place-items:center;overflow:hidden;padding:8px}
+.chead .lgb img{max-width:100%;max-height:100%;object-fit:contain}
+.chead .lm{width:100%;height:100%;border-radius:10px;display:grid;place-items:center;color:#fff;font:800 26px/1 var(--body)}
+.ppl{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.ppl li{border:1px solid var(--line);border-radius:12px;padding:10px 12px;display:grid;gap:2px}
+.ppl b{font-size:16px}.ppl span{font-size:14px;color:var(--ink-2)}
+label.q{display:grid;gap:5px;font-weight:600;font-size:14.5px}label.q small{font-weight:500;color:var(--ink-2)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media (max-width:520px){.two{grid-template-columns:1fr}}
+dialog .inp{background:var(--ground)}
+.lprev{display:flex;gap:12px;align-items:center}
+.lprev .bx{flex:none;width:86px;height:86px;border-radius:14px;background:#fff;border:1px solid var(--line);display:grid;place-items:center;overflow:hidden;padding:8px}
+.lprev img{max-width:100%;max-height:100%;object-fit:contain}
+.file{position:relative;overflow:hidden}.file input{position:absolute;inset:0;opacity:0;cursor:pointer}
+footer{padding-block:34px 44px;text-align:center;color:var(--ink-2)}footer .hand{font-family:var(--hand);font-size:28px;color:var(--sand)}
+[hidden]{display:none!important}
+</style>
+<link rel="stylesheet" href="theme.css?v=2"></head><body>
+<nav><div class="wrap"><a class="brand" href="index.html">MBM <b>'01</b></a><div class="links"><a href="index.html">Home</a><a href="slam.html">Slam Book</a><a href="index.html#register">Register</a></div></div></nav>
+<main class="wrap">
+<header>
+  <div class="label">Professional wall</div>
+  <h1>Where the '01 batch <span class="hand">works</span></h1>
+  <p class="lead">One wall, every logo. From PSUs to startups to our own ventures, see where 25 years have taken the batch, and find who works where.</p>
+  <div class="row"><button class="btn big" id="add" type="button">＋ Add my company</button><span class="small">Type the company name, or upload its logo. Takes 30 seconds.</span></div>
+  <div class="stats" id="stats" hidden>
+    <div class="stat"><b id="sP">0</b><span>batchmates</span></div>
+    <div class="stat"><b id="sC">0</b><span>companies</span></div>
+    <div class="stat"><b id="sY">0</b><span>cities</span></div>
+  </div>
+</header>
+
+<div class="tools"><input class="inp" id="q" type="search" placeholder="Search company, person or city" aria-label="Search the wall"></div>
+<section class="wall" id="wall" aria-label="Company logos"><div class="empty">Loading the wall…</div></section>
+<p class="small">Tap a logo to see who works there. Logos belong to their respective companies and are shown only to identify where batchmates work.</p>
+</main>
+
+<dialog id="view" aria-labelledby="vT"><div class="in">
+  <div class="chead"><div class="lgb" id="vL"></div><div><h2 id="vT"></h2><p class="small" id="vS"></p></div></div>
+  <ul class="ppl" id="vP"></ul>
+  <div class="row"><a class="btn ghost sm" id="vW" target="_blank" rel="noopener noreferrer" hidden>Company website</a><button class="btn sm" id="vX" type="button" style="margin-left:auto">Close</button></div>
+</div></dialog>
+
+<dialog id="dlg" aria-labelledby="fT"><form class="in" id="f" novalidate>
+  <h2 id="fT">Add my company</h2>
+  <label class="q">Company name<small>Pick from the list if it is already on the wall, so everyone lands on the same tile.</small><input class="inp" name="company" list="cos" maxlength="70" required placeholder="e.g. Coforge, ONGC, Own business"></label>
+  <div class="two">
+    <label class="q">Your role (optional)<input class="inp" name="role" maxlength="70" placeholder="e.g. General Manager"></label>
+    <label class="q">City (optional)<input class="inp" name="city" maxlength="50" placeholder="e.g. Jaipur"></label>
+  </div>
+  <label class="q">Branch<select class="inp" name="branch"></select></label>
+  <div class="q" style="display:grid;gap:6px"><b style="font-size:14.5px">Logo (optional)</b>
+    <div class="lprev"><div class="bx" id="pB"></div>
+      <div style="display:grid;gap:6px"><label class="btn ghost sm file">Upload logo<input type="file" id="logo" accept="image/*"></label><button class="btn ghost sm" type="button" id="noLogo" hidden>Remove logo</button></div></div>
+    <small class="small">No logo handy? Add the company website and we will try to pick up its icon. Otherwise the name shows in a coloured tile.</small></div>
+  <label class="q">Company website (optional)<input class="inp" name="site" maxlength="100" inputmode="url" placeholder="e.g. coforge.com"></label>
+  <p class="msg" id="fM" role="status" aria-live="polite"></p>
+  <div class="row"><button class="btn big" type="submit" id="go">Put it on the wall</button><button class="btn ghost" type="button" id="del" hidden>Remove me</button><button class="btn ghost" type="button" id="fx" style="margin-left:auto">Close</button></div>
+  <p class="small">Visible to anyone with the site link. Only registered batchmates can add.</p>
+</form></dialog>
+<datalist id="cos"></datalist>
+
+<footer class="wrap"><div class="hand">See you in Jodhpur · 25–27 Dec 2026</div><p>MBM '01 Silver Jubilee Reunion · Garh Govind</p></footer>
+
+<script src="names.js"></script>
+<script src="auth.js"></script>
+<script>
+(function(){
+  var API="https://script.google.com/macros/s/AKfycby7EIHjCJ053khkkMHN4-gx1mttPKGnQrIkiNw7YXcTFotYF1it1OUQYgCQzlJSMfd9Ng/exec";
+  var $=function(id){return document.getElementById(id);}, F=$("f"), dlg=$("dlg"), view=$("view");
+  function el(t,c,x){ var e=document.createElement(t); if(c) e.className=c; if(x!=null) e.textContent=x; return e; }
+  function norm(s){ return String(s||"").toLowerCase().replace(/[^a-z]/g,""); }
+  function same(a,b){ a=norm(a); b=norm(b); return !!a&&!!b&&(a===b||(Math.min(a.length,b.length)>=6&&(a.indexOf(b)===0||b.indexOf(a)===0))); }
+  // one tile per company: ignore case, punctuation and legal suffixes
+  function ckey(s){ return String(s||"").toLowerCase().replace(/&/g," and ").replace(/[^a-z0-9 ]/g," ").replace(/\b(pvt|private|ltd|limited|llp|inc|incorporated|corp|corporation|co|company|india|plc|gmbh)\b/g," ").replace(/\s+/g,"") || norm(s); }
+  function hue(s){ var h=0; for(var i=0;i<s.length;i++) h=(h*31+s.charCodeAt(i))%360; return h; }
+  function letters(n){ var p=String(n).replace(/[^A-Za-z0-9 ]/g," ").split(" ").filter(Boolean); return (p.length>1? p[0][0]+p[1][0] : (p[0]||"?").slice(0,2)).toUpperCase(); }
+  function mark(name){ var d=el("div","lm",letters(name)); d.style.background="hsl("+hue(ckey(name))+" 55% 38%)"; return d; }
+  function logoInto(box, co){ box.textContent="";
+    var fallback=function(){ box.textContent=""; box.appendChild(mark(co.name)); };
+    if(co.logo){ var im=new Image(); im.referrerPolicy="no-referrer"; im.alt=co.name+" logo"; im.onerror=function(){ co.logo=""; logoInto(box,co); }; im.src="https://drive.google.com/thumbnail?id="+encodeURIComponent(co.logo)+"&sz=w400"; box.appendChild(im); return; }
+    if(co.site){ var ic=new Image(); ic.referrerPolicy="no-referrer"; ic.alt=co.name+" logo"; ic.onerror=fallback; ic.onload=function(){ if(ic.naturalWidth<48) fallback(); }; ic.src="https://www.google.com/s2/favicons?sz=128&domain="+encodeURIComponent(co.site); box.appendChild(ic); return; }
+    fallback(); }
+
+  var ITEMS=[], COS=[];
+  var BR=Object.keys(window.MBM_ROSTER||{}).filter(function(b){ return b!=="Branch not listed"; });
+  function branchOf(n){ for(var i=0;i<BR.length;i++){ var l=window.MBM_ROSTER[BR[i]]; for(var j=0;j<l.length;j++) if(same(l[j].split("|")[0],n)) return BR[i]; } return ""; }
+  [""].concat(BR).forEach(function(b){ var o=el("option",null,b||"Choose branch"); o.value=b; F.branch.appendChild(o); });
+
+  function build(){ var map={}; COS=[];
+    ITEMS.forEach(function(it){ var k=ckey(it.c); if(!map[k]){ map[k]={k:k,name:it.c,logo:"",site:"",people:[]}; COS.push(map[k]); }
+      var c=map[k]; c.people.push(it); if(!c.logo&&it.logo) c.logo=it.logo; if(!c.site&&it.site) c.site=it.site; });
+    COS.sort(function(a,b){ return (b.people.length-a.people.length) || a.name.localeCompare(b.name); });
+    var dl=$("cos"); dl.textContent=""; COS.forEach(function(c){ var o=el("option"); o.value=c.name; dl.appendChild(o); });
+    var cities={}; ITEMS.forEach(function(it){ var k=norm(it.city); if(k) cities[k]=1; });
+    $("sP").textContent=ITEMS.length; $("sC").textContent=COS.length; $("sY").textContent=Object.keys(cities).length; $("stats").hidden=!ITEMS.length; }
+  function render(){ var w=$("wall"), q=norm($("q").value); w.textContent="";
+    var list=COS.filter(function(c){ if(!q) return true; return norm(c.name).indexOf(q)>-1 || c.people.some(function(p){ return norm(p.n+" "+p.city+" "+p.r).indexOf(q)>-1; }); });
+    if(!list.length){ w.appendChild(el("div","empty", COS.length? "Nothing matches that search." : "The wall is empty. Be the first to put your company up!")); return; }
+    var top=list[0].people.length;
+    list.forEach(function(c){ var b=el("button","co"+(c.people.length>=3 && c.people.length===top && !q ? " big":"")); b.type="button"; b.setAttribute("aria-label",c.name+", "+c.people.length+" batchmate"+(c.people.length>1?"s":""));
+      var lg=el("div","lg"); logoInto(lg,c); b.appendChild(lg); b.appendChild(el("div","nm",c.name)); if(c.people.length>1) b.appendChild(el("span","ct","×"+c.people.length));
+      b.onclick=function(){ open(c); }; w.appendChild(b); }); }
+  $("q").addEventListener("input",render);
+
+  function open(c){ logoInto($("vL"),c); $("vT").textContent=c.name; $("vS").textContent=c.people.length+" batchmate"+(c.people.length>1?"s":"")+" from MBM '01";
+    var ul=$("vP"); ul.textContent=""; c.people.slice().sort(function(a,b){ return a.n.localeCompare(b.n); }).forEach(function(p){ var li=el("li"); li.appendChild(el("b",null,p.n));
+      var bits=[p.r,p.city,p.b].filter(Boolean).join(" · "); if(bits) li.appendChild(el("span",null,bits)); ul.appendChild(li); });
+    var w=$("vW"); if(c.site){ w.href="https://"+c.site; w.hidden=false; } else w.hidden=true;
+    if(view.showModal) view.showModal(); else view.setAttribute("open",""); }
+  $("vX").onclick=function(){ view.close(); }; view.addEventListener("click",function(e){ if(e.target===view) view.close(); });
+
+  // ---- form ----
+  var logoData="", dropLogo=false, mine=null;
+  function msg(t,c){ var m=$("fM"); m.textContent=t||""; m.className="msg "+(c||""); }
+  function prev(){ var b=$("pB"); b.textContent=""; var name=F.company.value.trim()||"?";
+    if(logoData){ var im=new Image(); im.alt=""; im.src=logoData; b.appendChild(im); $("noLogo").hidden=false; return; }
+    var k=ckey(name), ex=null; COS.forEach(function(c){ if(c.k===k) ex=c; });
+    var keep = !dropLogo && mine && mine.logo && ckey(mine.c)===k ? mine.logo : "";
+    logoInto(b,{name:name,logo:keep||(ex&&ex.logo)||"",site:F.site.value.trim().replace(/^https?:\/\//,"").replace(/^www\./,"").split("/")[0]||(ex&&ex.site)||""});
+    $("noLogo").hidden=!keep; }
+  F.company.addEventListener("input",prev); F.site.addEventListener("change",prev);
+  $("logo").onchange=function(){ var f=this.files&&this.files[0]; this.value=""; if(!f) return; if(!/^image\//.test(f.type)){ msg("That file isn't an image.","err"); return; }
+    var u=URL.createObjectURL(f), im=new Image(); im.onload=function(){ var s=Math.min(1,500/Math.max(im.naturalWidth,im.naturalHeight)), c=document.createElement("canvas");
+      c.width=Math.max(1,Math.round(im.naturalWidth*s)); c.height=Math.max(1,Math.round(im.naturalHeight*s)); var g=c.getContext("2d"); g.fillStyle="#fff"; g.fillRect(0,0,c.width,c.height); g.drawImage(im,0,0,c.width,c.height);
+      logoData=c.toDataURL("image/jpeg",.9); dropLogo=false; URL.revokeObjectURL(u); msg(""); prev(); };
+    im.onerror=function(){ msg("Couldn't read that image. Try a PNG or JPG.","err"); }; im.src=u; };
+  $("noLogo").onclick=function(){ logoData=""; dropLogo=true; prev(); };
+  function post(body){ return MBMAuth.ensure().then(function(a){ body.code="MBM2001"; body.me=a.me; body.pin=a.pin;
+    return fetch(API,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(body)}).then(function(r){ return r.json(); }).then(function(d){ if(!d.ok&&d.error==="auth") MBMAuth.clear(); return d; }); }); }
+  function openForm(){ MBMAuth.ensure().then(function(a){ mine=null; ITEMS.forEach(function(it){ if(same(it.n,a.name)) mine=it; });
+      F.reset(); logoData=""; dropLogo=false; msg("");
+      F.branch.value=(mine&&mine.b)||branchOf(a.name)||"";
+      if(mine){ F.company.value=mine.c; F.role.value=mine.r; F.city.value=mine.city; F.site.value=mine.site; }
+      $("fT").textContent=(mine?"Update":"Add")+" my company · "+a.name; $("del").hidden=!mine; prev();
+      if(dlg.showModal) dlg.showModal(); else dlg.setAttribute("open",""); F.company.focus(); }).catch(function(){}); }
+  $("add").onclick=openForm; $("fx").onclick=function(){ dlg.close(); };
+  F.onsubmit=function(e){ e.preventDefault(); var co=F.company.value.trim(); if(!co){ msg("Type your company name.","err"); F.company.focus(); return; }
+    $("go").disabled=true; msg("Saving…");
+    post({action:"work_save",company:co,role:F.role.value,city:F.city.value,branch:F.branch.value,site:F.site.value,logo:logoData,dropLogo:dropLogo}).then(function(d){ $("go").disabled=false;
+      if(d.ok){ ITEMS=ITEMS.filter(function(it){ return !same(it.n,d.item.n); }); ITEMS.push(d.item); build(); render(); msg("You're on the wall!","ok"); setTimeout(function(){ dlg.close(); },900); }
+      else msg(d.error==="auth"?"Please confirm it's you again.":d.error==="locked"?"Too many tries. Wait 30 minutes.":"Couldn't save. Please try again.","err"); })
+      .catch(function(x){ $("go").disabled=false; msg(x==="cancel"?"":"No connection. Try again.","err"); }); };
+  $("del").onclick=function(){ if(!confirm("Remove yourself from the Professional Wall?")) return;
+    post({action:"work_del"}).then(function(d){ if(d.ok){ var a=MBMAuth.get(); ITEMS=ITEMS.filter(function(it){ return !(a&&same(it.n,a.name)); }); build(); render(); dlg.close(); } }).catch(function(){}); };
+
+  fetch(API+"?action=work").then(function(r){ return r.json(); }).then(function(d){ ITEMS=(d&&d.items)||[]; build(); render(); if(location.hash==="#add") openForm(); })
+    .catch(function(){ $("wall").textContent=""; $("wall").appendChild(el("div","empty","Couldn't load the wall. Please refresh.")); });
+})();
+</script>
+<script src="nav.js" defer></script>
+<script src="news.js" defer></script>
+</body></html>
