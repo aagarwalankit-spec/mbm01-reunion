@@ -333,7 +333,7 @@ footer p{margin:6px auto 0;color:var(--ink-2);font-size:14.5px}
           var items=[];
           (res[0].photos||[]).forEach(function(p){ items.push({ts:p.ts||"", src:th(p.photo), cap:p.caption||("by "+p.uploader), href:"wall.html#p="+p.id, badge:p.source==="booth"?"BOOTH":"", rot:p.rot, auto:true}); });
           (res[1].entries||[]).forEach(function(e){ var id=e.now||e.then; if(id) items.push({ts:"", src:th(id), cap:e.name, href:"batchmates.html", badge:e.now?"2026":"2001"}); });
-          items.sort(function(a,b){ return a.ts<b.ts?1:a.ts>b.ts?-1:0; });
+          items.forEach(function(it){ var s=String(it.ts||""), m=s.match(/^(\d{4})-(\d{2})-(\d{2})[ T](\d{2}):(\d{2})/); it.tm = m ? Date.UTC(+m[1],+m[2]-1,+m[3],+m[4],+m[5])-19800000 : (Date.parse(s)||0); }); items.sort(function(a,b){ return b.tm-a.tm; });
           items.slice(0,N).forEach(function(it,k){ tile(it.src,it.cap,it.href,it.badge,k,it.rot,it.auto); });
           if(!items.length) document.getElementById("hwallSub").textContent="Be the first to post! Until then, a few from the old album.";
           if(g.children.length<N) fallback();
@@ -659,6 +659,7 @@ Once MBMites, Always MBMites ❤️</pre>
   }).catch(function(){});
 })();
 </script>
+<script src="wallboard.js" defer></script>
 <script src="creations.js" defer></script>
 <script src="nav.js" defer></script>
 <script src="news.js" defer></script>
