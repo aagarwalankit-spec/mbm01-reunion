@@ -17,6 +17,10 @@
     "@keyframes wshine{0%,60%{transform:translateX(-120%)}100%{transform:translateX(120%)}}" +
     "@media (prefers-reduced-motion:reduce){.wchamp::after{animation:none;display:none}}" +
     ".wav{position:relative;flex:none;width:78px;height:78px;border-radius:50%;background:#1C2A44;color:#FFE69A;display:grid;place-items:center;font:800 28px/1 var(--body,system-ui,sans-serif);border:4px solid #fff;box-shadow:0 4px 12px rgba(0,0,0,.2)}" +
+    ".wav{overflow:visible}.wav img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:50%}" +
+    ".wsm{position:relative;flex:none;width:36px;height:36px;border-radius:50%;background:#1C2A44;color:#FFE69A;display:grid;place-items:center;font:800 13px/1 var(--body,system-ui,sans-serif);overflow:hidden}" +
+    ".wsm img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}" +
+    "@media (min-width:600px){.wav{width:104px;height:104px;font-size:34px}}" +
     ".wav i{position:absolute;top:-24px;left:50%;transform:translateX(-50%) rotate(-8deg);font-style:normal;font-size:32px}" +
     ".wchamp .k{font:800 12px/1 var(--body,system-ui,sans-serif);letter-spacing:.14em;text-transform:uppercase;opacity:.8}" +
     ".wchamp .nm{font:800 clamp(24px,4.4vw,34px)/1.1 var(--body,system-ui,sans-serif);margin:5px 0 4px;letter-spacing:-.01em}" +
@@ -31,27 +35,33 @@
     ".wchips a,.wchips span{font:600 13.5px/1.3 var(--body,system-ui,sans-serif);padding:8px 11px;border-radius:999px;background:var(--paper,#FFFCF6);border:1px solid var(--line,#DDD2BF);color:var(--ink,#1C2A44);text-decoration:none}" +
     ".wchips b{font-weight:800}";
 
-  function render(d){
+  function same(a, b){ a = key(a); b = key(b); return !!a && !!b && (a === b || (Math.min(a.length, b.length) >= 6 && (a.indexOf(b) === 0 || b.indexOf(a) === 0))); }
+  function pic(box, id){ if (!id) return; var im = new Image(); im.referrerPolicy = "no-referrer"; im.alt = ""; im.decoding = "async"; im.onerror = function(){ im.remove(); }; im.src = "https://drive.google.com/thumbnail?id=" + encodeURIComponent(id) + "&sz=w300"; box.appendChild(im); }
+  function render(d, entries){
     var photos = (d && d.photos) || [], tags = (d && d.tags) || []; if (!photos.length) return;
     var up = {}, name = {}, tagBy = {}, tagged = {}, tname = {};
     photos.forEach(function(p){ var k = key(p.uploader); if (!k) return; up[k] = (up[k] || 0) + 1; name[k] = name[k] || p.uploader; });
     tags.forEach(function(t){ var k = key(t.by); if (k) tagBy[k] = (tagBy[k] || 0) + 1; var n = key(t.name); if (n) { tagged[n] = (tagged[n] || 0) + 1; tname[n] = tname[n] || t.name; } });
     var rank = Object.keys(up).map(function(k){ return { k: k, n: name[k], c: up[k], t: tagBy[k] || 0 }; }).sort(function(a, b){ return (b.c - a.c) || (b.t - a.t); });
     if (!rank.length) return;
+    // picture for a person: their Then & Now photo if they added one, otherwise the latest photo they posted
+    var byTime = photos.slice().sort(function(a, b){ return time(b.ts) - time(a.ts); });
+    function face(r){ for (var i = 0; i < entries.length; i++) if (same(entries[i].name, r.n) && (entries[i].now || entries[i].then)) return entries[i].now || entries[i].then;
+      for (var j = 0; j < byTime.length; j++) if (key(byTime[j].uploader) === r.k) return byTime[j].photo; return ""; }
     var st = document.createElement("style"); st.textContent = css; document.head.appendChild(st);
     var top = rank[0], tie = rank.filter(function(r){ return r.c === top.c && r.t === top.t; });
 
     var wrap = el("div", "wlead");
     var ch = el("a", "wchamp"); ch.href = "wall.html"; ch.setAttribute("aria-label", top.n + " is leading the Photo Wall. Open the Photo Wall.");
-    var av = el("div", "wav", initials(top.n)); var cr = el("i", null, "👑"); cr.setAttribute("aria-hidden", "true"); av.appendChild(cr); ch.appendChild(av);
+    var av = el("div", "wav", initials(top.n)); pic(av, face(top)); var cr = el("i", null, "👑"); cr.setAttribute("aria-hidden", "true"); av.appendChild(cr); ch.appendChild(av);
     var tx = el("div"); tx.appendChild(el("div", "k", tie.length > 1 ? "Tied at the top of the Photo Wall" : "Leading the Photo Wall"));
     tx.appendChild(el("div", "nm", tie.length > 1 ? tie.map(function(r){ return r.n; }).join(" & ") : top.n));
-    tx.appendChild(el("div", "st", plural(top.c, "photo") + " posted" + (top.t ? " · " + plural(top.t, "friend") + " tagged" : "") + ". Can you beat that?"));
+    tx.appendChild(el("div", "st", plural(top.c, "photo") + " posted" + (top.t ? " · " + plural(top.t, "tag") + " added" : "") + ". Can you beat that?"));
     ch.appendChild(tx); wrap.appendChild(ch);
 
     var side = el("div", "wside"), rest = rank.slice(tie.length > 1 ? tie.length : 1, (tie.length > 1 ? tie.length : 1) + 3);
     if (rest.length) { var ol = el("ol", "wpod"), medals = ["🥈", "🥉", "4."];
-      rest.forEach(function(r, i){ var li = el("li"); var m = el("b", null, medals[i]); m.setAttribute("aria-hidden", "true"); li.appendChild(m); li.appendChild(el("span", null, r.n)); li.appendChild(el("em", null, plural(r.c, "photo"))); ol.appendChild(li); });
+      rest.forEach(function(r, i){ var li = el("li"); var m = el("b", null, medals[i]); m.setAttribute("aria-hidden", "true"); li.appendChild(m); var sm = el("div", "wsm", initials(r.n)); pic(sm, face(r)); li.appendChild(sm); li.appendChild(el("span", null, r.n)); li.appendChild(el("em", null, plural(r.c, "photo"))); ol.appendChild(li); });
       side.appendChild(ol); }
     var chips = el("div", "wchips");
     function chip(label, val, href){ var c = el(href ? "a" : "span"); if (href) c.href = href; c.appendChild(document.createTextNode(label + " ")); c.appendChild(el("b", null, val)); chips.appendChild(c); }
@@ -63,5 +73,8 @@
     side.appendChild(chips); wrap.appendChild(side);
     grid.parentNode.insertBefore(wrap, grid);
   }
-  fetch(API + "?action=wall").then(function(r){ return r.json(); }).then(render).catch(function(){});
+  Promise.all([
+    fetch(API + "?action=wall").then(function(r){ return r.json(); }),
+    fetch(API).then(function(r){ return r.json(); }).catch(function(){ return {}; })
+  ]).then(function(r){ render(r[0], (r[1] && r[1].entries) || []); }).catch(function(){});
 })();
