@@ -307,8 +307,8 @@ footer p{margin:6px auto 0;color:var(--ink-2);font-size:14.5px}
       .hph b{position:absolute;top:14px;left:14px;font:700 11px/1 var(--body);letter-spacing:.08em;background:rgba(28,42,68,.85);color:#F5EFE4;padding:4px 7px;border-radius:5px}
       </style>
       <div class="hd">
-        <h2 id="hwallT">Fresh on the Photo Wall</h2>
-        <p id="hwallSub">Old college pics and new selfies from the batch.</p>
+        <h2 id="hwallT">Latest on the Photo Wall</h2>
+        <p id="hwallSub">The newest photos from the batch, updated as they are posted.</p>
         <a class="btn" href="wall.html">See all &amp; upload yours →</a>
       </div>
       <div class="hgrid" id="hgrid"></div>
@@ -331,9 +331,9 @@ footer p{margin:6px auto 0;color:var(--ink-2);font-size:14.5px}
           fetch(API,{cache:"no-store"}).then(function(r){return r.json();}).catch(function(){return {};})
         ]).then(function(res){
           var items=[];
-          (res[0].photos||[]).forEach(function(p){ items.push({ts:p.ts||"", src:th(p.photo), cap:p.caption||("by "+p.uploader), href:"wall.html#p="+p.id, badge:p.source==="booth"?"BOOTH":"", rot:p.rot, auto:true}); });
+          (res[0].photos||[]).forEach(function(p){ items.push({ts:p.ts||"", src:th(p.photo), cap:(p.caption? p.caption+" · " : "by ")+String(p.uploader||"").split(" ")[0], wall:1, href:"wall.html#p="+p.id, badge:p.source==="booth"?"BOOTH":"", rot:p.rot, auto:true}); });
           (res[1].entries||[]).forEach(function(e){ var id=e.now||e.then; if(id) items.push({ts:"", src:th(id), cap:e.name, href:"batchmates.html", badge:e.now?"2026":"2001"}); });
-          items.forEach(function(it){ var s=String(it.ts||""), m=s.match(/^(\d{4})-(\d{2})-(\d{2})[ T](\d{2}):(\d{2})/); it.tm = m ? Date.UTC(+m[1],+m[2]-1,+m[3],+m[4],+m[5])-19800000 : (Date.parse(s)||0); }); items.sort(function(a,b){ return b.tm-a.tm; });
+          items.forEach(function(it){ var s=String(it.ts||""), m=s.match(/^(\d{4})-(\d{2})-(\d{2})[ T](\d{2}):(\d{2})/); it.tm = m ? Date.UTC(+m[1],+m[2]-1,+m[3],+m[4],+m[5])-19800000 : (Date.parse(s)||0); if(it.wall && !it.badge && Date.now()-it.tm<2592e5) it.badge="NEW"; }); items.sort(function(a,b){ return b.tm-a.tm; });
           items.slice(0,N).forEach(function(it,k){ tile(it.src,it.cap,it.href,it.badge,k,it.rot,it.auto); });
           if(!items.length) document.getElementById("hwallSub").textContent="Be the first to post! Until then, a few from the old album.";
           if(g.children.length<N) fallback();
