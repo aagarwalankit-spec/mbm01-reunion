@@ -224,6 +224,8 @@ footer p{margin:6px auto 0;color:var(--ink-2);font-size:14.5px}
 .mascot-wrap .count{justify-self:auto}
 @media (max-width:720px){.mascot-wrap{justify-self:start;margin-top:0;display:grid;grid-template-columns:120px 1fr;grid-template-areas:"m b" "m c" "m n";align-items:center;gap:8px 16px}.mascot{width:120px;grid-area:m}.bubble{grid-area:b;font-size:19px;justify-self:start}.bubble::after{left:-9px;bottom:auto;top:50%;transform:translateY(-50%) rotate(135deg)}.mascot-wrap .count{grid-area:c;justify-self:start}.mname{grid-area:n}}
 @media (prefers-reduced-motion:reduce){.mascot{animation:none}}
+/* MASCOT HIDDEN FOR NOW: delete the next line to bring Mirchi Mama back */
+.mascot-wrap .bubble,.mascot-wrap .mascot,.mascot-wrap .mname{display:none!important}.mascot-wrap{margin-top:0!important;display:block!important}
 .gg-wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:26px;align-items:start}
 .gg-info{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:8px}
 .gg-info h3{font-size:26px;margin:0}
