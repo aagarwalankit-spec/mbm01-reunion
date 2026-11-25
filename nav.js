@@ -8,7 +8,7 @@
   var GROUPS = [
     { t: "The reunion", items: [
       ["Schedule", H("#schedule"), "🗓️"], ["Venues", H("#venues"), "🏰"], ["Travel & stay", H("#travel"), "🚆"],
-      ["Food menu", "menu.html", "🍛"], ["FAQ", H("#faq"), "❓"] ] },
+      ["Food menu", "menu.html", "🍛"], ["Announcements", "news.html", "📣"], ["FAQ", H("#faq"), "❓"], ["Get the app", "get-app.html", "📲"] ] },
     { t: "Batchmates", items: [
       ["Who's coming", H("#batch"), "✅"], ["Then & Now", "batchmates.html", "📸"], ["Slam Book", "slam.html", "📖"], ["Professional Wall", "work.html", "🏢"], ["Memories", H("#memories"), "🎞️"] ] },
     { t: "Photos", items: [ ["Photo Wall", "wall.html", "🖼️"], ["Photo Booth", "booth.html", "🤳"], ["Poster Maker", "poster.html", "🎨"] ] },

@@ -111,6 +111,7 @@ label.f span{font-weight:500;color:var(--ink-2)}
 footer{margin-top:60px;border-top:1px solid var(--line);padding-block:28px 40px;text-align:center;color:var(--ink-2);font-size:14.5px}
 footer .hand{font-family:var(--hand);font-size:30px;font-weight:700;color:var(--ink)}
 </style><link rel="stylesheet" href="theme.css?v=2">
+<link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#1C2A44"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="MBM '01"><link rel="apple-touch-icon" href="apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 </head><body>
 <nav><div class="wrap"><a class="brand" href="index.html">MBM <b>'01</b></a>
 <div class="links"><a href="index.html">Home</a><a href="menu.html">Menu</a><a href="batchmates.html">Then &amp; Now</a><a href="booth.html">Photo Booth</a></div></div></nav>
@@ -212,7 +213,7 @@ footer .hand{font-family:var(--hand);font-size:30px;font-weight:700;color:var(--
     var out=$("out"); out.textContent="";
     var list=photos.slice();
     if(filter){ var ids={}; tags.forEach(function(t){ if(norm(t.name)===norm(filter)) ids[t.photo]=1; }); list=list.filter(function(p){ return ids[p.id] || norm(p.uploader)===norm(filter); }); }
-    if(sort==="new") list.sort(function(a,b){ return a.ts<b.ts?1:a.ts>b.ts?-1:0; });
+    if(sort==="new"){ var pos={}; photos.forEach(function(p,i){ pos[p.id]=i; }); var tm=function(p){ var s=String(p.ts||""), m=s.match(/^(\d{4})-(\d{2})-(\d{2})[ T](\d{2}):(\d{2})/); return m? Date.UTC(+m[1],+m[2]-1,+m[3],+m[4],+m[5])-19800000 : (Date.parse(s)||0); }; list.sort(function(a,b){ return (tm(b)-tm(a)) || (pos[b.id]-pos[a.id]); }); }
     if(sort==="love") list.sort(function(a,b){ return love(b)-love(a); });
     if(sort==="tags") list.sort(function(a,b){ return tagsOf(b.id).length-tagsOf(a.id).length; });
     $("stat").textContent = photos.length+" photos · "+tags.length+" tags";
@@ -371,10 +372,10 @@ footer .hand{font-family:var(--hand);font-size:30px;font-weight:700;color:var(--
     store("mbm01me", me); $("uGo").disabled=true;
     var i=0, added=[];
     (function next(){
-      if(i>=list.length){ msg("Done! "+added.length+" photo"+(added.length>1?"s":"")+" added.","ok"); photos=photos.concat(added); render(); board(); setTimeout(function(){ up.close(); if(added[0]) open(added[0].id); }, 900); return; }
+      if(i>=list.length){ msg("Done! "+added.length+" photo"+(added.length!==1?"s":"")+" added."+(window.skipped?" "+window.skipped+" already on the wall, skipped.":""),"ok"); window.skipped=0; photos=photos.concat(added); render(); board(); setTimeout(function(){ up.close(); if(added[0]) open(added[0].id); }, 900); return; }
       msg("Uploading "+(i+1)+" of "+list.length+"…");
       post({action:"wall_upload",photo:list[i],caption:$("cap").value,uploader:me,consent:true,source:"upload"}).then(function(d){
-        if(d.ok) added.push(d.photo); else if(d.error==="auth"||d.error==="locked"){ MBMAuth.clear(); msg("We couldn't confirm your registration. Close and tap Upload photos to verify again.","err"); $("uGo").disabled=false; return; } i++; next();
+        if(d.ok) added.push(d.photo); else if(d.error==="dup"){ window.skipped=(window.skipped||0)+1; } else if(d.error==="auth"||d.error==="locked"){ MBMAuth.clear(); msg("We couldn't confirm your registration. Close and tap Upload photos to verify again.","err"); $("uGo").disabled=false; return; } i++; next();
       }).catch(function(){ msg("Upload stopped (connection). "+added.length+" uploaded.","err"); photos=photos.concat(added); render(); $("uGo").disabled=false; });
     })();
   });
@@ -385,4 +386,5 @@ footer .hand{font-family:var(--hand);font-size:30px;font-weight:700;color:var(--
 </script>
 <script src="nav.js" defer></script>
 <script src="news.js" defer></script>
+<script src="app.js" defer></script>
 </body></html>

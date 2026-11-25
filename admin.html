@@ -1,6 +1,6 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex,nofollow">
-<title>News Admin · MBM '01</title>
+<title>Committee Desk · MBM '01</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=Permanent+Marker&display=swap">
 <style>
@@ -46,14 +46,15 @@ textarea.inp{min-height:130px;resize:vertical;line-height:1.45}
 .gate{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:22px;display:grid;gap:12px;max-width:520px}
 [hidden]{display:none!important}
 </style>
-<link rel="stylesheet" href="theme.css?v=2"></head><body>
+<link rel="stylesheet" href="theme.css?v=2"><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#1C2A44"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="MBM '01"><link rel="apple-touch-icon" href="apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+</head><body>
 <nav><div class="wrap"><a class="brand" href="index.html">MBM <b>'01</b></a><div class="links"><a href="index.html">View site →</a></div></div></nav>
 <main class="wrap">
-  <h1>News &amp; popups</h1>
+  <h1>Committee desk: news, videos &amp; popups</h1>
   <p class="lead">Post an update and it shows on every page as the “Latest” bar, in the home page news section, and (if you tick it) as a one-time popup.</p>
 
   <div class="gate" id="gate">
-    <b>Admins only</b>
+    <b>Core committee only</b>
     <p class="small">Confirm with your registered name and the last 4 digits of your mobile.</p>
     <div class="row"><button class="btn" id="login" type="button">Sign in</button></div>
     <p class="msg" id="gMsg" role="status" aria-live="polite"></p>
@@ -70,6 +71,9 @@ textarea.inp{min-height:130px;resize:vertical;line-height:1.45}
           <label class="q">Show until (optional)<small>Hidden automatically after this date</small><input class="inp" type="date" name="until"></label>
         </div>
         <label class="q">Picture (optional)<input class="inp" type="file" name="photo" accept="image/*"></label>
+        <label class="q">Video link (optional)<small>YouTube or Google Drive link (Drive file shared “Anyone with the link”)</small><input class="inp" name="vurl" maxlength="400" placeholder="https://youtu.be/…"></label>
+        <label class="q">…or upload a short video (optional)<small>Up to 25 MB. For longer videos, upload to YouTube and paste the link above.</small><input class="inp" type="file" name="vfile" accept="video/mp4,video/webm,video/quicktime,video/*"></label>
+        <p class="small" id="vInfo" hidden></p>
         <div class="checks">
           <label><input type="checkbox" name="feed" checked> News feed &amp; ticker</label>
           <label><input type="checkbox" name="popup"> Popup (once per visitor)</label>
@@ -108,7 +112,7 @@ textarea.inp{min-height:130px;resize:vertical;line-height:1.45}
   function msg(id,t,c){ var m=$(id); m.textContent=t||""; m.className="msg "+(c||""); }
   function post(body){ var a=MBMAuth.get(); if(!a) return Promise.reject("auth"); body.code="MBM2001"; body.me=a.me; body.pin=a.pin;
     return fetch(API,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(body)}).then(function(r){ return r.json(); }); }
-  var ERR={admin:"This name isn't on the admin list.",auth:"Please sign in again.",locked:"Too many tries. Wait 30 minutes.",title:"Add a headline.",photo:"That picture couldn't be saved. Try a smaller one."};
+  var ERR={admin:"This name isn't on the admin list.",auth:"Please sign in again.",locked:"Too many tries. Wait 30 minutes.",title:"Add a headline.",video:"That video link isn't supported, or the file couldn't be saved. Use a YouTube or Drive link, or a file under 25 MB.",photo:"That picture couldn't be saved. Try a smaller one."};
 
   function signIn(){ msg("gMsg","");
     MBMAuth.ensure().then(function(){ msg("gMsg","Checking admin access…"); return post({action:"news_list"}); }).then(function(d){
@@ -119,7 +123,7 @@ textarea.inp{min-height:130px;resize:vertical;line-height:1.45}
   function list(items){ var box=$("items"); box.textContent="";
     if(!items.length){ box.appendChild(el("p","small","Nothing posted yet.")); return; }
     items.forEach(function(n){ var c=el("article","it"+(n.live?"":" off"));
-      var tg=el("div"); [n.pinned&&"📌 Pinned",n.feed&&"Feed",n.popup&&"Popup",!n.live&&(n.until? "Ended "+n.until : "Hidden")].filter(Boolean).forEach(function(t){ tg.appendChild(el("span","tag",t)); }); c.appendChild(tg);
+      var tg=el("div"); [n.pinned&&"📌 Pinned",n.video&&"🎬 Video",n.feed&&"Feed",n.popup&&"Popup",!n.live&&(n.until? "Ended "+n.until : "Hidden")].filter(Boolean).forEach(function(t){ tg.appendChild(el("span","tag",t)); }); c.appendChild(tg);
       c.appendChild(el("h3",null,n.title)); if(n.body) c.appendChild(el("p","small",n.body.length>180? n.body.slice(0,180)+"…" : n.body));
       c.appendChild(el("div","meta",n.ts+(n.by?" · "+n.by:"")+(n.until&&n.live?" · until "+n.until:"")));
       var r=el("div","row");
@@ -143,6 +147,11 @@ textarea.inp{min-height:130px;resize:vertical;line-height:1.45}
   // preview
   function prev(){ $("pT").textContent=F.title.value.trim()||"Your headline"; var b=F.body.value.trim(); $("pB").textContent=b||"Your message appears here."; $("pB").className=b?"":"small"; }
   F.title.addEventListener("input",prev); F.body.addEventListener("input",prev);
+  var vfile="";
+  F.vfile.onchange=function(){ var f=this.files&&this.files[0]; vfile=""; var i=$("vInfo"); i.hidden=true; if(!f) return;
+    if(f.size>25*1024*1024){ alert("That video is over 25 MB. Upload it to YouTube (unlisted is fine) and paste the link instead."); this.value=""; return; }
+    i.textContent="Reading "+f.name+"…"; i.hidden=false;
+    var r=new FileReader(); r.onload=function(){ vfile=r.result; i.textContent="🎬 "+f.name+" ("+(f.size/1048576).toFixed(1)+" MB) ready to upload with the post."; }; r.readAsDataURL(f); };
   F.photo.onchange=function(){ var f=this.files&&this.files[0]; photo=""; $("pImg").hidden=true; if(!f) return;
     var u=URL.createObjectURL(f), im=new Image(); im.onload=function(){ var s=Math.min(1,1400/Math.max(im.naturalWidth,im.naturalHeight)), c=document.createElement("canvas");
       c.width=Math.round(im.naturalWidth*s); c.height=Math.round(im.naturalHeight*s); c.getContext("2d").drawImage(im,0,0,c.width,c.height); photo=c.toDataURL("image/jpeg",.85); $("pImg").src=photo; $("pImg").hidden=false; };
@@ -151,10 +160,11 @@ textarea.inp{min-height:130px;resize:vertical;line-height:1.45}
 
   F.onsubmit=function(e){ e.preventDefault(); var t=F.title.value.trim(); if(!t){ msg("fMsg","Add a headline.","err"); F.title.focus(); return; }
     if(!F.feed.checked && !F.popup.checked){ msg("fMsg","Tick “News feed” or “Popup” so people can see it.","err"); return; }
-    $("go").disabled=true; msg("fMsg","Publishing…");
-    post({action:"news_add",title:t,body:F.body.value,link:F.link.value.trim(),until:F.until.value,feed:F.feed.checked,popup:F.popup.checked,pinned:F.pinned.checked,photo:photo})
-      .then(function(d){ $("go").disabled=false; if(d.ok){ msg("fMsg","Published! It's live on the site within a minute.","ok"); F.reset(); photo=""; $("pImg").hidden=true; prev(); MBMNews.reload(); refresh(); } else msg("fMsg",ERR[d.error]||"Couldn't publish.","err"); })
+    $("go").disabled=true; msg("fMsg",vfile?"Uploading video… this can take a minute.":"Publishing…");
+    post({action:"news_add",title:t,body:F.body.value,link:F.link.value.trim(),until:F.until.value,feed:F.feed.checked,popup:F.popup.checked,pinned:F.pinned.checked,photo:photo,videoUrl:F.vurl.value.trim(),videoFile:vfile})
+      .then(function(d){ $("go").disabled=false; if(d.ok){ msg("fMsg","Published! It's live on the site within a minute.","ok"); F.reset(); photo=""; vfile=""; $("vInfo").hidden=true; $("pImg").hidden=true; prev(); MBMNews.reload(); refresh(); } else msg("fMsg",ERR[d.error]||"Couldn't publish.","err"); })
       .catch(function(){ $("go").disabled=false; msg("fMsg","No connection. Try again.","err"); }); };
 })();
 </script>
+<script src="app.js" defer></script>
 </body></html>

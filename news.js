@@ -23,6 +23,8 @@
     ".mbn-pin{color:#B03A2E}" +
     "dialog.mbn{border:0;padding:0;border-radius:20px;max-width:520px;width:calc(100% - 28px);max-height:calc(100dvh - 28px);overflow:auto;background:var(--paper,#FFFCF6);color:var(--ink,#1C2A44);box-shadow:0 24px 70px rgba(0,0,0,.4)}" +
     "dialog.mbn::backdrop{background:rgba(15,21,38,.62)}" +
+    ".mbn-vid{position:relative;width:100%;aspect-ratio:16/9;background:#000;overflow:hidden}.mbn-vid iframe,.mbn-vid video{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}" +
+    ".mbn-full{display:grid;gap:16px}.mbn-full .mbn-card{border-radius:18px}.mbn-full .mbn-card h3{font-size:21px}" +
     "dialog.mbn img{width:100%;display:block;max-height:52vh;object-fit:cover}" +
     "dialog.mbn .in{padding:20px 22px 22px;display:grid;gap:10px;font:16px/1.55 var(--body,system-ui,sans-serif)}" +
     "dialog.mbn .k{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--sand,#B8612F)}" +
@@ -35,6 +37,15 @@
     "dialog.mbn .list h3{margin:0;font-size:17px}dialog.mbn .list img{border-radius:10px;max-height:220px}";
 
   function el(t, c, x){ var e = document.createElement(t); if (c) e.className = c; if (x != null) e.textContent = x; return e; }
+  function media(n, big){
+    var v = String(n.video || ""), m;
+    if (v) { var w = el("div", "mbn-vid"), src = "";
+      if ((m = v.match(/^yt:([A-Za-z0-9_-]+)$/))) src = "https://www.youtube-nocookie.com/embed/" + m[1] + "?rel=0";
+      else if ((m = v.match(/^drive:([A-Za-z0-9_-]+)$/))) src = "https://drive.google.com/file/d/" + m[1] + "/preview";
+      if (src) { var f = document.createElement("iframe"); f.src = src; f.title = n.title || "Video"; f.loading = "lazy"; f.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen"; f.setAttribute("allowfullscreen", ""); f.referrerPolicy = "strict-origin-when-cross-origin"; w.appendChild(f); return w; }
+      if (/^https:\/\//i.test(v)) { var vd = document.createElement("video"); vd.src = v; vd.controls = true; vd.preload = "metadata"; vd.playsInline = true; w.appendChild(vd); return w; } }
+    return n.photo ? pic(n.photo) : null;
+  }
   function pic(id){ var i = new Image(); i.referrerPolicy = "no-referrer"; i.alt = ""; i.src = "https://drive.google.com/thumbnail?id=" + encodeURIComponent(id) + "&sz=w1200"; return i; }
   function date(ts){ var m = String(ts || "").match(/^(\d{4})-(\d{2})-(\d{2})/); if (!m) return ""; var M = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]; return Number(m[3]) + " " + M[Number(m[2]) - 1] + " " + m[1]; }
   function okLink(s){ return /^https:\/\//i.test(s) || /^[a-z0-9_\-]+\.html(#[a-z0-9_\-]*)?$/i.test(s) || /^#[a-z0-9_\-]+$/i.test(s); }
@@ -51,7 +62,7 @@
   }
   function popup(n){
     dialog(function(d){
-      if (n.photo) d.appendChild(pic(n.photo));
+      var md0 = media(n, 1); if (md0) d.appendChild(md0);
       var i = el("div", "in"); i.appendChild(el("div", "k", "📣 MBM '01 update" + (n.ts ? " · " + date(n.ts) : "")));
       i.appendChild(el("h2", null, n.title)); if (n.body) i.appendChild(el("p", null, n.body));
       var r = el("div", "r"), a = link(n); if (a) { a.textContent = "Open"; a.addEventListener("click", function(){ d.close(); }); r.appendChild(a); }
@@ -63,7 +74,7 @@
   function allNews(list){
     dialog(function(d){
       var i = el("div", "in"); i.appendChild(el("div", "k", "Latest news & updates")); var l = el("div", "list");
-      list.forEach(function(n){ var a = el("article"); if (n.photo) a.appendChild(pic(n.photo)); a.appendChild(el("div", "k", (n.pinned ? "📌 " : "") + date(n.ts)));
+      list.forEach(function(n){ var a = el("article"); var md1 = media(n); if (md1) a.appendChild(md1); a.appendChild(el("div", "k", (n.pinned ? "📌 " : "") + date(n.ts)));
         a.appendChild(el("h3", null, n.title)); if (n.body) a.appendChild(el("p", null, n.body)); var g = link(n); if (g) a.appendChild(g); l.appendChild(a); });
       i.appendChild(l); var r = el("div", "r"), b = el("button", null, "Close"); b.type = "button"; b.onclick = function(){ d.close(); }; r.appendChild(b); i.appendChild(r); d.appendChild(i);
     });
@@ -73,7 +84,7 @@
     var bar = el("button", "mbn-bar"); bar.type = "button"; bar.setAttribute("aria-label", "Latest news and updates");
     bar.appendChild(el("b", null, "LATEST")); var s = el("span", null, list[0].title); bar.appendChild(s);
     bar.appendChild(el("i", null, list.length > 1 ? "1/" + list.length + " · See all" : "Read"));
-    bar.onclick = function(){ var sec = document.getElementById("mbm-news"); if (sec) sec.scrollIntoView({ behavior: "smooth", block: "start" }); else allNews(list); };
+    bar.onclick = function(){ var sec = document.getElementById("mbm-news"); if (sec) sec.scrollIntoView({ behavior: "smooth", block: "start" }); else location.href = "news.html"; };
     nav.insertAdjacentElement("afterend", bar);
     if (list.length > 1 && !(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches)) {
       var k = 0; setInterval(function(){ k = (k + 1) % list.length; s.style.opacity = 0; setTimeout(function(){ s.textContent = list[k].title; bar.lastChild.textContent = (k + 1) + "/" + list.length + " · See all"; s.style.opacity = 1; }, 350); }, 5000);
@@ -84,17 +95,27 @@
     var sec = el("section", "mbn-sec"); sec.id = "mbm-news";
     var lab = el("div", "label", "From the organisers"); sec.appendChild(lab); sec.appendChild(el("h2", null, "Latest news & updates"));
     var g = el("div", "mbn-grid");
-    list.slice(0, 6).forEach(function(n){ var c = el("article", "mbn-card"); if (n.photo) c.appendChild(pic(n.photo)); var b = el("div");
+    list.slice(0, 6).forEach(function(n){ var c = el("article", "mbn-card"); var md2 = media(n); if (md2) c.appendChild(md2); var b = el("div");
       b.appendChild(el("div", "d" + (n.pinned ? " mbn-pin" : ""), (n.pinned ? "📌 Pinned · " : "") + date(n.ts))); b.appendChild(el("h3", null, n.title));
       if (n.body) b.appendChild(el("p", null, n.body)); var a = link(n, "go"); if (a) b.appendChild(a); c.appendChild(b); g.appendChild(c); });
     sec.appendChild(g);
-    if (list.length > 6) { var m = el("button", "btn ghost", "See all " + list.length + " updates"); m.type = "button"; m.style.marginTop = "12px"; m.onclick = function(){ allNews(list); }; sec.appendChild(m); }
+    if (list.length > 6) { var m = el("button", "btn ghost", "See all " + list.length + " updates"); m.type = "button"; m.style.marginTop = "12px"; m.onclick = function(){ location.href = "news.html"; }; sec.appendChild(m); }
     anchor.parentNode.insertBefore(sec, anchor);
   }
 
+  function full(list){
+    var host = document.getElementById("allNews"); if (!host) return;
+    host.textContent = ""; host.className = "mbn-full";
+    if (!list.length) { host.appendChild(el("p", null, "No announcements yet. Check back soon!")); return; }
+    list.forEach(function(n){ var c = el("article", "mbn-card"); c.id = "n-" + n.id; var md = media(n, 1); if (md) c.appendChild(md); var b = el("div");
+      b.appendChild(el("div", "d" + (n.pinned ? " mbn-pin" : ""), (n.pinned ? "📌 Pinned · " : "") + date(n.ts))); b.appendChild(el("h3", null, n.title));
+      if (n.body) b.appendChild(el("p", null, n.body)); var a = link(n, "go"); if (a) b.appendChild(a); c.appendChild(b); host.appendChild(c); });
+  }
   function run(d){
-    var items = (d && d.news) || []; if (!items.length) return;
+    var items = (d && d.news) || [];
     var st = document.createElement("style"); st.textContent = css; document.head.appendChild(st);
+    full(items.filter(function(n){ return n.feed; }));
+    if (!items.length) return;
     var feed = items.filter(function(n){ return n.feed; });
     if (feed.length) { ticker(feed); if (document.getElementById("schedule")) section(feed); }
     if (!noPopup) { var s = seen(), p = items.filter(function(n){ return n.popup && s.indexOf(n.id) < 0; })[0]; if (p) setTimeout(function(){ popup(p); }, 1200); }

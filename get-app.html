@@ -1,0 +1,52 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Get the app · MBM '01</title>
+<meta property="og:title" content="Get the MBM '01 app">
+<meta property="og:description" content="Install the Silver Jubilee app on your phone: photo wall, food menu, slam book and live updates, one tap from your home screen.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Figtree:wght@400;500;600;700;800&family=Permanent+Marker&display=swap">
+<style>
+:root{--ground:#F5EFE4;--paper:#FFFCF6;--ink:#1C2A44;--ink-2:#4A566E;--line:#DDD2BF;--sand:#B8612F;--blue:#2E5597;--mustard:#E8BA4A;--ok:#2E7D4F;--display:"Permanent Marker",cursive;--hand:"Caveat",cursive;--body:"Figtree",system-ui,sans-serif}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--ground:#0F1526;--paper:#18203A;--ink:#F1E9DA;--ink-2:#B5BCCB;--line:#2C3656;--sand:#E08E5B;--blue:#86A8E6;--ok:#6CC08F}}
+*{box-sizing:border-box}body{margin:0;background:var(--ground);color:var(--ink);font:17px/1.55 var(--body)}
+.wrap{max-width:760px;margin-inline:auto;padding-inline:16px}
+nav{border-bottom:1px solid var(--line)}nav .wrap{display:flex;align-items:center;height:56px}
+.brand{font-family:var(--display);font-size:22px;color:var(--ink);text-decoration:none}.brand b{color:var(--sand);font-weight:400}
+.hero{display:flex;gap:18px;align-items:center;padding-block:28px 10px}
+.hero img{width:96px;height:96px;border-radius:22px;box-shadow:0 10px 26px rgba(0,0,0,.25);flex:none}
+h1{font-size:clamp(30px,6vw,44px);line-height:1.05;margin:0 0 6px;font-weight:800}
+.lead{color:var(--ink-2);margin:0}
+.btn{display:inline-flex;align-items:center;gap:8px;font:700 17px/1 var(--body);padding:15px 22px;border-radius:13px;border:0;background:#E8BA4A;color:#1C2A44;cursor:pointer;text-decoration:none}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:18px 20px;margin:16px 0}
+.card h2{margin:0 0 8px;font-size:20px}
+ol{margin:0;padding-left:22px}li{margin:6px 0}
+.ok{color:var(--ok);font-weight:700}
+.small{font-size:14px;color:var(--ink-2)}
+[hidden]{display:none!important}
+</style>
+<link rel="stylesheet" href="theme.css?v=2"><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#1C2A44"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="MBM '01"><link rel="apple-touch-icon" href="apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+</head><body>
+<nav><div class="wrap"><a class="brand" href="index.html">MBM <b>'01</b></a></div></nav>
+<main class="wrap">
+  <div class="hero"><img src="icon-192.png" alt=""><div><h1>Get the MBM '01 app</h1><p class="lead">Photo wall, food menu, slam book and live updates, one tap from your home screen. Free, no app store, under 1 MB.</p></div></div>
+
+  <p id="done" class="card ok" hidden>✓ You're using the app. You're all set!</p>
+  <div id="one" class="card" hidden><h2>Install in one tap</h2><button class="btn" id="install" type="button">📲 Install the app</button><p class="small" id="instMsg"></p></div>
+
+  <div class="card" id="android"><h2>Android (Chrome)</h2>
+    <ol><li>Open <b>mbm01.life</b> in Chrome.</li><li>Tap <b>Install</b> on the banner at the bottom, or tap the <b>⋮</b> menu → <b>Install app</b> (or <b>Add to Home screen</b>).</li><li>Open <b>MBM '01</b> from your home screen.</li></ol></div>
+  <div class="card" id="iphone"><h2>iPhone (Safari)</h2>
+    <ol><li>Open <b>mbm01.life</b> in <b>Safari</b> (not inside WhatsApp; tap the link, then “Open in Safari”).</li><li>Tap <b>Share</b> (the square with an arrow) at the bottom.</li><li>Scroll and tap <b>Add to Home Screen</b>, then <b>Add</b>.</li></ol></div>
+  <p class="small">The app is the same as the website, so it is always up to date. Remove it any time like any other app.</p>
+</main>
+<script src="app.js"></script>
+<script>
+(function(){
+  var $=function(i){return document.getElementById(i);}, ua=navigator.userAgent, ios=/iphone|ipad|ipod/i.test(ua);
+  if((window.matchMedia&&matchMedia('(display-mode: standalone)').matches)||navigator.standalone){ $('done').hidden=false; $('android').hidden=true; $('iphone').hidden=true; return; }
+  if(ios) $('android').hidden=true; else if(/android/i.test(ua)) $('iphone').hidden=true;
+  var deferred=null;
+  window.addEventListener('beforeinstallprompt',function(e){ e.preventDefault(); deferred=e; $('one').hidden=false; var b=document.getElementById('mbmApp'); if(b) b.remove(); });
+  $('install').onclick=function(){ if(!deferred) return; deferred.prompt(); deferred.userChoice.then(function(c){ $('instMsg').textContent=c.outcome==='accepted'?'Installed! Look for MBM \'01 on your home screen.':'No problem, you can install it later.'; deferred=null; }); };
+})();
+</script>
+</body></html>
